@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>sed and awk - khanalinc</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/color-brewer.min.css">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">khanalinc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../whycode/" class="nav-link">Why Codes?</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">First Thing first <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../machinelearning/file0/" class="dropdown-item">file0</a>
+</li>
+                                    
+<li>
+    <a href="../../machinelearning/compare_classification/" class="dropdown-item">comarision</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux/Unix <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../vi/" class="dropdown-item">vi commands</a>
+</li>
+                                    
+<li>
+    <a href="../grep/" class="dropdown-item">grep commands</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">sed and awk</a>
+</li>
+                                    
+<li>
+    <a href="../command_linux/" class="dropdown-item">vi commands</a>
+</li>
+                                    
+<li>
+    <a href="../git/" class="dropdown-item">git commands</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Getting started <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../GettingStarted/anaconda.md" class="dropdown-item">Guide to starting Python</a>
+</li>
+                                    
+<li>
+    <a href="../../GettingStarted/lib.md" class="dropdown-item">Guide to Python Libraries</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Introduction to Python <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../prog.md" class="dropdown-item">Introduction</a>
+</li>
+                                    
+<li>
+    <a href="../../DataStructure/ds.md" class="dropdown-item">DataStructure</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">References <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../References/ref.md" class="dropdown-item">Reference</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../grep/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../command_linux/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#sed-and-awk" class="nav-link">Sed and Awk</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#commands" class="nav-link">Commands</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#sed-syntax" class="nav-link">sed Syntax</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#print" class="nav-link">print</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#delete" class="nav-link">delete</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#substitute" class="nav-link">Substitute</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#examples" class="nav-link">Examples:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#awk" class="nav-link">awk</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#sed-deleting-last-n-lines-of-a-file" class="nav-link">Sed deleting last n lines of a file</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h2 id="sed-and-awk">Sed and Awk</h2>
+<h3 id="commands"><strong>Commands</strong></h3>
+<ul>
+<li><strong>p</strong> print</li>
+<li><strong>d</strong> delete</li>
+<li><strong>s</strong> substitute</li>
+<li><strong>a</strong> append</li>
+<li><strong>i</strong> insert</li>
+<li><strong>c</strong> change</li>
+<li><strong>y</strong> transform</li>
+<li><strong>q</strong> quit</li>
+</ul>
+<p>!!<strong>Things to note</strong></p>
+<ul>
+<li><strong>$</strong> represents the last line</li>
+<li><strong>^$</strong> represents blank line.</li>
+</ul>
+<h3 id="sed-syntax"><strong>sed Syntax</strong></h3>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>sed [-n] [-e] [&#39;command&#39;] [file]
+</code></pre></div>
+
+
+<ul>
+<li><strong>-n</strong> only prints line specified with the print command</li>
+<li><strong>-e</strong> The next argument is a filename containing editing commands</li>
+</ul>
+<h3 id="print"><strong>print</strong></h3>
+<p>Command <strong>p</strong> [<strong>p</strong>rint only certain lines]</p>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>Syntax:    [address1[,address2]]p
+</code></pre></div>
+
+
+<p><strong>Examples:</strong></p>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>sed -n &#39;5,10p&#39; file.dat     Print lines from line 5 to line 10
+sed -n &#39;5p&#39; file.dat        Print only 5th line
+sed -n &#39;5,$p&#39; file.dat      Print lines from 5th to last line
+</code></pre></div>
+
+
+<h3 id="delete"><strong>delete</strong></h3>
+<p>Command <strong>d</strong> [<strong>d</strong>elete certain line]</p>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>Syntax:    [address1[,address2]]d
+</code></pre></div>
+
+
+<p>!!Examples:</p>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>sed &#39;5d&#39; file.dat           [Delete line 5 while printing]
+sed &#39;5,10d&#39; file.dat        [Delete lines from 5th to 10th while printing]
+sed &#39;/^$d&#39; file.dat         [Delete line 5 while printing]
+sed &#39;/^$/,$d&#39; file.dat      [Delete from first blank line through last line.]
+sed &#39;/str/,$d&#39; file.dat     [Delete all lines after the line containing string **str**. [Also has to be single quotation mark.]
+</code></pre></div>
+
+
+<h3 id="substitute"><strong>Substitute</strong></h3>
+<p>Command <strong>s</strong> [<strong>s</strong>ubstitute <strong>AA</strong> by <strong>BB</strong>]</p>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>Syntax:    [address(es)]s/pattern/replacement/[flags]
+           flags: n   [nth occurrence]
+                : g   [global occurrence]
+</code></pre></div>
+
+
+<h3 id="examples">Examples:</h3>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>sed ‘s/ AA/ BB/’ file.dat      Only the first occurrence
+sed ‘s/ AA/ BB/g’ file.dat     global (all) occurrences
+sed -i ‘s/ AA/ BB/g’ file.dat     replace in file (all) occurrences
+</code></pre></div>
+
+
+<ul>
+<li>For a pattern which occurs multiple times in a file, replace only some of them. [Remember sig.inp for ferromagnetic calculations]</li>
+</ul>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>sed &#39;s/AA/BB/2&#39;                Replace only 2nd occurrence
+sed &#39;s/AA/BB/2g&#39;               Replace all after 2nd occurrence
+</code></pre></div>
+
+
+<p>!!Note: while using sed in bash shell, be careful about '{text}' and "{text}" the later has been useful. Learn when to use one and when the other.</p>
+<p><strong>More information can be on</strong></p>
+<p>A great course for learning UNIX
+http://www.cs.nyu.edu/~mohri/unix08/</p>
+<p>Basic Unix commands
+http://unixcommandstutorial.blogspot.com/2013/04/unixawkperl-sqlplsql-examples.html</p>
+<p>some tutorials on awk 
+http://www.grymoire.com/Unix/Awk.html#uh-14</p>
+<h2 id="awk"><strong>awk</strong></h2>
+<p>awk can be as useful as sed and in many cases even better. </p>
+<ul>
+<li>print only some columns of some output</li>
+</ul>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>awk &#39;{print $2}&#39; file.txt                 [print 2nd column]
+grep &#39;str&#39; file.txt |awk &#39;{print $2}&#39;     [print 2nd column of the output]
+grep &#39;str&#39; file.txt |awk &#39;{print $2 $3}&#39;  [print 2nd and 3rd column]
+</code></pre></div>
+
+
+<ul>
+<li>print only some rows from file</li>
+</ul>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>awk &#39;NR==1{print}&#39; file.txt          [print 1st line]
+awk &#39;NR==1;END{print}&#39; file.txt      [print first and last line.]
+awk &#39;NR==1;END{print $2}&#39; file.txt   [print 2nd column of first and last line.]
+</code></pre></div>
+
+
+<ul>
+<li>find pattern and print only certain column</li>
+</ul>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>awk &#39;/pattern/{print $1}&#39; file    [find lines with pattern and print first column]
+</code></pre></div>
+
+
+<p>!Sed/Awk inside a bash script</p>
+<p>Insied a bash script you have to be little careful using sed and awk, especially if you are using a variable inside a sed command. For example the following command inside a bash script
+<code>sed -i 's/${var1}/${var2}' filename.dat</code>
+<strong>won't work</strong>. First thing is it needs double quotes <code>**</code> as opposed to single quotes <code>'</code> and the second thing is the <code>/</code> sign must be replaced by apersand  symbol <code>&amp;</code>. So the correct command would be <code>sed -i **s&amp;${var1}&amp;${var2}&amp;g** filename.dat</code></p>
+<h3 id="sed-deleting-last-n-lines-of-a-file">Sed deleting last n lines of a file</h3>
+<ul>
+<li><strong>Option1: delete one line at a time for n times.</strong> very expensive for large files. </li>
+</ul>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>for i in `seq 1 n`; do
+    sed -i &#39;${d}&#39; file.txt
+</code></pre></div>
+
+
+<ul>
+<li><strong>Option2: print the file in reverse using <code>tac</code> and cut the first n lines and reverse the file once again using <code>tac</code>.</strong></li>
+</ul>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>tac file.txt |sed &#39;1,n{d}&#39; |tac  &gt; file_tmp
+mv file_tmp file.txt
+</code></pre></div>
+
+
+<ul>
+<li><strong>Option3: Found in the webpage  <a href="http://www.unixguide.net/unix/sedoneliner.shtml">sedoneliner</a></strong></li>
+</ul>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>sed -i -e :a -e &#39;$d;N;2,4ba&#39; -e &#39;P;D&#39; test_file
+</code></pre></div>
+
+
+<ul>
+<li><strong>Some other nice comands</strong></li>
+</ul>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>sed -i -e &quot;1,${n0}d&quot; $f        # works  to delete lines from 1 to n0
+ sed -i -e &quot;${n0},${n1}d&quot; $f   # deletes lines from n0 to n1
+</code></pre></div></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

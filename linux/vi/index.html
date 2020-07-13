@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>vi commands - khanalinc</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/color-brewer.min.css">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">khanalinc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../whycode/" class="nav-link">Why Codes?</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">First Thing first <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../machinelearning/file0/" class="dropdown-item">file0</a>
+</li>
+                                    
+<li>
+    <a href="../../machinelearning/compare_classification/" class="dropdown-item">comarision</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Linux/Unix <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active">vi commands</a>
+</li>
+                                    
+<li>
+    <a href="../grep/" class="dropdown-item">grep commands</a>
+</li>
+                                    
+<li>
+    <a href="../sed_awk/" class="dropdown-item">sed and awk</a>
+</li>
+                                    
+<li>
+    <a href="../command_linux/" class="dropdown-item">vi commands</a>
+</li>
+                                    
+<li>
+    <a href="../git/" class="dropdown-item">git commands</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Getting started <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../GettingStarted/anaconda.md" class="dropdown-item">Guide to starting Python</a>
+</li>
+                                    
+<li>
+    <a href="../../GettingStarted/lib.md" class="dropdown-item">Guide to Python Libraries</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Introduction to Python <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../prog.md" class="dropdown-item">Introduction</a>
+</li>
+                                    
+<li>
+    <a href="../../DataStructure/ds.md" class="dropdown-item">DataStructure</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">References <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../References/ref.md" class="dropdown-item">Reference</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../../machinelearning/compare_classification/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../grep/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#working-on-unixlinux" class="nav-link">Working on Unix/Linux</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#basics-commands" class="nav-link">Basics commands</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#more-commands" class="nav-link">more commands</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#playing-with-tab-and-spaces-in-vim" class="nav-link">Playing with tab and spaces in VIM</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#yank-and-paste-same-thing-multiple-times" class="nav-link">Yank and Paste same thing multiple times.</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="working-on-unixlinux">Working on Unix/Linux</h1>
+<p>I have been using Linux OS for some time now, for research and my other work related stuffs. Here I am sharing my notes.</p>
+<p>Vi Editor basically has two modes: <strong>INSERT MODE</strong> and <strong>COMMAND MODE</strong>. In Insert mode, one can edit, make changes. On the other hand in command mode, we can enter commands to perform certain task, for example substitution, deletion.</p>
+<ul>
+<li>
+<p>To switch from <strong>INSERT MODE</strong> to <strong>COMMAND MODE</strong> press <strong>Esc</strong> key.</p>
+</li>
+<li>
+<p>To switch from <strong>COMMAND MODE</strong> to <strong>INSERT MODE</strong> press <strong>I</strong>.</p>
+</li>
+</ul>
+<h2 id="basics-commands">Basics commands</h2>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>i    : Insert text at the current cursor position
+I    : Insert text at the begining of the current line.
+o    : Add text in a new line below the current line.
+O    : Add text in a new line above the current line.
+a    : Append text after the position of cursor.
+A    : Append at the end of line. 
+</code></pre></div>
+
+
+<ul>
+<li>Move Cursor</li>
+</ul>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>h    : Move the cursor one character to the left 
+l    : Move the cursor one character to the right
+k    : Move the cursor up one line
+j    : Move the cursor down one line
+gg   : Go to the begining of file.
+G    : Go to the end of the file.
+^d   : Shift one page down [^: CTRL]
+^u   : Shift one page up [^: CTRL]  
+$    : Move cursor to the end of current line
+0    : Move cursor to the beginning of current line
+w    : Forward one word
+b    : Backward one word 
+</code></pre></div>
+
+
+<ul>
+<li>
+<p>Cut / Copy / Paste</p>
+</li>
+<li>
+<p>Delete</p>
+</li>
+</ul>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>x   : Delete a character
+dd  : Delete current line
+d$  : Delete from the position of the cursor to end of the line
+dw  : Delete word from cursor on
+db  : Delete word backward
+</code></pre></div>
+
+
+<ul>
+<li>Copy (Yank)</li>
+</ul>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>yy  : Yank current line
+y$  : Yank to end of current line from cursor
+yw  : Yank from cursor to end of current word
+2yy : Yank 2 lines
+y   : Yanks the Highlighted characters.
+</code></pre></div>
+
+
+<ul>
+<li>Paste</li>
+</ul>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>p  : Paste below the cursor
+P  : Paste above the cursor
+u  : Undo last change
+U  : Restore line
+J  : Join next line down to the end of the current line
+</code></pre></div>
+
+
+<ul>
+<li>Highlight characters</li>
+</ul>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>v   : activates the visual mode and one can move cursor to highlight required characters.
+^v  : Highlight vertically. Very useful for inserting tab in multiple lines.
+</code></pre></div>
+
+
+<ul>
+<li>Exit from the Editor</li>
+</ul>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>:wq    : Write file to disk and quit the editor
+:q!    : Quit (Without saving the changes)
+:q     : Quit (Will print out a warning if changes have been made)
+:w abc : Save the current file to a new file abc
+</code></pre></div>
+
+
+<h2 id="more-commands">more commands</h2>
+<ul>
+<li><strong>Find and Replace</strong></li>
+</ul>
+<p>One of the widely used commands for me personally.</p>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>:[range]s/{pattern}/{string}/[flags] [count]
+</code></pre></div>
+
+
+<p><strong>Possible Flags:</strong></p>
+<p>[c]    : Confirm each substitution</p>
+<p>[g]    : Replace all occurrrences in the line.</p>
+<p>[i]      :  Ignore case for the pattern</p>
+<p>s   :  stands for substitute</p>
+<ul>
+<li>Some examples </li>
+</ul>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>:s/XX/YY/g         [only in current line]
+:%s/XX/YY/g        [in the entire file]
+:5,12s/XX/YY/g     [only in specific lines 5 and 12]
+:.,$s/XX/YY/g      [current + all the following lines.]
+:s/XX/YY/g 4       [Current + following 4 lines]
+:.,+2s/XX/YY/g     [current + next 2 lines same as above.]
+</code></pre></div>
+
+
+<p>Explanation</p>
+<p><strong>:s</strong> for substitution, <strong>.</strong> : current line , <strong>$</strong> :end line, <strong>%</strong> : entire file, <strong>g</strong> : global search but locally global. only for that line.</p>
+<ul>
+<li><strong>insert spaces or indentation in multiple lines</strong></li>
+</ul>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>highlight the line[s] and press &gt;&gt; or &lt;&lt;
+</code></pre></div>
+
+
+<ul>
+<li>deleting certain parts</li>
+</ul>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>:%normal 2x     [Delete the first n characters of every lines]
+:%s/^ /         [Delete the first n characters of every lines only if they are spaces]
+:%s/\s+$//e     [Delete any trailing space at the end of all the lines]
+:%s/
+:%s/^\s\+//e    [Delete all initial spaces(or tabs) of all the lines]
+                [^: begining of line; \s looks for spaces(including tabs); \+ looks for one and or more occurance; //e: first / means substitute by and nothing after it means nothing and \e means if not found the string then suppress the error.]
+:%le [==:left]           [Global left alignment (much more efficient)]
+</code></pre></div>
+
+
+<ul>
+<li>OPEN/ CLOSE/ SPLIT  files</li>
+</ul>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>vim f1.txt             [open single file]
+vim -o f1.txt f2.txt   [open two files in horizontal]
+vim -O f1.txt f2.txt   [open two files vertically]
+CTRL w [R/L/T/B arrow] [toggle between different split windows]
+CTRL +w w              [  Toggle between different split windows]
+:e new_file            [open new file in this window]
+
+:sp new_file           [splits Horizontally and opens the new file]
+:vsp new_file          [splits vertically and opens the new file]
+
+CTRL +w , s            [split Horizontally ]  
+CTRL +w , v            [split vertically ]
+CTRL +w, Q             [Quit the current window]
+</code></pre></div>
+
+
+<ul>
+<li><strong>g</strong>lobal <strong>command</strong></li>
+</ul>
+<p>The global command is useful in many cases.</p>
+<p>general pattern:</p>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>:[range]g/pattern/cmd
+</code></pre></div>
+
+
+<p>!!Examples</p>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>:g/[abcde]/d           [delete lines matching pattern abcde]
+:!g/[abcde]/d          [delete lines not matching the pattern abcde]
+:g/^\s*$/d             [^($) means start(end) of line and \s* means 0 or many spaces including tab, delete all empty lines.]
+:g/[pat]/s/abc/def/gi  [In all lines containing pattern pat, substitute abc by def.]
+</code></pre></div>
+
+
+<ul>
+<li>Find a pattern in a line and delete everything after it. or delete after that pattern</li>
+</ul>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>:1,$s/pattern.*//g .  # to delete everything after  (and including) that pattern
+:1,$s/pattern.*/pattern/g .  # to delete everything after  (excluding) that pattern
+</code></pre></div>
+
+
+<ul>
+<li><strong>Some other Examples</strong></li>
+</ul>
+<p>Sometime you have to comment few lines. For that Usually for bash-script we put a # sign in the front of every line to comment that line. Easier way is following:
+go to top(bottom) of the lines press <strong>CTRL v</strong> to go to <strong>visual mode</strong> and press <strong>j</strong> or <strong>k</strong> to go down or up to whatever many lines you need to comment. Press <strong>I</strong> (capital i) and put a sign <strong>#</strong> now go to command mode by pressing <strong>Esc</strong> key and save the file <strong>:w</strong>. Should work!</p>
+<h3 id="playing-with-tab-and-spaces-in-vim">Playing with tab and spaces in VIM</h3>
+<p>A lot of times I get old scripts and codes where a tab is used and while making changes and compiling the code I get indentation error due to tabs. Here is how to fix this.</p>
+<ul>
+<li>Replace tab by spaces: <code>:retab</code></li>
+<li>Set length of spaces for a tab: <code>:set tabstop=4</code>,  <code>:set shiftwidth=4</code>, <code>:set expandtab</code></li>
+<li>For more info, find my <code>.vimrc</code> file <a href="https://gitlab.com/khanalg44/All_dot_files/blob/master/vimrc_pc_khanal">my vimrc file</a></li>
+</ul>
+<h2 id="yank-and-paste-same-thing-multiple-times">Yank and Paste same thing multiple times.</h2>
+<p><code>xnoremap p pgvy</code> <strong>p</strong> to paste, <strong>gv</strong> to re-select what was originally selected. <strong>y</strong> to copy it again.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
