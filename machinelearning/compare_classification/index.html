@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>comarision - khanalinc</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">khanalinc</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../whycode/" class="nav-link">Why Codes?</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">First Thing first <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../file0/" class="dropdown-item">file0</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">comarision</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Getting started <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../GettingStarted/anaconda.md" class="dropdown-item">Guide to starting Python</a>
+</li>
+                                    
+<li>
+    <a href="../../GettingStarted/lib.md" class="dropdown-item">Guide to Python Libraries</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Introduction to Python <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../prog.md" class="dropdown-item">Introduction</a>
+</li>
+                                    
+<li>
+    <a href="../../DataStructure/ds.md" class="dropdown-item">DataStructure</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">References <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../References/ref.md" class="dropdown-item">Reference</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../file0/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#how-to-evaluate-gradient-boosting-models-with-xgboost-in-python" class="nav-link">How to Evaluate Gradient Boosting Models with XGBoost in Python</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#prepare-the-data" class="nav-link">Prepare the data</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#clasiffication-using-different-classifiers" class="nav-link">Clasiffication using different Classifiers</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#xgboost" class="nav-link">XGBOOST</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="4"><a href="#xgboost-with-with-k-fold-cross-validation" class="nav-link">XGBOOST with With k-fold cross validation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#support-vector-machine" class="nav-link">Support Vector Machine</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#k-nearest-neighbour" class="nav-link">K-Nearest Neighbour</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#random-forrest" class="nav-link">Random Forrest</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#decision-tree" class="nav-link">Decision Tree</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#adaboost" class="nav-link">Adaboost</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="how-to-evaluate-gradient-boosting-models-with-xgboost-in-python">How to Evaluate Gradient Boosting Models with XGBoost in Python</h1>
+<p>Source: https://machinelearningmastery.com/evaluate-gradient-boosting-models-xgboost-python/</p>
+<h2 id="prepare-the-data">Prepare the data</h2>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #0099FF; font-style: italic">## Install xgboost as</span>
+<span style="color: #0099FF; font-style: italic">##!pip3 install xgboost</span>
+<span style="color: #006699; font-weight: bold">import</span> <span style="color: #00CCFF; font-weight: bold">xgboost</span>
+<span style="color: #006699; font-weight: bold">print</span> (<span style="color: #CC3300">&#39;xgboost version:&#39;</span>, xgboost<span style="color: #555555">.</span>__version__)
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>xgboost version: 0.90
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">import</span> <span style="color: #00CCFF; font-weight: bold">numpy</span> <span style="color: #006699; font-weight: bold">as</span> <span style="color: #00CCFF; font-weight: bold">np</span>
+<span style="color: #006699; font-weight: bold">import</span> <span style="color: #00CCFF; font-weight: bold">pandas</span> <span style="color: #006699; font-weight: bold">as</span> <span style="color: #00CCFF; font-weight: bold">pd</span>
+<span style="color: #006699; font-weight: bold">import</span> <span style="color: #00CCFF; font-weight: bold">matplotlib.pyplot</span> <span style="color: #006699; font-weight: bold">as</span> <span style="color: #00CCFF; font-weight: bold">plt</span>
+
+data <span style="color: #555555">=</span> pd<span style="color: #555555">.</span>read_csv(<span style="color: #CC3300">&#39;./data/pima-indians-diabetes.data.csv&#39;</span>, header<span style="color: #555555">=</span><span style="color: #336666">None</span>)
+
+<span style="color: #006699; font-weight: bold">print</span> (<span style="color: #CC3300">&#39;shape(data):&#39;</span>,data<span style="color: #555555">.</span>shape)
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>shape(data): (768, 9)
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>data<span style="color: #555555">.</span>head(<span style="color: #FF6600">2</span>)
+</code></pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>6</td>
+      <td>148</td>
+      <td>72</td>
+      <td>35</td>
+      <td>0</td>
+      <td>33.6</td>
+      <td>0.627</td>
+      <td>50</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>85</td>
+      <td>66</td>
+      <td>29</td>
+      <td>0</td>
+      <td>26.6</td>
+      <td>0.351</td>
+      <td>31</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #0099FF; font-style: italic"># the last column is the yes/no column where 0 represents NO diabetes and 1 represent YES daibetes</span>
+y <span style="color: #555555">=</span> data<span style="color: #555555">.</span>iloc[:,<span style="color: #555555">-</span><span style="color: #FF6600">1</span>]
+X <span style="color: #555555">=</span> data<span style="color: #555555">.</span>iloc[:,:<span style="color: #555555">-</span><span style="color: #FF6600">1</span>]
+
+X<span style="color: #555555">.</span>head(<span style="color: #FF6600">2</span>)
+</code></pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>6</td>
+      <td>148</td>
+      <td>72</td>
+      <td>35</td>
+      <td>0</td>
+      <td>33.6</td>
+      <td>0.627</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>85</td>
+      <td>66</td>
+      <td>29</td>
+      <td>0</td>
+      <td>26.6</td>
+      <td>0.351</td>
+      <td>31</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">from</span> <span style="color: #00CCFF; font-weight: bold">sklearn.model_selection</span> <span style="color: #006699; font-weight: bold">import</span> train_test_split
+X_train, X_test, y_train, y_test<span style="color: #555555">=</span>train_test_split(X, y, test_size<span style="color: #555555">=</span><span style="color: #FF6600">0.33</span>, random_state<span style="color: #555555">=</span><span style="color: #FF6600">1728</span>)
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">print</span> (<span style="color: #CC3300">&#39;X_train.shape, X_test.shape, y_train.shape, y_test.shape&#39;</span>)
+<span style="color: #006699; font-weight: bold">print</span> (X_train<span style="color: #555555">.</span>shape, X_test<span style="color: #555555">.</span>shape, y_train<span style="color: #555555">.</span>shape, y_test<span style="color: #555555">.</span>shape)
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>X_train.shape, X_test.shape, y_train.shape, y_test.shape
+(514, 8) (254, 8) (514,) (254,)
+</code></pre></div>
+
+
+<h2 id="clasiffication-using-different-classifiers">Clasiffication using different Classifiers</h2>
+<h3 id="xgboost">XGBOOST</h3>
+<p><a href='https://towardsdatascience.com/a-beginners-guide-to-xgboost-87f5d4c30ed7'>XGBoost article on towardsdatascience </a></p>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">from</span> <span style="color: #00CCFF; font-weight: bold">xgboost</span> <span style="color: #006699; font-weight: bold">import</span> XGBClassifier
+
+xgb<span style="color: #555555">=</span>XGBClassifier()
+xgb<span style="color: #555555">.</span>fit(X_train, y_train) <span style="color: #0099FF; font-style: italic"># &#39;eval_set&#39; is another arguement for the validation data but not used here.</span>
+
+y_pred <span style="color: #555555">=</span> xgb<span style="color: #555555">.</span>predict(X_test)
+preds <span style="color: #555555">=</span> [<span style="color: #336666">round</span>(yp) <span style="color: #006699; font-weight: bold">for</span> yp <span style="color: #000000; font-weight: bold">in</span> y_pred]
+
+<span style="color: #0099FF; font-style: italic">#accuracy can also be measured as</span>
+<span style="color: #0099FF; font-style: italic">#score = xgb.score(X_test, y_test)</span>
+
+<span style="color: #006699; font-weight: bold">from</span> <span style="color: #00CCFF; font-weight: bold">sklearn.metrics</span> <span style="color: #006699; font-weight: bold">import</span> accuracy_score
+acc <span style="color: #555555">=</span> accuracy_score(y_test, preds)
+<span style="color: #006699; font-weight: bold">print</span> (<span style="color: #CC3300">&quot;accuracy=</span><span style="color: #AA0000">%.2f</span><span style="color: #CC3300">&quot;</span> <span style="color: #555555">%</span> (acc<span style="color: #555555">*</span><span style="color: #FF6600">100</span>))
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>accuracy=77.56
+</code></pre></div>
+
+
+<h4 id="xgboost-with-with-k-fold-cross-validation">XGBOOST with With k-fold cross validation</h4>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">from</span> <span style="color: #00CCFF; font-weight: bold">sklearn.model_selection</span> <span style="color: #006699; font-weight: bold">import</span> KFold
+<span style="color: #006699; font-weight: bold">from</span> <span style="color: #00CCFF; font-weight: bold">sklearn.model_selection</span> <span style="color: #006699; font-weight: bold">import</span> cross_val_score
+
+kfold <span style="color: #555555">=</span> KFold(n_splits<span style="color: #555555">=</span><span style="color: #FF6600">10</span>, random_state<span style="color: #555555">=</span><span style="color: #FF6600">1728</span>, shuffle<span style="color: #555555">=</span><span style="color: #336666">True</span>)
+results <span style="color: #555555">=</span> cross_val_score(xgb, X, y, cv<span style="color: #555555">=</span>kfold)
+<span style="color: #006699; font-weight: bold">print</span> (<span style="color: #CC3300">&quot;accuracy: </span><span style="color: #AA0000">%.2f</span><span style="color: #CC3300">&quot;</span> <span style="color: #555555">%</span> (results<span style="color: #555555">.</span>mean()<span style="color: #555555">*</span><span style="color: #FF6600">100</span>))
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>accuracy: 75.38
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">from</span> <span style="color: #00CCFF; font-weight: bold">sklearn.model_selection</span> <span style="color: #006699; font-weight: bold">import</span> StratifiedKFold
+kfold <span style="color: #555555">=</span> StratifiedKFold(n_splits<span style="color: #555555">=</span><span style="color: #FF6600">10</span>, random_state<span style="color: #555555">=</span><span style="color: #FF6600">1728</span>, shuffle<span style="color: #555555">=</span><span style="color: #336666">True</span>)
+results <span style="color: #555555">=</span> cross_val_score(xgb, X, y, cv<span style="color: #555555">=</span>kfold)
+<span style="color: #006699; font-weight: bold">print</span> (<span style="color: #CC3300">&quot;accuracy: </span><span style="color: #AA0000">%.2f</span><span style="color: #CC3300">&quot;</span> <span style="color: #555555">%</span> (results<span style="color: #555555">.</span>mean()<span style="color: #555555">*</span><span style="color: #FF6600">100</span>))
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>accuracy: 75.66
+</code></pre></div>
+
+
+<p><strong>If in doubt, use 10-fold cross validation for regression problems and stratified 10-fold cross validation on classification problems.</strong></p>
+<h3 id="support-vector-machine">Support Vector Machine</h3>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">from</span> <span style="color: #00CCFF; font-weight: bold">sklearn.svm</span> <span style="color: #006699; font-weight: bold">import</span> SVC
+
+clf_ <span style="color: #555555">=</span> SVC(gamma<span style="color: #555555">=</span><span style="color: #FF6600">2</span>, C<span style="color: #555555">=</span><span style="color: #FF6600">1</span>)
+clf_<span style="color: #555555">.</span>fit(X_train, y_train)
+score <span style="color: #555555">=</span> clf_<span style="color: #555555">.</span>score(X_test, y_test)
+<span style="color: #006699; font-weight: bold">print</span> (<span style="color: #CC3300">&quot;SVM Classifier, score : </span><span style="color: #AA0000">%.2f</span><span style="color: #CC3300">&quot;</span> <span style="color: #555555">%</span> (score<span style="color: #555555">*</span><span style="color: #FF6600">100</span>))
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>SVM Classifier, score : 66.54
+</code></pre></div>
+
+
+<h3 id="k-nearest-neighbour">K-Nearest Neighbour</h3>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">from</span> <span style="color: #00CCFF; font-weight: bold">sklearn.neighbors</span> <span style="color: #006699; font-weight: bold">import</span> KNeighborsClassifier
+
+clf_ <span style="color: #555555">=</span> KNeighborsClassifier(<span style="color: #FF6600">3</span>)
+clf_<span style="color: #555555">.</span>fit(X_train, y_train)
+score <span style="color: #555555">=</span> clf_<span style="color: #555555">.</span>score(X_test, y_test)
+<span style="color: #006699; font-weight: bold">print</span> (<span style="color: #CC3300">&quot;K nearest neighbour Classifier, score : </span><span style="color: #AA0000">%.2f</span><span style="color: #CC3300">&quot;</span> <span style="color: #555555">%</span> (score<span style="color: #555555">*</span><span style="color: #FF6600">100</span>))
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>K nearest neighbour Classifier, score : 71.65
+</code></pre></div>
+
+
+<h3 id="random-forrest">Random Forrest</h3>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">from</span> <span style="color: #00CCFF; font-weight: bold">sklearn.ensemble</span> <span style="color: #006699; font-weight: bold">import</span> RandomForestClassifier
+
+clf_ <span style="color: #555555">=</span> RandomForestClassifier(max_depth<span style="color: #555555">=</span><span style="color: #FF6600">5</span>, n_estimators<span style="color: #555555">=</span><span style="color: #FF6600">10</span>, max_features<span style="color: #555555">=</span><span style="color: #FF6600">1</span>)
+clf_<span style="color: #555555">.</span>fit(X_train, y_train)
+score <span style="color: #555555">=</span> clf_<span style="color: #555555">.</span>score(X_test, y_test)
+
+<span style="color: #006699; font-weight: bold">print</span> (<span style="color: #CC3300">&quot;Random Forest Classifier, score : </span><span style="color: #AA0000">%.2f</span><span style="color: #CC3300">&quot;</span> <span style="color: #555555">%</span> (score<span style="color: #555555">*</span><span style="color: #FF6600">100</span>))
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>Random Forest Classifier, score : 75.98
+</code></pre></div>
+
+
+<h3 id="decision-tree">Decision Tree</h3>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">from</span> <span style="color: #00CCFF; font-weight: bold">sklearn.tree</span> <span style="color: #006699; font-weight: bold">import</span> DecisionTreeClassifier
+
+clf_ <span style="color: #555555">=</span> DecisionTreeClassifier(max_depth<span style="color: #555555">=</span><span style="color: #FF6600">5</span>)
+clf_<span style="color: #555555">.</span>fit(X_train, y_train)
+score <span style="color: #555555">=</span> clf_<span style="color: #555555">.</span>score(X_test, y_test)
+<span style="color: #006699; font-weight: bold">print</span> (<span style="color: #CC3300">&quot;Decision Tree Classifier, score : </span><span style="color: #AA0000">%.2f</span><span style="color: #CC3300">&quot;</span> <span style="color: #555555">%</span> (score<span style="color: #555555">*</span><span style="color: #FF6600">100</span>))
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>Decision Tree Classifier, score : 75.98
+</code></pre></div>
+
+
+<h3 id="adaboost">Adaboost</h3>
+<p>I don't know much about it.</p>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">from</span> <span style="color: #00CCFF; font-weight: bold">sklearn.ensemble</span> <span style="color: #006699; font-weight: bold">import</span> AdaBoostClassifier
+
+clf_ <span style="color: #555555">=</span> AdaBoostClassifier()
+clf_<span style="color: #555555">.</span>fit(X_train, y_train)
+score <span style="color: #555555">=</span> clf_<span style="color: #555555">.</span>score(X_test, y_test)
+
+<span style="color: #006699; font-weight: bold">print</span> (<span style="color: #CC3300">&quot;Adaboost Classifier, score : </span><span style="color: #AA0000">%.2f</span><span style="color: #CC3300">&quot;</span> <span style="color: #555555">%</span> (score<span style="color: #555555">*</span><span style="color: #FF6600">100</span>))
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>Adaboost Classifier, score : 75.98
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>
+</code></pre></div></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
