@@ -166,27 +166,18 @@
 <h1 id="how-to-evaluate-gradient-boosting-models-with-xgboost-in-python">How to Evaluate Gradient Boosting Models with XGBoost in Python</h1>
 <p>Source: https://machinelearningmastery.com/evaluate-gradient-boosting-models-xgboost-python/</p>
 <h2 id="prepare-the-data">Prepare the data</h2>
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
-2
-3
-4</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #0099FF; font-style: italic">## Install xgboost as</span>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #0099FF; font-style: italic">## Install xgboost as</span>
 <span style="color: #0099FF; font-style: italic">##!pip3 install xgboost</span>
 <span style="color: #006699; font-weight: bold">import</span> <span style="color: #00CCFF; font-weight: bold">xgboost</span>
 <span style="color: #006699; font-weight: bold">print</span> (<span style="color: #CC3300">&#39;xgboost version:&#39;</span>, xgboost<span style="color: #555555">.</span>__version__)
 </code></pre></div>
-</td></tr></table>
 
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>xgboost version: 0.90
+
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>xgboost version: 0.90
 </code></pre></div>
-</td></tr></table>
 
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">import</span> <span style="color: #00CCFF; font-weight: bold">numpy</span> <span style="color: #006699; font-weight: bold">as</span> <span style="color: #00CCFF; font-weight: bold">np</span>
+
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">import</span> <span style="color: #00CCFF; font-weight: bold">numpy</span> <span style="color: #006699; font-weight: bold">as</span> <span style="color: #00CCFF; font-weight: bold">np</span>
 <span style="color: #006699; font-weight: bold">import</span> <span style="color: #00CCFF; font-weight: bold">pandas</span> <span style="color: #006699; font-weight: bold">as</span> <span style="color: #00CCFF; font-weight: bold">pd</span>
 <span style="color: #006699; font-weight: bold">import</span> <span style="color: #00CCFF; font-weight: bold">matplotlib.pyplot</span> <span style="color: #006699; font-weight: bold">as</span> <span style="color: #00CCFF; font-weight: bold">plt</span>
 
@@ -194,15 +185,15 @@ data <span style="color: #555555">=</span> pd<span style="color: #555555">.</spa
 
 <span style="color: #006699; font-weight: bold">print</span> (<span style="color: #CC3300">&#39;shape(data):&#39;</span>,data<span style="color: #555555">.</span>shape)
 </code></pre></div>
-</td></tr></table>
 
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>shape(data): (768, 9)
-</code></pre></div>
-</td></tr></table>
 
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>data<span style="color: #555555">.</span>head(<span style="color: #FF6600">2</span>)
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>shape(data): (768, 9)
 </code></pre></div>
-</td></tr></table>
+
+
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>data<span style="color: #555555">.</span>head(<span style="color: #FF6600">2</span>)
+</code></pre></div>
+
 
 <div>
 <style scoped>
@@ -262,17 +253,13 @@ data <span style="color: #555555">=</span> pd<span style="color: #555555">.</spa
 </table>
 </div>
 
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #0099FF; font-style: italic"># the last column is the yes/no column where 0 represents NO diabetes and 1 represent YES daibetes</span>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #0099FF; font-style: italic"># the last column is the yes/no column where 0 represents NO diabetes and 1 represent YES daibetes</span>
 y <span style="color: #555555">=</span> data<span style="color: #555555">.</span>iloc[:,<span style="color: #555555">-</span><span style="color: #FF6600">1</span>]
 X <span style="color: #555555">=</span> data<span style="color: #555555">.</span>iloc[:,:<span style="color: #555555">-</span><span style="color: #FF6600">1</span>]
 
 X<span style="color: #555555">.</span>head(<span style="color: #FF6600">2</span>)
 </code></pre></div>
-</td></tr></table>
+
 
 <div>
 <style scoped>
@@ -329,41 +316,25 @@ X<span style="color: #555555">.</span>head(<span style="color: #FF6600">2</span>
 </table>
 </div>
 
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
-2</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">from</span> <span style="color: #00CCFF; font-weight: bold">sklearn.model_selection</span> <span style="color: #006699; font-weight: bold">import</span> train_test_split
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">from</span> <span style="color: #00CCFF; font-weight: bold">sklearn.model_selection</span> <span style="color: #006699; font-weight: bold">import</span> train_test_split
 X_train, X_test, y_train, y_test<span style="color: #555555">=</span>train_test_split(X, y, test_size<span style="color: #555555">=</span><span style="color: #FF6600">0.33</span>, random_state<span style="color: #555555">=</span><span style="color: #FF6600">1728</span>)
 </code></pre></div>
-</td></tr></table>
 
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
-2</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">print</span> (<span style="color: #CC3300">&#39;X_train.shape, X_test.shape, y_train.shape, y_test.shape&#39;</span>)
+
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">print</span> (<span style="color: #CC3300">&#39;X_train.shape, X_test.shape, y_train.shape, y_test.shape&#39;</span>)
 <span style="color: #006699; font-weight: bold">print</span> (X_train<span style="color: #555555">.</span>shape, X_test<span style="color: #555555">.</span>shape, y_train<span style="color: #555555">.</span>shape, y_test<span style="color: #555555">.</span>shape)
 </code></pre></div>
-</td></tr></table>
 
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
-2</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>X_train.shape, X_test.shape, y_train.shape, y_test.shape
+
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>X_train.shape, X_test.shape, y_train.shape, y_test.shape
 (514, 8) (254, 8) (514,) (254,)
 </code></pre></div>
-</td></tr></table>
+
 
 <h2 id="clasiffication-using-different-classifiers">Clasiffication using different Classifiers</h2>
 <h3 id="xgboost">XGBOOST</h3>
 <p><a href='https://towardsdatascience.com/a-beginners-guide-to-xgboost-87f5d4c30ed7'>XGBoost article on towardsdatascience </a></p>
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%"> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">from</span> <span style="color: #00CCFF; font-weight: bold">xgboost</span> <span style="color: #006699; font-weight: bold">import</span> XGBClassifier
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">from</span> <span style="color: #00CCFF; font-weight: bold">xgboost</span> <span style="color: #006699; font-weight: bold">import</span> XGBClassifier
 
 xgb<span style="color: #555555">=</span>XGBClassifier()
 xgb<span style="color: #555555">.</span>fit(X_train, y_train) <span style="color: #0099FF; font-style: italic"># &#39;eval_set&#39; is another arguement for the validation data but not used here.</span>
@@ -378,92 +349,68 @@ preds <span style="color: #555555">=</span> [<span style="color: #336666">round<
 acc <span style="color: #555555">=</span> accuracy_score(y_test, preds)
 <span style="color: #006699; font-weight: bold">print</span> (<span style="color: #CC3300">&quot;accuracy=</span><span style="color: #AA0000">%.2f</span><span style="color: #CC3300">&quot;</span> <span style="color: #555555">%</span> (acc<span style="color: #555555">*</span><span style="color: #FF6600">100</span>))
 </code></pre></div>
-</td></tr></table>
 
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>accuracy=77.56
+
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>accuracy=77.56
 </code></pre></div>
-</td></tr></table>
+
 
 <h4 id="xgboost-with-with-k-fold-cross-validation">XGBOOST with With k-fold cross validation</h4>
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">from</span> <span style="color: #00CCFF; font-weight: bold">sklearn.model_selection</span> <span style="color: #006699; font-weight: bold">import</span> KFold
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">from</span> <span style="color: #00CCFF; font-weight: bold">sklearn.model_selection</span> <span style="color: #006699; font-weight: bold">import</span> KFold
 <span style="color: #006699; font-weight: bold">from</span> <span style="color: #00CCFF; font-weight: bold">sklearn.model_selection</span> <span style="color: #006699; font-weight: bold">import</span> cross_val_score
 
 kfold <span style="color: #555555">=</span> KFold(n_splits<span style="color: #555555">=</span><span style="color: #FF6600">10</span>, random_state<span style="color: #555555">=</span><span style="color: #FF6600">1728</span>, shuffle<span style="color: #555555">=</span><span style="color: #336666">True</span>)
 results <span style="color: #555555">=</span> cross_val_score(xgb, X, y, cv<span style="color: #555555">=</span>kfold)
 <span style="color: #006699; font-weight: bold">print</span> (<span style="color: #CC3300">&quot;accuracy: </span><span style="color: #AA0000">%.2f</span><span style="color: #CC3300">&quot;</span> <span style="color: #555555">%</span> (results<span style="color: #555555">.</span>mean()<span style="color: #555555">*</span><span style="color: #FF6600">100</span>))
 </code></pre></div>
-</td></tr></table>
 
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>accuracy: 75.38
+
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>accuracy: 75.38
 </code></pre></div>
-</td></tr></table>
 
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
-2
-3
-4</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">from</span> <span style="color: #00CCFF; font-weight: bold">sklearn.model_selection</span> <span style="color: #006699; font-weight: bold">import</span> StratifiedKFold
+
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">from</span> <span style="color: #00CCFF; font-weight: bold">sklearn.model_selection</span> <span style="color: #006699; font-weight: bold">import</span> StratifiedKFold
 kfold <span style="color: #555555">=</span> StratifiedKFold(n_splits<span style="color: #555555">=</span><span style="color: #FF6600">10</span>, random_state<span style="color: #555555">=</span><span style="color: #FF6600">1728</span>, shuffle<span style="color: #555555">=</span><span style="color: #336666">True</span>)
 results <span style="color: #555555">=</span> cross_val_score(xgb, X, y, cv<span style="color: #555555">=</span>kfold)
 <span style="color: #006699; font-weight: bold">print</span> (<span style="color: #CC3300">&quot;accuracy: </span><span style="color: #AA0000">%.2f</span><span style="color: #CC3300">&quot;</span> <span style="color: #555555">%</span> (results<span style="color: #555555">.</span>mean()<span style="color: #555555">*</span><span style="color: #FF6600">100</span>))
 </code></pre></div>
-</td></tr></table>
 
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>accuracy: 75.66
+
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>accuracy: 75.66
 </code></pre></div>
-</td></tr></table>
+
 
 <p><strong>If in doubt, use 10-fold cross validation for regression problems and stratified 10-fold cross validation on classification problems.</strong></p>
 <h3 id="support-vector-machine">Support Vector Machine</h3>
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">from</span> <span style="color: #00CCFF; font-weight: bold">sklearn.svm</span> <span style="color: #006699; font-weight: bold">import</span> SVC
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">from</span> <span style="color: #00CCFF; font-weight: bold">sklearn.svm</span> <span style="color: #006699; font-weight: bold">import</span> SVC
 
 clf_ <span style="color: #555555">=</span> SVC(gamma<span style="color: #555555">=</span><span style="color: #FF6600">2</span>, C<span style="color: #555555">=</span><span style="color: #FF6600">1</span>)
 clf_<span style="color: #555555">.</span>fit(X_train, y_train)
 score <span style="color: #555555">=</span> clf_<span style="color: #555555">.</span>score(X_test, y_test)
 <span style="color: #006699; font-weight: bold">print</span> (<span style="color: #CC3300">&quot;SVM Classifier, score : </span><span style="color: #AA0000">%.2f</span><span style="color: #CC3300">&quot;</span> <span style="color: #555555">%</span> (score<span style="color: #555555">*</span><span style="color: #FF6600">100</span>))
 </code></pre></div>
-</td></tr></table>
 
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>SVM Classifier, score : 66.54
+
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>SVM Classifier, score : 66.54
 </code></pre></div>
-</td></tr></table>
+
 
 <h3 id="k-nearest-neighbour">K-Nearest Neighbour</h3>
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">from</span> <span style="color: #00CCFF; font-weight: bold">sklearn.neighbors</span> <span style="color: #006699; font-weight: bold">import</span> KNeighborsClassifier
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">from</span> <span style="color: #00CCFF; font-weight: bold">sklearn.neighbors</span> <span style="color: #006699; font-weight: bold">import</span> KNeighborsClassifier
 
 clf_ <span style="color: #555555">=</span> KNeighborsClassifier(<span style="color: #FF6600">3</span>)
 clf_<span style="color: #555555">.</span>fit(X_train, y_train)
 score <span style="color: #555555">=</span> clf_<span style="color: #555555">.</span>score(X_test, y_test)
 <span style="color: #006699; font-weight: bold">print</span> (<span style="color: #CC3300">&quot;K nearest neighbour Classifier, score : </span><span style="color: #AA0000">%.2f</span><span style="color: #CC3300">&quot;</span> <span style="color: #555555">%</span> (score<span style="color: #555555">*</span><span style="color: #FF6600">100</span>))
 </code></pre></div>
-</td></tr></table>
 
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>K nearest neighbour Classifier, score : 71.65
+
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>K nearest neighbour Classifier, score : 71.65
 </code></pre></div>
-</td></tr></table>
+
 
 <h3 id="random-forrest">Random Forrest</h3>
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">from</span> <span style="color: #00CCFF; font-weight: bold">sklearn.ensemble</span> <span style="color: #006699; font-weight: bold">import</span> RandomForestClassifier
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">from</span> <span style="color: #00CCFF; font-weight: bold">sklearn.ensemble</span> <span style="color: #006699; font-weight: bold">import</span> RandomForestClassifier
 
 clf_ <span style="color: #555555">=</span> RandomForestClassifier(max_depth<span style="color: #555555">=</span><span style="color: #FF6600">5</span>, n_estimators<span style="color: #555555">=</span><span style="color: #FF6600">10</span>, max_features<span style="color: #555555">=</span><span style="color: #FF6600">1</span>)
 clf_<span style="color: #555555">.</span>fit(X_train, y_train)
@@ -471,40 +418,29 @@ score <span style="color: #555555">=</span> clf_<span style="color: #555555">.</
 
 <span style="color: #006699; font-weight: bold">print</span> (<span style="color: #CC3300">&quot;Random Forest Classifier, score : </span><span style="color: #AA0000">%.2f</span><span style="color: #CC3300">&quot;</span> <span style="color: #555555">%</span> (score<span style="color: #555555">*</span><span style="color: #FF6600">100</span>))
 </code></pre></div>
-</td></tr></table>
 
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>Random Forest Classifier, score : 75.98
+
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>Random Forest Classifier, score : 75.98
 </code></pre></div>
-</td></tr></table>
+
 
 <h3 id="decision-tree">Decision Tree</h3>
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">from</span> <span style="color: #00CCFF; font-weight: bold">sklearn.tree</span> <span style="color: #006699; font-weight: bold">import</span> DecisionTreeClassifier
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">from</span> <span style="color: #00CCFF; font-weight: bold">sklearn.tree</span> <span style="color: #006699; font-weight: bold">import</span> DecisionTreeClassifier
 
 clf_ <span style="color: #555555">=</span> DecisionTreeClassifier(max_depth<span style="color: #555555">=</span><span style="color: #FF6600">5</span>)
 clf_<span style="color: #555555">.</span>fit(X_train, y_train)
 score <span style="color: #555555">=</span> clf_<span style="color: #555555">.</span>score(X_test, y_test)
 <span style="color: #006699; font-weight: bold">print</span> (<span style="color: #CC3300">&quot;Decision Tree Classifier, score : </span><span style="color: #AA0000">%.2f</span><span style="color: #CC3300">&quot;</span> <span style="color: #555555">%</span> (score<span style="color: #555555">*</span><span style="color: #FF6600">100</span>))
 </code></pre></div>
-</td></tr></table>
 
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>Decision Tree Classifier, score : 75.98
+
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>Decision Tree Classifier, score : 75.98
 </code></pre></div>
-</td></tr></table>
+
 
 <h3 id="adaboost">Adaboost</h3>
 <p>I don't know much about it.</p>
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">from</span> <span style="color: #00CCFF; font-weight: bold">sklearn.ensemble</span> <span style="color: #006699; font-weight: bold">import</span> AdaBoostClassifier
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code><span style="color: #006699; font-weight: bold">from</span> <span style="color: #00CCFF; font-weight: bold">sklearn.ensemble</span> <span style="color: #006699; font-weight: bold">import</span> AdaBoostClassifier
 
 clf_ <span style="color: #555555">=</span> AdaBoostClassifier()
 clf_<span style="color: #555555">.</span>fit(X_train, y_train)
@@ -512,15 +448,14 @@ score <span style="color: #555555">=</span> clf_<span style="color: #555555">.</
 
 <span style="color: #006699; font-weight: bold">print</span> (<span style="color: #CC3300">&quot;Adaboost Classifier, score : </span><span style="color: #AA0000">%.2f</span><span style="color: #CC3300">&quot;</span> <span style="color: #555555">%</span> (score<span style="color: #555555">*</span><span style="color: #FF6600">100</span>))
 </code></pre></div>
-</td></tr></table>
 
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>Adaboost Classifier, score : 75.98
-</code></pre></div>
-</td></tr></table>
 
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>Adaboost Classifier, score : 75.98
 </code></pre></div>
-</td></tr></table></div>
+
+
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>
+</code></pre></div></div>
             </div>
         </div>
 

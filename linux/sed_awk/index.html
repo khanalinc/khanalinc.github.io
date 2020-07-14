@@ -178,9 +178,9 @@
 <li><strong>^$</strong> represents blank line.</li>
 </ul>
 <h3 id="sed-syntax"><strong>sed Syntax</strong></h3>
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>sed [-n] [-e] [&#39;command&#39;] [file]
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>sed [-n] [-e] [&#39;command&#39;] [file]
 </code></pre></div>
-</td></tr></table>
+
 
 <ul>
 <li><strong>-n</strong> only prints line specified with the print command</li>
@@ -188,65 +188,54 @@
 </ul>
 <h3 id="print"><strong>print</strong></h3>
 <p>Command <strong>p</strong> [<strong>p</strong>rint only certain lines]</p>
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>Syntax:    [address1[,address2]]p
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>Syntax:    [address1[,address2]]p
 </code></pre></div>
-</td></tr></table>
+
 
 <p><strong>Examples:</strong></p>
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
-2
-3</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>sed -n &#39;5,10p&#39; file.dat     Print lines from line 5 to line 10
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>sed -n &#39;5,10p&#39; file.dat     Print lines from line 5 to line 10
 sed -n &#39;5p&#39; file.dat        Print only 5th line
 sed -n &#39;5,$p&#39; file.dat      Print lines from 5th to last line
 </code></pre></div>
-</td></tr></table>
+
 
 <h3 id="delete"><strong>delete</strong></h3>
 <p>Command <strong>d</strong> [<strong>d</strong>elete certain line]</p>
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>Syntax:    [address1[,address2]]d
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>Syntax:    [address1[,address2]]d
 </code></pre></div>
-</td></tr></table>
+
 
 <p>!!Examples:</p>
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>sed &#39;5d&#39; file.dat           [Delete line 5 while printing]
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>sed &#39;5d&#39; file.dat           [Delete line 5 while printing]
 sed &#39;5,10d&#39; file.dat        [Delete lines from 5th to 10th while printing]
 sed &#39;/^$d&#39; file.dat         [Delete line 5 while printing]
 sed &#39;/^$/,$d&#39; file.dat      [Delete from first blank line through last line.]
 sed &#39;/str/,$d&#39; file.dat     [Delete all lines after the line containing string **str**. [Also has to be single quotation mark.]
 </code></pre></div>
-</td></tr></table>
+
 
 <h3 id="substitute"><strong>Substitute</strong></h3>
 <p>Command <strong>s</strong> [<strong>s</strong>ubstitute <strong>AA</strong> by <strong>BB</strong>]</p>
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
-2
-3</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>Syntax:    [address(es)]s/pattern/replacement/[flags]
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>Syntax:    [address(es)]s/pattern/replacement/[flags]
            flags: n   [nth occurrence]
                 : g   [global occurrence]
 </code></pre></div>
-</td></tr></table>
+
 
 <h3 id="examples">Examples:</h3>
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
-2
-3</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>sed ‘s/ AA/ BB/’ file.dat      Only the first occurrence
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>sed ‘s/ AA/ BB/’ file.dat      Only the first occurrence
 sed ‘s/ AA/ BB/g’ file.dat     global (all) occurrences
 sed -i ‘s/ AA/ BB/g’ file.dat     replace in file (all) occurrences
 </code></pre></div>
-</td></tr></table>
+
 
 <ul>
 <li>For a pattern which occurs multiple times in a file, replace only some of them. [Remember sig.inp for ferromagnetic calculations]</li>
 </ul>
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
-2</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>sed &#39;s/AA/BB/2&#39;                Replace only 2nd occurrence
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>sed &#39;s/AA/BB/2&#39;                Replace only 2nd occurrence
 sed &#39;s/AA/BB/2g&#39;               Replace all after 2nd occurrence
 </code></pre></div>
-</td></tr></table>
+
 
 <p>!!Note: while using sed in bash shell, be careful about '{text}' and "{text}" the later has been useful. Learn when to use one and when the other.</p>
 <p><strong>More information can be on</strong></p>
@@ -261,31 +250,27 @@ http://www.grymoire.com/Unix/Awk.html#uh-14</p>
 <ul>
 <li>print only some columns of some output</li>
 </ul>
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
-2
-3</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>awk &#39;{print $2}&#39; file.txt                 [print 2nd column]
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>awk &#39;{print $2}&#39; file.txt                 [print 2nd column]
 grep &#39;str&#39; file.txt |awk &#39;{print $2}&#39;     [print 2nd column of the output]
 grep &#39;str&#39; file.txt |awk &#39;{print $2 $3}&#39;  [print 2nd and 3rd column]
 </code></pre></div>
-</td></tr></table>
+
 
 <ul>
 <li>print only some rows from file</li>
 </ul>
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
-2
-3</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>awk &#39;NR==1{print}&#39; file.txt          [print 1st line]
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>awk &#39;NR==1{print}&#39; file.txt          [print 1st line]
 awk &#39;NR==1;END{print}&#39; file.txt      [print first and last line.]
 awk &#39;NR==1;END{print $2}&#39; file.txt   [print 2nd column of first and last line.]
 </code></pre></div>
-</td></tr></table>
+
 
 <ul>
 <li>find pattern and print only certain column</li>
 </ul>
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>awk &#39;/pattern/{print $1}&#39; file    [find lines with pattern and print first column]
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>awk &#39;/pattern/{print $1}&#39; file    [find lines with pattern and print first column]
 </code></pre></div>
-</td></tr></table>
+
 
 <p>!Sed/Awk inside a bash script</p>
 <p>Insied a bash script you have to be little careful using sed and awk, especially if you are using a variable inside a sed command. For example the following command inside a bash script
@@ -295,36 +280,32 @@ awk &#39;NR==1;END{print $2}&#39; file.txt   [print 2nd column of first and last
 <ul>
 <li><strong>Option1: delete one line at a time for n times.</strong> very expensive for large files. </li>
 </ul>
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
-2</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>for i in `seq 1 n`; do
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>for i in `seq 1 n`; do
     sed -i &#39;${d}&#39; file.txt
 </code></pre></div>
-</td></tr></table>
+
 
 <ul>
 <li><strong>Option2: print the file in reverse using <code>tac</code> and cut the first n lines and reverse the file once again using <code>tac</code>.</strong></li>
 </ul>
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
-2</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>tac file.txt |sed &#39;1,n{d}&#39; |tac  &gt; file_tmp
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>tac file.txt |sed &#39;1,n{d}&#39; |tac  &gt; file_tmp
 mv file_tmp file.txt
 </code></pre></div>
-</td></tr></table>
+
 
 <ul>
 <li><strong>Option3: Found in the webpage  <a href="http://www.unixguide.net/unix/sedoneliner.shtml">sedoneliner</a></strong></li>
 </ul>
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>sed -i -e :a -e &#39;$d;N;2,4ba&#39; -e &#39;P;D&#39; test_file
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>sed -i -e :a -e &#39;$d;N;2,4ba&#39; -e &#39;P;D&#39; test_file
 </code></pre></div>
-</td></tr></table>
+
 
 <ul>
 <li><strong>Some other nice comands</strong></li>
 </ul>
-<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
-2</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>sed -i -e &quot;1,${n0}d&quot; $f        # works  to delete lines from 1 to n0
+<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>sed -i -e &quot;1,${n0}d&quot; $f        # works  to delete lines from 1 to n0
  sed -i -e &quot;${n0},${n1}d&quot; $f   # deletes lines from n0 to n1
-</code></pre></div>
-</td></tr></table></div>
+</code></pre></div></div>
             </div>
         </div>
 
