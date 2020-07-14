@@ -37,7 +37,7 @@
                                 <a href="../.." class="nav-link">Home</a>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">machine Learning <b class="caret"></b></a>
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Machine Learning <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -133,7 +133,7 @@
 
 <h2 id="grep-and-egrep">Grep and Egrep</h2>
 <h3 id="commands">commands</h3>
-<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>-i            [ignore case]
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>-i            [ignore case]
 -v            [invert the match]
 -o            [only the matching]
 -A [num]      [print the [num] lines after the match]
@@ -144,7 +144,7 @@
 <ul>
 <li>First grep something from a file and then find the last line from that grepped file.</li>
 </ul>
-<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>find FeSe.scf |xargs grep FGL002 |tail -1
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>find FeSe.scf |xargs grep FGL002 |tail -1
 </code></pre></div>
 
 
@@ -152,19 +152,19 @@
 <ul>
 <li>Find only specific numbers from a line</li>
 </ul>
-<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>less log.ctqmc | egrep -o &quot;&lt;Sz&gt;=-?[0-9].[0-9]+&quot; | egrep -oe ’-?[0-9].[0-9]+’ &gt; sz_data
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>less log.ctqmc | egrep -o &quot;&lt;Sz&gt;=-?[0-9].[0-9]+&quot; | egrep -oe ’-?[0-9].[0-9]+’ &gt; sz_data
 </code></pre></div>
 
 
 <ul>
 <li>Find only the numbers from the grepped entity. use regular expression. egrep is for extended grep.</li>
 </ul>
-<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>find FeSe.scf |xargs grep :FER |tail -1| egrep -o [0-9].[0-9]+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>find FeSe.scf |xargs grep :FER |tail -1| egrep -o [0-9].[0-9]+
 </code></pre></div>
 
 
 <p>!Regular Expressions</p>
-<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>^[-+]?[0-9]*\.?[0-9]+$
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>^[-+]?[0-9]*\.?[0-9]+$
 
   ^ - start of string
   $ - the end of string

@@ -37,7 +37,7 @@
                                 <a href="../.." class="nav-link">Home</a>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">machine Learning <b class="caret"></b></a>
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Machine Learning <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -155,7 +155,7 @@
 </li>
 </ul>
 <h2 id="basics-commands">Basics commands</h2>
-<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>i    : Insert text at the current cursor position
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>i    : Insert text at the current cursor position
 I    : Insert text at the begining of the current line.
 o    : Add text in a new line below the current line.
 O    : Add text in a new line above the current line.
@@ -167,7 +167,7 @@ A    : Append at the end of line.
 <ul>
 <li>Move Cursor</li>
 </ul>
-<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>h    : Move the cursor one character to the left 
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>h    : Move the cursor one character to the left 
 l    : Move the cursor one character to the right
 k    : Move the cursor up one line
 j    : Move the cursor down one line
@@ -190,7 +190,7 @@ b    : Backward one word
 <p>Delete</p>
 </li>
 </ul>
-<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>x   : Delete a character
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>x   : Delete a character
 dd  : Delete current line
 d$  : Delete from the position of the cursor to end of the line
 dw  : Delete word from cursor on
@@ -201,7 +201,7 @@ db  : Delete word backward
 <ul>
 <li>Copy (Yank)</li>
 </ul>
-<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>yy  : Yank current line
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>yy  : Yank current line
 y$  : Yank to end of current line from cursor
 yw  : Yank from cursor to end of current word
 2yy : Yank 2 lines
@@ -212,7 +212,7 @@ y   : Yanks the Highlighted characters.
 <ul>
 <li>Paste</li>
 </ul>
-<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>p  : Paste below the cursor
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>p  : Paste below the cursor
 P  : Paste above the cursor
 u  : Undo last change
 U  : Restore line
@@ -223,7 +223,7 @@ J  : Join next line down to the end of the current line
 <ul>
 <li>Highlight characters</li>
 </ul>
-<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>v   : activates the visual mode and one can move cursor to highlight required characters.
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>v   : activates the visual mode and one can move cursor to highlight required characters.
 ^v  : Highlight vertically. Very useful for inserting tab in multiple lines.
 </code></pre></div>
 
@@ -231,7 +231,7 @@ J  : Join next line down to the end of the current line
 <ul>
 <li>Exit from the Editor</li>
 </ul>
-<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>:wq    : Write file to disk and quit the editor
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>:wq    : Write file to disk and quit the editor
 :q!    : Quit (Without saving the changes)
 :q     : Quit (Will print out a warning if changes have been made)
 :w abc : Save the current file to a new file abc
@@ -243,7 +243,7 @@ J  : Join next line down to the end of the current line
 <li><strong>Find and Replace</strong></li>
 </ul>
 <p>One of the widely used commands for me personally.</p>
-<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>:[range]s/{pattern}/{string}/[flags] [count]
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>:[range]s/{pattern}/{string}/[flags] [count]
 </code></pre></div>
 
 
@@ -255,7 +255,7 @@ J  : Join next line down to the end of the current line
 <ul>
 <li>Some examples </li>
 </ul>
-<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>:s/XX/YY/g         [only in current line]
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>:s/XX/YY/g         [only in current line]
 :%s/XX/YY/g        [in the entire file]
 :5,12s/XX/YY/g     [only in specific lines 5 and 12]
 :.,$s/XX/YY/g      [current + all the following lines.]
@@ -269,14 +269,14 @@ J  : Join next line down to the end of the current line
 <ul>
 <li><strong>insert spaces or indentation in multiple lines</strong></li>
 </ul>
-<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>highlight the line[s] and press &gt;&gt; or &lt;&lt;
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>highlight the line[s] and press &gt;&gt; or &lt;&lt;
 </code></pre></div>
 
 
 <ul>
 <li>deleting certain parts</li>
 </ul>
-<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>:%normal 2x     [Delete the first n characters of every lines]
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>:%normal 2x     [Delete the first n characters of every lines]
 :%s/^ /         [Delete the first n characters of every lines only if they are spaces]
 :%s/\s+$//e     [Delete any trailing space at the end of all the lines]
 :%s/
@@ -289,7 +289,7 @@ J  : Join next line down to the end of the current line
 <ul>
 <li>OPEN/ CLOSE/ SPLIT  files</li>
 </ul>
-<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>vim f1.txt             [open single file]
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>vim f1.txt             [open single file]
 vim -o f1.txt f2.txt   [open two files in horizontal]
 vim -O f1.txt f2.txt   [open two files vertically]
 CTRL w [R/L/T/B arrow] [toggle between different split windows]
@@ -310,12 +310,12 @@ CTRL +w, Q             [Quit the current window]
 </ul>
 <p>The global command is useful in many cases.</p>
 <p>general pattern:</p>
-<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>:[range]g/pattern/cmd
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>:[range]g/pattern/cmd
 </code></pre></div>
 
 
 <p>!!Examples</p>
-<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>:g/[abcde]/d           [delete lines matching pattern abcde]
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>:g/[abcde]/d           [delete lines matching pattern abcde]
 :!g/[abcde]/d          [delete lines not matching the pattern abcde]
 :g/^\s*$/d             [^($) means start(end) of line and \s* means 0 or many spaces including tab, delete all empty lines.]
 :g/[pat]/s/abc/def/gi  [In all lines containing pattern pat, substitute abc by def.]
@@ -325,7 +325,7 @@ CTRL +w, Q             [Quit the current window]
 <ul>
 <li>Find a pattern in a line and delete everything after it. or delete after that pattern</li>
 </ul>
-<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>:1,$s/pattern.*//g .  # to delete everything after  (and including) that pattern
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>:1,$s/pattern.*//g .  # to delete everything after  (and including) that pattern
 :1,$s/pattern.*/pattern/g .  # to delete everything after  (excluding) that pattern
 </code></pre></div>
 
