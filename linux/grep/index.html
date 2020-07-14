@@ -41,6 +41,10 @@
                                 <ul class="dropdown-menu">
                                     
 <li>
+    <a href="../../machinelearning/ml_content/" class="dropdown-item">All Contents</a>
+</li>
+                                    
+<li>
     <a href="../../machinelearning/ml/" class="dropdown-item">Contents</a>
 </li>
                                     
@@ -129,38 +133,49 @@
 
 <h2 id="grep-and-egrep">Grep and Egrep</h2>
 <h3 id="commands">commands</h3>
-<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>-i            [ignore case]
+<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>-i            [ignore case]
 -v            [invert the match]
 -o            [only the matching]
 -A [num]      [print the [num] lines after the match]
 -B [num]      [print the [num] lines before the match] 
 </code></pre></div>
-
+</td></tr></table>
 
 <ul>
 <li>First grep something from a file and then find the last line from that grepped file.</li>
 </ul>
-<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>find FeSe.scf |xargs grep FGL002 |tail -1
+<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>find FeSe.scf |xargs grep FGL002 |tail -1
 </code></pre></div>
-
+</td></tr></table>
 
 <p>Finds <strong>FGL002</strong> in file <strong>.scf</strong> and returns the last line </p>
 <ul>
 <li>Find only specific numbers from a line</li>
 </ul>
-<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>less log.ctqmc | egrep -o &quot;&lt;Sz&gt;=-?[0-9].[0-9]+&quot; | egrep -oe ’-?[0-9].[0-9]+’ &gt; sz_data
+<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>less log.ctqmc | egrep -o &quot;&lt;Sz&gt;=-?[0-9].[0-9]+&quot; | egrep -oe ’-?[0-9].[0-9]+’ &gt; sz_data
 </code></pre></div>
-
+</td></tr></table>
 
 <ul>
 <li>Find only the numbers from the grepped entity. use regular expression. egrep is for extended grep.</li>
 </ul>
-<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>find FeSe.scf |xargs grep :FER |tail -1| egrep -o [0-9].[0-9]+
+<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>find FeSe.scf |xargs grep :FER |tail -1| egrep -o [0-9].[0-9]+
 </code></pre></div>
-
+</td></tr></table>
 
 <p>!Regular Expressions</p>
-<div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>^[-+]?[0-9]*\.?[0-9]+$
+<table class="codehilitetable"><tr><td><div class="linenodiv" style="background-color: #f0f0f0; padding-right: 10px"><pre style="line-height: 125%">1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite" style="background: #f0f3f3"><pre style="line-height: 125%"><span></span><code>^[-+]?[0-9]*\.?[0-9]+$
 
   ^ - start of string
   $ - the end of string
@@ -168,7 +183,8 @@
   [0-9]*  - 0 or more integers
   [0-9]+  - 1 or more integers
   \.  - the charcter (. is used in regex to mean &quot;any character&quot;)
-</code></pre></div></div>
+</code></pre></div>
+</td></tr></table></div>
             </div>
         </div>
 
