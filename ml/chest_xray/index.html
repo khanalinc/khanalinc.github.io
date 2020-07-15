@@ -189,10 +189,6 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="4"><a href="#additional-check" class="nav-link">Additional check</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
               </ul>
             </li>
             <li class="nav-item" data-level="3"><a href="#33-densenet121" class="nav-link">3.3 DenseNet121</a>
@@ -229,7 +225,7 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="chest-x-ray-medical-diagnosis-with-deep-learning">Chest X-Ray Medical Diagnosis with Deep Learning</h1>
-<p><img src="./images/xray-header-image.png" style="padding-top: 50px;width: 87%;left: 0px;margin-left: 0px;margin-right: 0px;"></p>
+<p><img alt="png" src="../images/xray-header-image.png" /></p>
 <p><strong>Welcome to the first assignment of course 1!</strong> </p>
 <p>In this assignment! You will explore medical image diagnosis by building a state-of-the-art chest X-ray classifier using Keras. </p>
 <p>The assignment will walk through some of the steps of building and evaluating this deep learning classifier model. In particular, you will:
@@ -421,85 +417,6 @@ l1 <span style="color: #666666">=</span> <span style="color: #007020">any</span>
 </code></pre></div>
 
 
-<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #60a0b0; font-style: italic"># test</span>
-<span style="color: #007020; font-weight: bold">print</span>(<span style="color: #4070a0">&quot;test case 1&quot;</span>)
-df1 <span style="color: #666666">=</span> pd<span style="color: #666666">.</span>DataFrame({<span style="color: #4070a0">&#39;patient_id&#39;</span>: [<span style="color: #40a070">0</span>, <span style="color: #40a070">1</span>, <span style="color: #40a070">2</span>]})
-df2 <span style="color: #666666">=</span> pd<span style="color: #666666">.</span>DataFrame({<span style="color: #4070a0">&#39;patient_id&#39;</span>: [<span style="color: #40a070">2</span>, <span style="color: #40a070">3</span>, <span style="color: #40a070">4</span>]})
-<span style="color: #007020; font-weight: bold">print</span>(<span style="color: #4070a0">&quot;df1&quot;</span>)
-<span style="color: #007020; font-weight: bold">print</span>(df1)
-<span style="color: #007020; font-weight: bold">print</span>(<span style="color: #4070a0">&quot;df2&quot;</span>)
-<span style="color: #007020; font-weight: bold">print</span>(df2)
-<span style="color: #007020; font-weight: bold">print</span>(f<span style="color: #4070a0">&quot;leakage output: {check_for_leakage(df1, df2, &#39;patient_id&#39;)}&quot;</span>)
-<span style="color: #007020; font-weight: bold">print</span>(<span style="color: #4070a0">&quot;-------------------------------------&quot;</span>)
-<span style="color: #007020; font-weight: bold">print</span>(<span style="color: #4070a0">&quot;test case 2&quot;</span>)
-df1 <span style="color: #666666">=</span> pd<span style="color: #666666">.</span>DataFrame({<span style="color: #4070a0">&#39;patient_id&#39;</span>: [<span style="color: #40a070">0</span>, <span style="color: #40a070">1</span>, <span style="color: #40a070">2</span>]})
-df2 <span style="color: #666666">=</span> pd<span style="color: #666666">.</span>DataFrame({<span style="color: #4070a0">&#39;patient_id&#39;</span>: [<span style="color: #40a070">3</span>, <span style="color: #40a070">4</span>, <span style="color: #40a070">5</span>]})
-<span style="color: #007020; font-weight: bold">print</span>(<span style="color: #4070a0">&quot;df1:&quot;</span>)
-<span style="color: #007020; font-weight: bold">print</span>(df1)
-<span style="color: #007020; font-weight: bold">print</span>(<span style="color: #4070a0">&quot;df2:&quot;</span>)
-<span style="color: #007020; font-weight: bold">print</span>(df2)
-
-<span style="color: #007020; font-weight: bold">print</span>(f<span style="color: #4070a0">&quot;leakage output: {check_for_leakage(df1, df2, &#39;patient_id&#39;)}&quot;</span>)
-</code></pre></div>
-
-
-<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>test case 1
-df1
-   patient_id
-0           0
-1           1
-2           2
-df2
-   patient_id
-0           2
-1           3
-2           4
-leakage output: True
--------------------------------------
-test case 2
-df1:
-   patient_id
-0           0
-1           1
-2           2
-df2:
-   patient_id
-0           3
-1           4
-2           5
-leakage output: False
-</code></pre></div>
-
-
-<h5 id="expected-output">Expected output</h5>
-<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>test case <span style="color: #40a070">1</span>
-df1
-   patient_id
-<span style="color: #40a070">0</span>           <span style="color: #40a070">0</span>
-<span style="color: #40a070">1</span>           <span style="color: #40a070">1</span>
-<span style="color: #40a070">2</span>           <span style="color: #40a070">2</span>
-df2
-   patient_id
-<span style="color: #40a070">0</span>           <span style="color: #40a070">2</span>
-<span style="color: #40a070">1</span>           <span style="color: #40a070">3</span>
-<span style="color: #40a070">2</span>           <span style="color: #40a070">4</span>
-leakage output: <span style="color: #007020">True</span>
-<span style="color: #666666">-------------------------------------</span>
-test case <span style="color: #40a070">2</span>
-df1:
-   patient_id
-<span style="color: #40a070">0</span>           <span style="color: #40a070">0</span>
-<span style="color: #40a070">1</span>           <span style="color: #40a070">1</span>
-<span style="color: #40a070">2</span>           <span style="color: #40a070">2</span>
-df2:
-   patient_id
-<span style="color: #40a070">0</span>           <span style="color: #40a070">3</span>
-<span style="color: #40a070">1</span>           <span style="color: #40a070">4</span>
-<span style="color: #40a070">2</span>           <span style="color: #40a070">5</span>
-leakage output: <span style="color: #007020">False</span>
-</code></pre></div>
-
-
 <p>Run the next cell to check if there are patients in both train and test or in both valid and test.</p>
 <div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #007020; font-weight: bold">print</span>(<span style="color: #4070a0">&quot;leakage between train and test: {}&quot;</span><span style="color: #666666">.</span>format(check_for_leakage(train_df, test_df, <span style="color: #4070a0">&#39;PatientId&#39;</span>)))
 <span style="color: #007020; font-weight: bold">print</span>(<span style="color: #4070a0">&quot;leakage between valid and test: {}&quot;</span><span style="color: #666666">.</span>format(check_for_leakage(valid_df, test_df, <span style="color: #4070a0">&#39;PatientId&#39;</span>)))
@@ -681,7 +598,7 @@ plt<span style="color: #666666">.</span>imshow(x[<span style="color: #40a070">0<
 </code></pre></div>
 
 
-<p><img alt="png" src="../chest_xray_files/chest_xray_27_1.png" /></p>
+<p><img alt="png" src="../chest_xray_files/chest_xray_25_1.png" /></p>
 <div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #007020; font-weight: bold">print</span> (f<span style="color: #4070a0">&quot;x.shape= {x.shape} </span><span style="color: #4070a0; font-weight: bold">\n</span><span style="color: #4070a0">y.shape= {y.shape}&quot;</span>)
 </code></pre></div>
 
@@ -704,7 +621,7 @@ plt<span style="color: #666666">.</span>title(<span style="color: #4070a0">&quot
 </code></pre></div>
 
 
-<p><img alt="png" src="../chest_xray_files/chest_xray_31_0.png" /></p>
+<p><img alt="png" src="../chest_xray_files/chest_xray_29_0.png" /></p>
 <p>We can see from this plot that the prevalance of positive cases varies significantly across the different pathologies. (These trends mirror the ones in the full dataset as well.) 
 * The <code>Hernia</code> pathology has the greatest imbalance with the proportion of positive training cases being about 0.2%. 
 * But even the <code>Infiltration</code> pathology, which has the least amount of imbalance, has only 17.5% of the training cases labelled positive.</p>
@@ -746,43 +663,6 @@ plt<span style="color: #666666">.</span>title(<span style="color: #4070a0">&quot
 </code></pre></div>
 
 
-<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #60a0b0; font-style: italic"># Test</span>
-labels_matrix <span style="color: #666666">=</span> np<span style="color: #666666">.</span>array(
-    [[<span style="color: #40a070">1</span>, <span style="color: #40a070">0</span>, <span style="color: #40a070">0</span>],
-     [<span style="color: #40a070">0</span>, <span style="color: #40a070">1</span>, <span style="color: #40a070">1</span>],
-     [<span style="color: #40a070">1</span>, <span style="color: #40a070">0</span>, <span style="color: #40a070">1</span>],
-     [<span style="color: #40a070">1</span>, <span style="color: #40a070">1</span>, <span style="color: #40a070">1</span>],
-     [<span style="color: #40a070">1</span>, <span style="color: #40a070">0</span>, <span style="color: #40a070">1</span>]] )
-<span style="color: #007020; font-weight: bold">print</span>(f<span style="color: #4070a0">&quot;labels: </span><span style="color: #4070a0; font-weight: bold">\n</span><span style="color: #4070a0">{labels_matrix}&quot;</span>)
-test_pos_freqs, test_neg_freqs <span style="color: #666666">=</span> compute_class_freqs(labels_matrix)
-<span style="color: #007020; font-weight: bold">print</span>(f<span style="color: #4070a0">&quot;pos freqs: {test_pos_freqs}&quot;</span>)
-<span style="color: #007020; font-weight: bold">print</span>(f<span style="color: #4070a0">&quot;neg freqs: {test_neg_freqs}&quot;</span>)
-</code></pre></div>
-
-
-<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>labels: 
-[[1 0 0]
- [0 1 1]
- [1 0 1]
- [1 1 1]
- [1 0 1]]
-pos freqs: [0.8 0.4 0.8]
-neg freqs: [0.2 0.6 0.2]
-</code></pre></div>
-
-
-<h5 id="expected-output_1">Expected output</h5>
-<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>labels:
-[[<span style="color: #40a070">1</span> <span style="color: #40a070">0</span> <span style="color: #40a070">0</span>]
- [<span style="color: #40a070">0</span> <span style="color: #40a070">1</span> <span style="color: #40a070">1</span>]
- [<span style="color: #40a070">1</span> <span style="color: #40a070">0</span> <span style="color: #40a070">1</span>]
- [<span style="color: #40a070">1</span> <span style="color: #40a070">1</span> <span style="color: #40a070">1</span>]
- [<span style="color: #40a070">1</span> <span style="color: #40a070">0</span> <span style="color: #40a070">1</span>]]
-pos freqs: [<span style="color: #40a070">0.8</span> <span style="color: #40a070">0.4</span> <span style="color: #40a070">0.8</span>]
-neg freqs: [<span style="color: #40a070">0.2</span> <span style="color: #40a070">0.6</span> <span style="color: #40a070">0.2</span>]
-</code></pre></div>
-
-
 <p>Now we'll compute frequencies for our training data.</p>
 <div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>freq_pos, freq_neg <span style="color: #666666">=</span> compute_class_freqs(train_generator<span style="color: #666666">.</span>labels)
 freq_pos
@@ -801,7 +681,7 @@ plt<span style="color: #666666">.</span>yticks(fontsize<span style="color: #6666
 </code></pre></div>
 
 
-<p><img alt="png" src="../chest_xray_files/chest_xray_41_0.png" /></p>
+<p><img alt="png" src="../chest_xray_files/chest_xray_37_0.png" /></p>
 <p>The same bar plot can be plotted with seaborn in following way but remember sns barplot requires you to have a single row with multiple labels. For example: one column with Lables with values : positive and negative. and another column with values. Then we can plot the two labels with two barplots.</p>
 <div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>data <span style="color: #666666">=</span> pd<span style="color: #666666">.</span>DataFrame({<span style="color: #4070a0">&quot;Class&quot;</span>: labels, <span style="color: #4070a0">&quot;Label&quot;</span>: <span style="color: #4070a0">&quot;Positive&quot;</span>, <span style="color: #4070a0">&quot;Value&quot;</span>: freq_pos})
 data <span style="color: #666666">=</span> data<span style="color: #666666">.</span>append([{<span style="color: #4070a0">&quot;Class&quot;</span>: labels[l], <span style="color: #4070a0">&quot;Label&quot;</span>: <span style="color: #4070a0">&quot;Negative&quot;</span>, <span style="color: #4070a0">&quot;Value&quot;</span>: v} <span style="color: #007020; font-weight: bold">for</span> l,v <span style="color: #007020; font-weight: bold">in</span> <span style="color: #007020">enumerate</span>(freq_neg)], ignore_index<span style="color: #666666">=</span><span style="color: #007020">True</span>)
@@ -874,7 +754,7 @@ plt<span style="color: #666666">.</span>yticks(fontsize<span style="color: #6666
 </code></pre></div>
 
 
-<p><img alt="png" src="../chest_xray_files/chest_xray_44_0.png" /></p>
+<p><img alt="png" src="../chest_xray_files/chest_xray_40_0.png" /></p>
 <p>As we see in the above plot, the contributions of positive cases is significantly lower than that of the negative ones. However, we want the contributions to be equal. One way of doing this is by multiplying each example from each class by a class-specific weight factor, $w_{pos}$ and $w_{neg}$, so that the overall contribution of each class is the same. </p>
 <p>To have this, we want </p>
 <p>$$w_{pos} \times freq_{p} = w_{neg} \times freq_{n},$$</p>
@@ -901,10 +781,10 @@ plt<span style="color: #666666">.</span>yticks(fontsize<span style="color: #6666
 </code></pre></div>
 
 
-<p><img alt="png" src="../chest_xray_files/chest_xray_48_0.png" /></p>
+<p><img alt="png" src="../chest_xray_files/chest_xray_44_0.png" /></p>
 <p>As the above figure shows, by applying these weightings the positive and negative labels within each class would have the same aggregate contribution to the loss function. Now let's implement such a loss function. </p>
 <p>After computing the weights, our final weighted loss for each training case will be </p>
-<p>$$\mathcal{L}<em>{cross-entropy}^{w}(x) = - (w</em>{p} y \log(f(x)) + w_{n}(1-y) \log( 1 - f(x) ) ).$$</p>
+<p>$$ \mathcal{L}<em>{cross-entropy}^{w}(x) = - (w</em>{p} y \log(f(x)) + w_{n}(1-y) \log( 1 - f(x) ) ) $$</p>
 <p><a name='Ex-3'></a></p>
 <h3 id="exercise-3-weighted-loss">Exercise 3 - Weighted Loss</h3>
 <p>Fill out the <code>weighted_loss</code> function below to return a loss function that calculates the weighted loss for each batch. Recall that for the multi-class loss, we add up the average loss for each individual class. Note that we also want to add a small value, $\epsilon$, to the predicted values before taking their logs. This is simply to avoid a numerical error that would otherwise occur if the predicted value happens to be zero.</p>
@@ -955,89 +835,6 @@ plt<span style="color: #666666">.</span>yticks(fontsize<span style="color: #6666
 
 
 <p>Now let's test our function with some simple cases. </p>
-<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #60a0b0; font-style: italic"># Test</span>
-<span style="color: #007020; font-weight: bold">print</span>(<span style="color: #4070a0">&quot;Test example:</span><span style="color: #4070a0; font-weight: bold">\n</span><span style="color: #4070a0">&quot;</span>)
-y_true <span style="color: #666666">=</span> K<span style="color: #666666">.</span>constant(np<span style="color: #666666">.</span>array(
-    [[<span style="color: #40a070">1</span>, <span style="color: #40a070">1</span>, <span style="color: #40a070">1</span>],
-     [<span style="color: #40a070">1</span>, <span style="color: #40a070">1</span>, <span style="color: #40a070">0</span>],
-     [<span style="color: #40a070">0</span>, <span style="color: #40a070">1</span>, <span style="color: #40a070">0</span>],
-     [<span style="color: #40a070">1</span>, <span style="color: #40a070">0</span>, <span style="color: #40a070">1</span>]]
-))
-<span style="color: #007020; font-weight: bold">print</span>(<span style="color: #4070a0">&quot;y_true:</span><span style="color: #4070a0; font-weight: bold">\n</span><span style="color: #4070a0">&quot;</span>)
-<span style="color: #007020; font-weight: bold">print</span>(y_true<span style="color: #666666">.</span>numpy())
-
-w_p <span style="color: #666666">=</span> np<span style="color: #666666">.</span>array([<span style="color: #40a070">0.25</span>, <span style="color: #40a070">0.25</span>, <span style="color: #40a070">0.5</span>])
-w_n <span style="color: #666666">=</span> np<span style="color: #666666">.</span>array([<span style="color: #40a070">0.75</span>, <span style="color: #40a070">0.75</span>, <span style="color: #40a070">0.5</span>])
-<span style="color: #007020; font-weight: bold">print</span>(<span style="color: #4070a0">&quot;</span><span style="color: #4070a0; font-weight: bold">\n</span><span style="color: #4070a0">w_p:</span><span style="color: #4070a0; font-weight: bold">\n</span><span style="color: #4070a0">&quot;</span>)
-<span style="color: #007020; font-weight: bold">print</span>(w_p)
-
-<span style="color: #007020; font-weight: bold">print</span>(<span style="color: #4070a0">&quot;</span><span style="color: #4070a0; font-weight: bold">\n</span><span style="color: #4070a0">w_n:</span><span style="color: #4070a0; font-weight: bold">\n</span><span style="color: #4070a0">&quot;</span>)
-<span style="color: #007020; font-weight: bold">print</span>(w_n)
-
-y_pred_1 <span style="color: #666666">=</span> K<span style="color: #666666">.</span>constant(<span style="color: #40a070">0.7</span><span style="color: #666666">*</span>np<span style="color: #666666">.</span>ones(y_true<span style="color: #666666">.</span>shape))
-<span style="color: #007020; font-weight: bold">print</span>(<span style="color: #4070a0">&quot;</span><span style="color: #4070a0; font-weight: bold">\n</span><span style="color: #4070a0">y_pred_1:</span><span style="color: #4070a0; font-weight: bold">\n</span><span style="color: #4070a0">&quot;</span>)
-<span style="color: #007020; font-weight: bold">print</span>(y_pred_1<span style="color: #666666">.</span>numpy())
-
-y_pred_2 <span style="color: #666666">=</span> K<span style="color: #666666">.</span>constant(<span style="color: #40a070">0.3</span><span style="color: #666666">*</span>np<span style="color: #666666">.</span>ones(y_true<span style="color: #666666">.</span>shape))
-<span style="color: #007020; font-weight: bold">print</span>(<span style="color: #4070a0">&quot;</span><span style="color: #4070a0; font-weight: bold">\n</span><span style="color: #4070a0">y_pred_2:</span><span style="color: #4070a0; font-weight: bold">\n</span><span style="color: #4070a0">&quot;</span>)
-<span style="color: #007020; font-weight: bold">print</span>(y_pred_2<span style="color: #666666">.</span>numpy())
-
-<span style="color: #60a0b0; font-style: italic"># test with a large epsilon in order to catch errors</span>
-L <span style="color: #666666">=</span> get_weighted_loss(w_p, w_n, epsilon<span style="color: #666666">=</span><span style="color: #40a070">1</span>)
-
-<span style="color: #007020; font-weight: bold">print</span>(<span style="color: #4070a0">&quot;</span><span style="color: #4070a0; font-weight: bold">\n</span><span style="color: #4070a0">If we weighted them correctly, we expect the two losses to be the same.&quot;</span>)
-L1 <span style="color: #666666">=</span> L(y_true, y_pred_1)<span style="color: #666666">.</span>numpy()
-L2 <span style="color: #666666">=</span> L(y_true, y_pred_2)<span style="color: #666666">.</span>numpy()
-<span style="color: #007020; font-weight: bold">print</span>(f<span style="color: #4070a0">&quot;</span><span style="color: #4070a0; font-weight: bold">\n</span><span style="color: #4070a0">L(y_pred_1)= {L1:.4f}, L(y_pred_2)= {L2:.4f}&quot;</span>)
-<span style="color: #007020; font-weight: bold">print</span>(f<span style="color: #4070a0">&quot;Difference is L1 - L2 = {L1 - L2:.4f}&quot;</span>)
-</code></pre></div>
-
-
-<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>Test example:
-
-y_true:
-
-[[1. 1. 1.]
- [1. 1. 0.]
- [0. 1. 0.]
- [1. 0. 1.]]
-
-w_p:
-
-[0.25 0.25 0.5 ]
-
-w_n:
-
-[0.75 0.75 0.5 ]
-
-y_pred_1:
-
-[[0.7 0.7 0.7]
- [0.7 0.7 0.7]
- [0.7 0.7 0.7]
- [0.7 0.7 0.7]]
-
-y_pred_2:
-
-[[0.3 0.3 0.3]
- [0.3 0.3 0.3]
- [0.3 0.3 0.3]
- [0.3 0.3 0.3]]
-
-If we weighted them correctly, we expect the two losses to be the same.
-
-L(y_pred_1)= -0.4956, L(y_pred_2)= -0.4956
-Difference is L1 - L2 = 0.0000
-</code></pre></div>
-
-
-<h4 id="additional-check">Additional check</h4>
-<p>If you implemented the function correctly, then if the epsilon for the <code>get_weighted_loss</code> is set to <code>1</code>, the weighted losses will be as follows:</p>
-<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>L(y_pred_1)<span style="color: #666666">=</span> <span style="color: #666666">-</span><span style="color: #40a070">0.4956</span>, L(y_pred_2)<span style="color: #666666">=</span> <span style="color: #666666">-</span><span style="color: #40a070">0.4956</span>
-</code></pre></div>
-
-
-<p>If you are missing something in your implementation, you will see a different set of losses for L1 and L2 (even though L1 and L2 will be the same).</p>
 <p><a name='3-3'></a></p>
 <h3 id="33-densenet121">3.3 DenseNet121</h3>
 <p>Next, we will use a pre-trained <a href="https://www.kaggle.com/pytorch/densenet121">DenseNet121</a> model which we can load directly from Keras and then add two layers on top of it:
