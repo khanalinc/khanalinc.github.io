@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>Quantum Fourier Transform - khanalinc</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="generator" content="mkdocs-1.1.2, mkdocs-gitbook-1.0.7">
+
+<link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon">
+<meta name="HandheldFriendly" content="true"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta rel="next" href="" />
+<link href="../../css/style.min.css" rel="stylesheet"> 
+</head>
+
+<body>
+<div class="book">
+<div class="book-summary">
+<div id="book-search-input" role="search">
+<input type="text" placeholder="Type to search" />
+</div> <!-- end of book-search-input -->
+
+<nav role="navigation">
+<ul class="summary">
+<li>
+<a href="../.." target="_blank" class="custom-link">khanalinc</a>
+</li>
+<li class="divider"></li>
+<li class="chapter" data-path="">
+<a href="../..">Home</a>
+<li class="header">Linux Useful Tips</li>
+
+<li>
+<a href="../../linux/vi/" class="">vi commands</a>
+</li>
+
+<li>
+<a href="../../linux/grep_sed_awk/" class="">grep/sed/awk commands</a>
+</li>
+
+<li class="header">Python</li>
+
+<li>
+<a href="../../python/python_numpy_scipy/" class="">Numpy/Scipy examples</a>
+</li>
+
+<li>
+<a href="../../python/python_pandas/" class="">Pandas examples</a>
+</li>
+
+<li class="header">Machine Learning</li>
+
+<li>
+<a href="../../ml/ml_basics/" class="">Implimenting the Basics</a>
+</li>
+
+<li>
+<a href="../../ml/deepnn_imp/" class="">Implimenting Deep Neural Network</a>
+</li>
+
+<li>
+<a href="../../ml/chest_xray/" class="">Chest X-ray Medical Diagnosis</a>
+</li>
+
+<li>
+<a href="../../ml/compare_classification/" class="">Classification Comarision</a>
+</li>
+
+<li class="header">Quantum Computing</li>
+
+<li>
+<a href="./" class="active">Quantum Fourier Transform</a>
+</li>
+
+<li class="divider"></li>
+
+
+
+<li><a href="http://www.mkdocs.org">
+Published with MkDocs
+</a></li>
+
+<li><a href="https://github.com/GitbookIO/theme-default">
+Theme by GitBook
+</a></li>
+</ul>
+
+</nav>
+
+</div> <!-- end of book-summary -->
+
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="." ></a>
+</h1>
+
+</div> <!-- end of book-header -->
+
+<div class="page-wrapper" tabindex="-1" role="main">
+<div class="page-inner">
+<div id="book-search-results">
+<div class="search-noresults">
+
+<section class="normal markdown-section">
+
+
+
+<h1 id="quantum-fourier-transformation">Quantum Fourier Transformation</h1>
+<ul>
+<li><a href="https://qiskit.org/textbook/ch-algorithms/quantum-fourier-transform.html#qfteqn">Qiskit Chapter on QFT</a></li>
+<li><a href="https://algassert.com/quirk">QFT vizualization made easy</a></li>
+</ul>
+<h2 id="some-definition">Some definition</h2>
+<p>The discrete Fourier transform acts on a vector $(x_0, ..., x_{N-1})$ and maps it to the vector $(y_0, ..., y_{N-1})$ according to the formula</p>
+<p>$$y_k = \frac{1}{\sqrt{N}}\sum_{j=0}^{N-1}x_j\omega_N^{jk}$$</p>
+<p>where $\omega_N^{jk} = e^{2\pi i \frac{jk}{N}}$.</p>
+<p>Similarly, the quantum Fourier transform acts on a quantum state $\sum_{i=0}^{N-1} x_i \vert i \rangle$ and maps it to the quantum state $\sum_{i=0}^{N-1} y_i \vert i \rangle$ according to the formula</p>
+<p>$$y_k = \frac{1}{\sqrt{N}}\sum_{j=0}^{N-1}x_j\omega_N^{jk}$$</p>
+<p>with $\omega_N^{jk}$ defined as above. Note that only the amplitudes of the state were affected by this transformation.</p>
+<p>This can also be expressed as the map:</p>
+<p>$$\vert x \rangle \mapsto \frac{1}{\sqrt{N}}\sum_{y=0}^{N-1}\omega_N^{xy} \vert y \rangle$$</p>
+<p>Or the unitary matrix:</p>
+<p>$$ U_{QFT} = \frac{1}{\sqrt{N}} \sum_{x=0}^{N-1} \sum_{y=0}^{N-1} \omega_N^{xy} \vert y \rangle \langle x \vert$$</p>
+<p><img src="figs/qft_note0.JPG" width=90% height=60% />
+<img src="figs/qft_note1.JPG" width=90% height=60% />
+<img src="figs/qft_note2.JPG" width=90% height=60% /></p>
+<h2 id="example-1-1-qubit-qft">Example 1: 1-qubit QFT</h2>
+<p>Consider how the QFT operator as defined above acts on a single qubit state $\vert\psi\rangle = \alpha \vert 0 \rangle + \beta \vert 1 \rangle$. In this case, $x_0 = \alpha$, $x_1 = \beta$, and $N = 2$. Then,</p>
+<p>$$y_0 = \frac{1}{\sqrt{2}}\left(    \alpha \exp\left(2\pi i\frac{0\times0}{2}\right) + \beta \exp\left(2\pi i\frac{1\times0}{2}\right)      \right) = \frac{1}{\sqrt{2}}\left(\alpha + \beta\right)$$</p>
+<p>and</p>
+<p>$$y_1 = \frac{1}{\sqrt{2}}\left(    \alpha \exp\left(2\pi i\frac{0\times1}{2}\right) + \beta \exp\left(2\pi i\frac{1\times1}{2}\right)      \right) = \frac{1}{\sqrt{2}}\left(\alpha - \beta\right)$$</p>
+<p>such that the final result is the state </p>
+<p>$$U_{QFT}\vert\psi\rangle = \frac{1}{\sqrt{2}}(\alpha + \beta) \vert 0 \rangle + \frac{1}{\sqrt{2}}(\alpha - \beta)  \vert 1 \rangle$$</p>
+<p>This operation is exactly the result of applying the Hadamard operator ($H$) on the qubit:</p>
+<p>$$H = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 &amp; 1 \ 1 &amp; -1 \end{bmatrix}$$</p>
+<p>If we apply the $H$ operator to the state $\vert\psi\rangle = \alpha \vert 0 \rangle + \beta \vert 1 \rangle$, we obtain the new state:</p>
+<p>$$\frac{1}{\sqrt{2}}(\alpha + \beta) \vert 0 \rangle + \frac{1}{\sqrt{2}}(\alpha - \beta)  \vert 1 \rangle 
+\equiv \tilde{\alpha}\vert 0 \rangle + \tilde{\beta}\vert 1 \rangle$$</p>
+<p>Notice how the Hadamard gate performs the discrete Fourier transform for $N = 2$ on the amplitudes of the state. </p>
+<h2 id="5-the-circuit-that-implements-the-qft">5. The Circuit that Implements the QFT</h2>
+<p>The circuit that implements QFT makes use of two gates. The first one is a single-qubit Hadamard gate, $H$. The second is a two-qubit controlled rotation $CROT_k$.</p>
+<p><img src="figs/qft_note3.png" width=90% height=60% /></p>
+<p>Given these two gates, a circuit that implements <strong>an n-qubit QFT</strong> is shown below.</p>
+<p><img alt="image1" src="figs/qft_circuit.png" /></p>
+<p>The circuit operates as follows. We start with an n-qubit input state $\vert x_1x_2\ldots x_n\rangle$.</p>
+<ol>
+<li> After the first Hadamard gate on qubit 1, the state is transformed from the input state to
+
+$$
+H_1\vert x_1x_2\ldots x_n\rangle = 
+\frac{1}{\sqrt{2}}
+\left[\vert0\rangle + \exp\left(\frac{2\pi i}{2}x_1\right)\vert1\rangle\right]
+\otimes
+\vert x_2x_3\ldots x_n\rangle
+$$
+
+<li> After the $UROT_2$ gate on qubit 1 controlled by qubit 2, the state is transformed to
+
+$$
+\frac{1}{\sqrt{2}}
+\left[\vert0\rangle + \exp\left(\frac{2\pi i}{2^2}x_2 + \frac{2\pi i}{2}x_1\right)\vert1\rangle\right]
+\otimes
+\vert x_2x_3\ldots x_n\rangle
+$$
+
+Note in the bracket that the value of k is 2 (hence $2^2$) in the case of $x_2$ and 1 (hence $2^1$) for the case of $x_1$.
+
+<li> After the application of the last $UROT_n$ gate on qubit 1 controlled by qubit $n$, the state becomes
+
+$$
+\frac{1}{\sqrt{2}}
+\left[\vert0\rangle + 
+\exp\left(
+\frac{2\pi i}{2^n}x_n + 
+\frac{2\pi i}{2^{n-1}}x_{n-1} + 
+\ldots + 
+\frac{2\pi i}{2^2}x_2 + 
+\frac{2\pi i}{2}x_1
+\right)
+\vert1\rangle\right]
+\otimes
+\vert x_2x_3\ldots x_n\rangle
+$$
+
+Noting that 
+
+$$
+x = 2^{n-1}x_1 + 2^{n-2}x_2 + \ldots + 2^1x_{n-1} + 2^0x_n
+$$
+
+we can write the above state as 
+
+$$
+\frac{1}{\sqrt{2}}
+\left[\vert0\rangle + 
+\exp\left(
+\frac{2\pi i}{2^n}x 
+\right)
+\vert1\rangle\right]
+\otimes
+\vert x_2x_3\ldots x_n\rangle
+$$
+
+<li> After the application of a similar sequence of gates for qubits $2\ldots n$, we find the final state to be:
+
+$$
+\frac{1}{\sqrt{2}}
+\left[\vert0\rangle + 
+\exp\left(
+\frac{2\pi i}{2^n}x 
+\right)
+\vert1\rangle\right]
+\otimes
+\frac{1}{\sqrt{2}}
+\left[\vert0\rangle + 
+\exp\left(
+\frac{2\pi i}{2^{n-1}}x 
+\right)
+\vert1\rangle\right]
+\otimes
+\ldots
+\otimes
+\frac{1}{\sqrt{2}}
+\left[\vert0\rangle + 
+\exp\left(
+\frac{2\pi i}{2^{2}}x 
+\right)
+\vert1\rangle\right]
+\otimes
+\frac{1}{\sqrt{2}}
+\left[\vert0\rangle + 
+\exp\left(
+\frac{2\pi i}{2^{1}}x 
+\right)
+\vert1\rangle\right]
+$$
+
+which is exactly the QFT of the input state as derived above with the caveat that the order of the qubits is reversed in the output state.
+</ol>
+
+<h2 id="6-example-2-1-qubit-qft">6. Example 2: 1-qubit QFT</h2>
+<p><img src="figs/qft_note4.jpeg" width=90% height=60% /></p>
+<h2 id="qiskit-implementation">Qiskit Implementation</h2>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #007020; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">numpy</span> <span style="color: #007020; font-weight: bold">as</span> <span style="color: #0e84b5; font-weight: bold">np</span>
+<span style="color: #007020; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">pylab</span> <span style="color: #007020; font-weight: bold">as</span> <span style="color: #0e84b5; font-weight: bold">plt</span>
+
+<span style="color: #007020; font-weight: bold">from</span> <span style="color: #0e84b5; font-weight: bold">qiskit</span> <span style="color: #007020; font-weight: bold">import</span> QuantumCircuit, execute, Aer, IBMQ
+<span style="color: #007020; font-weight: bold">from</span> <span style="color: #0e84b5; font-weight: bold">qiskit.visualization</span> <span style="color: #007020; font-weight: bold">import</span> plot_histogram, plot_bloch_multivector
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>qc <span style="color: #666666">=</span> QuantumCircuit(<span style="color: #40a070">3</span>)
+</code></pre></div>
+
+
+<p><strong>Note</strong>: Remember that Qiskit's least significant bit has the lowest index (0), thus the circuit will be mirrored through the horizontal in relation to the image in section 5. First, we apply a H-gate to qubit 2 :</p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>qc<span style="color: #666666">.</span>h(<span style="color: #40a070">2</span>)
+qc<span style="color: #666666">.</span>draw(<span style="color: #4070a0">&#39;mpl&#39;</span>)
+</code></pre></div>
+
+
+<p><img alt="png" src="../qft_files/qft_7_0.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #60a0b0; font-style: italic"># UROT_2 gate to x1 depending on x2</span>
+
+<span style="color: #007020; font-weight: bold">from</span> <span style="color: #0e84b5; font-weight: bold">numpy</span> <span style="color: #007020; font-weight: bold">import</span> pi
+qc<span style="color: #666666">.</span>cu1(pi<span style="color: #666666">/</span><span style="color: #40a070">2</span>, <span style="color: #40a070">1</span>, <span style="color: #40a070">2</span>) <span style="color: #60a0b0; font-style: italic"># CROT from qubit 1 to qubit 2 hence the angle: pi/2^{2-1}</span>
+qc<span style="color: #666666">.</span>draw(<span style="color: #4070a0">&#39;mpl&#39;</span>)
+</code></pre></div>
+
+
+<p><img alt="png" src="../qft_files/qft_8_0.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>qc<span style="color: #666666">.</span>cu1(pi<span style="color: #666666">/</span><span style="color: #40a070">4</span>, <span style="color: #40a070">0</span>, <span style="color: #40a070">2</span>) <span style="color: #60a0b0; font-style: italic"># CROT from qubit 2 to qubit 0 hence the angle: pi/2^{2-0}</span>
+qc<span style="color: #666666">.</span>draw(<span style="color: #4070a0">&#39;mpl&#39;</span>)
+</code></pre></div>
+
+
+<p><img alt="png" src="../qft_files/qft_9_0.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #60a0b0; font-style: italic"># Repeat the process for 2 and 3 </span>
+qc<span style="color: #666666">.</span>h(<span style="color: #40a070">1</span>)  <span style="color: #60a0b0; font-style: italic"># Hadamard on 1</span>
+qc<span style="color: #666666">.</span>cu1(pi<span style="color: #666666">/</span><span style="color: #40a070">2</span>, <span style="color: #40a070">0</span>, <span style="color: #40a070">1</span>) <span style="color: #60a0b0; font-style: italic"># CROT from qubit 0 to qubit 1 hence the angle: pi/2^{1-0}</span>
+qc<span style="color: #666666">.</span>h(<span style="color: #40a070">0</span>)  <span style="color: #60a0b0; font-style: italic"># Hadamard on 0</span>
+qc<span style="color: #666666">.</span>draw(<span style="color: #4070a0">&#39;mpl&#39;</span>)
+</code></pre></div>
+
+
+<p><img alt="png" src="../qft_files/qft_10_0.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #60a0b0; font-style: italic"># Now swap the qubit 0 and 2 to complete QFT. [NOT CLEAR TO ME]</span>
+qc<span style="color: #666666">.</span>swap(<span style="color: #40a070">0</span>,<span style="color: #40a070">2</span>)
+qc<span style="color: #666666">.</span>draw(<span style="color: #4070a0">&#39;mpl&#39;</span>)
+</code></pre></div>
+
+
+<p><img alt="png" src="../qft_files/qft_11_0.png" /></p>
+<h2 id="general-qft-function">General QFT Function</h2>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #007020; font-weight: bold">def</span> <span style="color: #06287e">qft_rotations</span>(ckt, n):
+    <span style="color: #007020; font-weight: bold">if</span> n <span style="color: #666666">==</span> <span style="color: #40a070">0</span>:
+        <span style="color: #007020; font-weight: bold">return</span> ckt
+    n <span style="color: #666666">-=</span> <span style="color: #40a070">1</span>
+    ckt<span style="color: #666666">.</span>h(n)
+    <span style="color: #007020; font-weight: bold">for</span> qubit <span style="color: #007020; font-weight: bold">in</span> <span style="color: #007020">range</span>(n):
+        ckt<span style="color: #666666">.</span>cu1( pi<span style="color: #666666">/</span><span style="color: #40a070">2</span><span style="color: #666666">**</span>(n<span style="color: #666666">-</span>qubit), qubit, n )
+
+qc <span style="color: #666666">=</span> QuantumCircuit(<span style="color: #40a070">4</span>)
+qft_rotations(qc,<span style="color: #40a070">4</span>)
+qc<span style="color: #666666">.</span>draw(<span style="color: #4070a0">&#39;mpl&#39;</span>)
+</code></pre></div>
+
+
+<p><img alt="png" src="../qft_files/qft_13_0.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #007020; font-weight: bold">def</span> <span style="color: #06287e">qft_rotations</span>(ckt, n):
+    <span style="color: #007020; font-weight: bold">if</span> n <span style="color: #666666">==</span> <span style="color: #40a070">0</span>:
+        <span style="color: #007020; font-weight: bold">return</span> ckt
+    n <span style="color: #666666">-=</span> <span style="color: #40a070">1</span>
+    ckt<span style="color: #666666">.</span>h(n)
+    <span style="color: #007020; font-weight: bold">for</span> qubit <span style="color: #007020; font-weight: bold">in</span> <span style="color: #007020">range</span>(n):
+        ckt<span style="color: #666666">.</span>cu1( pi<span style="color: #666666">/</span><span style="color: #40a070">2</span><span style="color: #666666">**</span>(n<span style="color: #666666">-</span>qubit), qubit, n )
+
+    qft_rotations(ckt, n)
+
+qc <span style="color: #666666">=</span> QuantumCircuit(<span style="color: #40a070">4</span>)
+qft_rotations(qc,<span style="color: #40a070">4</span>)
+qc<span style="color: #666666">.</span>draw(<span style="color: #4070a0">&#39;mpl&#39;</span>)
+</code></pre></div>
+
+
+<p><img alt="png" src="../qft_files/qft_14_0.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #007020; font-weight: bold">from</span> <span style="color: #0e84b5; font-weight: bold">qiskit_textbook.widgets</span> <span style="color: #007020; font-weight: bold">import</span> scalable_circuit
+scalable_circuit(qft_rotations)
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>IntSlider(value=4, max=8, min=1)
+
+
+
+Image(value=b&#39;\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x04u\x00\x00\x01\x08\x08\x06\x00\x00\x00\xd1\x16\xc8…
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #007020; font-weight: bold">def</span> <span style="color: #06287e">swap_registers</span>(ckt, n):
+    <span style="color: #007020; font-weight: bold">for</span> qubit <span style="color: #007020; font-weight: bold">in</span> <span style="color: #007020">range</span>(n<span style="color: #666666">//</span><span style="color: #40a070">2</span>):
+        ckt<span style="color: #666666">.</span>swap(qubit, n<span style="color: #666666">-</span>qubit<span style="color: #666666">-</span><span style="color: #40a070">1</span>)
+    <span style="color: #007020; font-weight: bold">return</span> ckt
+
+<span style="color: #007020; font-weight: bold">def</span> <span style="color: #06287e">qft</span>(ckt, n):
+    qft_rotations(ckt, n)
+    swap_registers(ckt, n)
+    <span style="color: #007020; font-weight: bold">return</span> ckt
+
+qc <span style="color: #666666">=</span> QuantumCircuit(<span style="color: #40a070">4</span>)
+qft(qc, <span style="color: #40a070">4</span>)
+qc<span style="color: #666666">.</span>draw(<span style="color: #4070a0">&#39;mpl&#39;</span>)
+</code></pre></div>
+
+
+<p><img alt="png" src="../qft_files/qft_16_0.png" /></p>
+<h2 id="testing-the-circuit">Testing the Circuit</h2>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #007020">print</span> (<span style="color: #4070a0">f&quot;5 and it&#39;s binary: </span><span style="color: #70a0d0; font-style: italic">{</span><span style="color: #007020">bin</span>(<span style="color: #40a070">5</span>)<span style="color: #70a0d0; font-style: italic">}</span><span style="color: #4070a0">&quot;</span>)
+<span style="color: #60a0b0; font-style: italic">#bin(9)</span>
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>5 and it&#39;s binary: 0b101
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>qc <span style="color: #666666">=</span> QuantumCircuit(<span style="color: #40a070">3</span>)
+qc<span style="color: #666666">.</span>x(<span style="color: #40a070">0</span>)
+qc<span style="color: #666666">.</span>x(<span style="color: #40a070">2</span>)
+qc<span style="color: #666666">.</span>draw(<span style="color: #4070a0">&#39;mpl&#39;</span>)
+</code></pre></div>
+
+
+<p><img alt="png" src="../qft_files/qft_19_0.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>backend <span style="color: #666666">=</span> Aer<span style="color: #666666">.</span>get_backend(<span style="color: #4070a0">&#39;statevector_simulator&#39;</span>)
+sv <span style="color: #666666">=</span> execute(qc, backend<span style="color: #666666">=</span>backend)<span style="color: #666666">.</span>result()<span style="color: #666666">.</span>get_statevector()
+plot_bloch_multivector(sv)
+<span style="color: #007020">print</span> (sv<span style="color: #666666">.</span>real)
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>[0. 0. 0. 0. 0. 1. 0. 0.]
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>qft(qc, <span style="color: #40a070">3</span>)
+qc<span style="color: #666666">.</span>draw(<span style="color: #4070a0">&#39;mpl&#39;</span>)
+</code></pre></div>
+
+
+<p><img alt="png" src="../qft_files/qft_21_0.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>sv <span style="color: #666666">=</span> execute(qc, backend<span style="color: #666666">=</span>backend)<span style="color: #666666">.</span>result()<span style="color: #666666">.</span>get_statevector()
+plot_bloch_multivector(sv)
+</code></pre></div>
+
+
+<p><img alt="png" src="../qft_files/qft_22_0.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #007020">print</span> (<span style="color: #4070a0">&#39;The statevectors are:</span><span style="color: #4070a0; font-weight: bold">\n</span><span style="color: #4070a0">&#39;</span>, sv<span style="color: #666666">.</span>round(<span style="color: #40a070">1</span>))
+<span style="color: #007020">print</span> (<span style="color: #4070a0">&#39;Angle subtended by each states (as a factor of pi):</span><span style="color: #4070a0; font-weight: bold">\n</span><span style="color: #4070a0">&#39;</span>,(np<span style="color: #666666">.</span>angle(sv)<span style="color: #666666">/</span>np<span style="color: #666666">.</span>pi)<span style="color: #666666">.</span>round(<span style="color: #40a070">2</span>))
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>The statevectors are:
+ [ 0.4-0.j  -0.3-0.2j  0. +0.4j  0.2-0.3j -0.4+0.j   0.3+0.2j -0. -0.4j
+ -0.2+0.3j]
+Angle subtended by each states (as a factor of pi):
+ [-0.   -0.75  0.5  -0.25  1.    0.25 -0.5   0.75]
+</code></pre></div>
+
+
+<p>We can see out QFT function has worked correctly. Compared the the state  $\vert 0 \rangle= \vert+++\rangle$ , Qubit $0$ has been rotated by  $5/8$  of a full turn, qubit $1$ by  $10/8$  full turns (equivalent to  $1/4$  of a full turn), and qubit $2$ by  $20/8$  full turns (equivalent to  $1/2$  of a full turn).</p>
+<h2 id="inverse-fourier-transform">Inverse Fourier Transform</h2>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #007020; font-weight: bold">def</span> <span style="color: #06287e">inverse_qft</span>(circuit, n):
+    <span style="color: #4070a0; font-style: italic">&quot;&quot;&quot;Does the inverse QFT on the first n qubits in circuit&quot;&quot;&quot;</span>
+    <span style="color: #60a0b0; font-style: italic"># First we create a QFT circuit of the correct size:</span>
+    qft_circ <span style="color: #666666">=</span> qft(QuantumCircuit(n), n)
+    <span style="color: #60a0b0; font-style: italic"># Then we take the inverse of this circuit</span>
+    invqft_circ <span style="color: #666666">=</span> qft_circ<span style="color: #666666">.</span>inverse()
+    <span style="color: #60a0b0; font-style: italic"># And add it to the first n qubits in our existing circuit</span>
+    circuit<span style="color: #666666">.</span>append(invqft_circ, circuit<span style="color: #666666">.</span>qubits[:n])
+    <span style="color: #60a0b0; font-style: italic"># use .decompose() which allows us to see the individual gates</span>
+    <span style="color: #007020; font-weight: bold">return</span> circuit<span style="color: #666666">.</span>decompose() 
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>nqubits <span style="color: #666666">=</span> <span style="color: #40a070">3</span>
+number <span style="color: #666666">=</span> <span style="color: #40a070">6</span>
+qc <span style="color: #666666">=</span> QuantumCircuit(nqubits)
+<span style="color: #007020; font-weight: bold">for</span> qubit <span style="color: #007020; font-weight: bold">in</span> <span style="color: #007020">range</span>(nqubits):
+    qc<span style="color: #666666">.</span>h(qubit)
+qc<span style="color: #666666">.</span>u1(number<span style="color: #666666">*</span>pi<span style="color: #666666">/</span><span style="color: #40a070">4</span>,<span style="color: #40a070">0</span>)
+qc<span style="color: #666666">.</span>u1(number<span style="color: #666666">*</span>pi<span style="color: #666666">/</span><span style="color: #40a070">2</span>,<span style="color: #40a070">1</span>)
+qc<span style="color: #666666">.</span>u1(number<span style="color: #666666">*</span>pi,<span style="color: #40a070">2</span>)
+
+qc<span style="color: #666666">.</span>draw(<span style="color: #4070a0">&#39;mpl&#39;</span>)
+</code></pre></div>
+
+
+<p><img alt="png" src="../qft_files/qft_27_0.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>backend <span style="color: #666666">=</span> Aer<span style="color: #666666">.</span>get_backend(<span style="color: #4070a0">&quot;statevector_simulator&quot;</span>)
+sv <span style="color: #666666">=</span> execute(qc, backend<span style="color: #666666">=</span>backend)<span style="color: #666666">.</span>result()<span style="color: #666666">.</span>get_statevector()
+plot_bloch_multivector(sv)
+</code></pre></div>
+
+
+<p><img alt="png" src="../qft_files/qft_28_0.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #007020">print</span> (<span style="color: #4070a0">&#39;The statevectors are:</span><span style="color: #4070a0; font-weight: bold">\n</span><span style="color: #4070a0">&#39;</span>, sv<span style="color: #666666">.</span>round(<span style="color: #40a070">1</span>))
+<span style="color: #007020">print</span> (<span style="color: #4070a0">&#39;Angle subtended by each states (as a factor of pi):</span><span style="color: #4070a0; font-weight: bold">\n</span><span style="color: #4070a0">&#39;</span>,(np<span style="color: #666666">.</span>angle(sv)<span style="color: #666666">/</span>np<span style="color: #666666">.</span>pi)<span style="color: #666666">.</span>round(<span style="color: #40a070">2</span>))
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>The statevectors are:
+ [ 0.4+0.j  -0. -0.4j -0.4+0.j   0. +0.4j  0.4+0.j  -0. -0.4j -0.4+0.j
+  0. +0.4j]
+Angle subtended by each states (as a factor of pi):
+ [ 0.  -0.5  1.   0.5  0.  -0.5  1.   0.5]
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>qc <span style="color: #666666">=</span> inverse_qft(qc,nqubits)
+qc<span style="color: #666666">.</span>measure_all()
+qc<span style="color: #666666">.</span>draw(<span style="color: #4070a0">&#39;mpl&#39;</span>)
+</code></pre></div>
+
+
+<p><img alt="png" src="../qft_files/qft_30_0.png" /></p>
+<h3 id="error-on-ibmq-load-account">Error on IBMQ load account</h3>
+<ul>
+<li>https://www.ibm.com/cloud/blog/how-to-resolve-a-401-unauthorised-error-in-ibm-watson</li>
+</ul>
+<p>I did add the ibm cloud account here and added the ibm watson assistant which is free. learn now how to add the credential here on the terminal/jupyter notebook.</p>
+<p>https://cloud.ibm.com/services/conversation/crn%3Av1%3Abluemix%3Apublic%3Aconversation%3Aau-syd%3Aa%2F81a5dba8ddf7472c97dd3bb499e55b05%3A06bd131c-12c4-435a-8fee-ad14d570790d%3A%3A?paneId=manage&amp;new=true</p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>backend <span style="color: #666666">=</span> Aer<span style="color: #666666">.</span>get_backend(<span style="color: #4070a0">&quot;qasm_simulator&quot;</span>)
+
+shots <span style="color: #666666">=</span> <span style="color: #40a070">2048</span>
+job <span style="color: #666666">=</span> execute(qc, backend<span style="color: #666666">=</span>backend, shots<span style="color: #666666">=</span>shots, optimization_level<span style="color: #666666">=</span><span style="color: #40a070">3</span>)
+
+counts <span style="color: #666666">=</span> job<span style="color: #666666">.</span>result()<span style="color: #666666">.</span>get_counts()
+plot_histogram(counts)
+</code></pre></div>
+
+
+<p><img alt="png" src="../qft_files/qft_32_0.png" /></p>
+<h2 id="something-more-on-fourier-transform">Something more on Fourier Transform</h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=SsXJgAZ6aIg&amp;feature=share&amp;fbclid=IwAR2b6_DRIxfy9L7rH0bVIAb7ZGB1S32l7lx8ZS8Df2sSWLJ0kjK6YW1_1HA">Circuit Sessions with Ali Javadi (YouTube)</a></li>
+</ul>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #007020; font-weight: bold">from</span> <span style="color: #0e84b5; font-weight: bold">qiskit</span> <span style="color: #007020; font-weight: bold">import</span> circuit, quantum_info
+
+num_qubits <span style="color: #666666">=</span> <span style="color: #40a070">6</span>
+qft <span style="color: #666666">=</span> circuit<span style="color: #666666">.</span>library<span style="color: #666666">.</span>QFT(num_qubits, approximation_degree<span style="color: #666666">=</span><span style="color: #40a070">0</span>, insert_barriers<span style="color: #666666">=</span><span style="color: #007020; font-weight: bold">False</span>)
+qft<span style="color: #666666">.</span>draw(<span style="color: #4070a0">&#39;mpl&#39;</span>, fold<span style="color: #666666">=</span><span style="color: #40a070">500</span>, reverse_bits <span style="color: #666666">=</span> <span style="color: #007020; font-weight: bold">True</span>)
+</code></pre></div>
+
+
+<p><img alt="png" src="../qft_files/qft_34_0.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #60a0b0; font-style: italic"># Plot classical vs. quantum Fourier transform, for all basis states..</span>
+<span style="color: #60a0b0; font-style: italic"># By linearity of Fourier transform, all states map correctly.</span>
+<span style="color: #60a0b0; font-style: italic"># The difference in height is due to normalization in quantum.</span>
+
+plt<span style="color: #666666">.</span>figure(figsize<span style="color: #666666">=</span>(<span style="color: #40a070">16</span>,<span style="color: #40a070">16</span>))
+<span style="color: #007020; font-weight: bold">for</span> i, basis_state <span style="color: #007020; font-weight: bold">in</span> <span style="color: #007020">enumerate</span>([<span style="color: #40a070">0</span>, <span style="color: #40a070">1</span>, <span style="color: #40a070">2</span>, <span style="color: #40a070">3</span>]):
+    state <span style="color: #666666">=</span> quantum_info<span style="color: #666666">.</span>Statevector<span style="color: #666666">.</span>from_int(basis_state, dims<span style="color: #666666">=</span><span style="color: #40a070">2</span><span style="color: #666666">**</span>num_qubits)
+    <span style="color: #60a0b0; font-style: italic">#print (state)</span>
+    classical_fourier <span style="color: #666666">=</span> np<span style="color: #666666">.</span>fft<span style="color: #666666">.</span>ifft(state<span style="color: #666666">.</span>data)      <span style="color: #60a0b0; font-style: italic"># classical library function</span>
+    quantum_fourier <span style="color: #666666">=</span> state<span style="color: #666666">.</span>evolve(qft)<span style="color: #666666">.</span>data         <span style="color: #60a0b0; font-style: italic"># quantum library (simulation via quantum_info)</span>
+
+    width <span style="color: #666666">=</span> <span style="color: #40a070">0.5</span>
+
+    <span style="color: #60a0b0; font-style: italic">#fig.suptitle(&#39;Input State: &#39; + str(basis_state), fontsize=16)</span>
+
+    plt<span style="color: #666666">.</span>subplot(<span style="color: #40a070">4</span>,<span style="color: #40a070">2</span>, <span style="color: #40a070">2</span><span style="color: #666666">*</span>i<span style="color: #666666">+</span><span style="color: #40a070">1</span>)
+    plt<span style="color: #666666">.</span>title(<span style="color: #4070a0">&#39;state: </span><span style="color: #70a0d0; font-style: italic">%1i</span><span style="color: #4070a0"> real&#39;</span><span style="color: #666666">%</span>i)
+    plt<span style="color: #666666">.</span>bar(np<span style="color: #666666">.</span>arange(<span style="color: #40a070">2</span><span style="color: #666666">**</span>num_qubits)<span style="color: #666666">-</span>width<span style="color: #666666">/</span><span style="color: #40a070">2.</span>, classical_fourier<span style="color: #666666">.</span>real, width,  label<span style="color: #666666">=</span><span style="color: #4070a0">&#39;classical&#39;</span>)
+    plt<span style="color: #666666">.</span>bar(np<span style="color: #666666">.</span>arange(<span style="color: #40a070">2</span><span style="color: #666666">**</span>num_qubits)<span style="color: #666666">+</span>width<span style="color: #666666">/</span><span style="color: #40a070">2.</span>, quantum_fourier<span style="color: #666666">.</span>real, width, label<span style="color: #666666">=</span><span style="color: #4070a0">&#39;quantum&#39;</span>)
+    plt<span style="color: #666666">.</span>legend(frameon<span style="color: #666666">=</span><span style="color: #007020; font-weight: bold">False</span>)
+
+    plt<span style="color: #666666">.</span>subplot(<span style="color: #40a070">4</span>,<span style="color: #40a070">2</span>, <span style="color: #40a070">2</span><span style="color: #666666">*</span>i<span style="color: #666666">+</span><span style="color: #40a070">2</span>)
+    plt<span style="color: #666666">.</span>title(<span style="color: #4070a0">&#39;state: </span><span style="color: #70a0d0; font-style: italic">%1i</span><span style="color: #4070a0"> Imaginary part&#39;</span><span style="color: #666666">%</span>i)
+    plt<span style="color: #666666">.</span>bar(np<span style="color: #666666">.</span>arange(<span style="color: #40a070">2</span><span style="color: #666666">**</span>num_qubits)<span style="color: #666666">-</span>width<span style="color: #666666">/</span><span style="color: #40a070">2.</span>, classical_fourier<span style="color: #666666">.</span>imag, width, label<span style="color: #666666">=</span><span style="color: #4070a0">&#39;classical&#39;</span>)
+    plt<span style="color: #666666">.</span>bar(np<span style="color: #666666">.</span>arange(<span style="color: #40a070">2</span><span style="color: #666666">**</span>num_qubits)<span style="color: #666666">+</span>width<span style="color: #666666">/</span><span style="color: #40a070">2.</span>, quantum_fourier<span style="color: #666666">.</span>imag, width, label<span style="color: #666666">=</span><span style="color: #4070a0">&#39;quantum&#39;</span>)
+    plt<span style="color: #666666">.</span>legend(frameon<span style="color: #666666">=</span><span style="color: #007020; font-weight: bold">False</span>)
+</code></pre></div>
+
+
+<p><img alt="png" src="../qft_files/qft_35_0.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #007020; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">matplotlib.pyplot</span> <span style="color: #007020; font-weight: bold">as</span> <span style="color: #0e84b5; font-weight: bold">plt</span>
+
+Nt <span style="color: #666666">=</span> <span style="color: #40a070">256</span>
+t <span style="color: #666666">=</span> np<span style="color: #666666">.</span>arange(Nt)
+fft <span style="color: #666666">=</span> np<span style="color: #666666">.</span>fft<span style="color: #666666">.</span>fft(np<span style="color: #666666">.</span>sin(t))
+ifft <span style="color: #666666">=</span> np<span style="color: #666666">.</span>fft<span style="color: #666666">.</span>ifft(np<span style="color: #666666">.</span>sin(t))
+freq <span style="color: #666666">=</span> np<span style="color: #666666">.</span>fft<span style="color: #666666">.</span>fftfreq(Nt)
+
+plt<span style="color: #666666">.</span>figure(figsize<span style="color: #666666">=</span>(<span style="color: #40a070">16</span>,<span style="color: #40a070">4</span>))
+plt<span style="color: #666666">.</span>subplot(<span style="color: #40a070">121</span>)
+plt<span style="color: #666666">.</span>title(<span style="color: #4070a0">&#39;real&#39;</span>)
+plt<span style="color: #666666">.</span>plot(freq, fft<span style="color: #666666">.</span>real, <span style="color: #4070a0">&#39;-o&#39;</span>, label<span style="color: #666666">=</span><span style="color: #4070a0">&#39;fft (real)&#39;</span>)
+plt<span style="color: #666666">.</span>plot(freq, Nt<span style="color: #666666">*</span>ifft<span style="color: #666666">.</span>real, <span style="color: #4070a0">&#39;-o&#39;</span>, label<span style="color: #666666">=</span><span style="color: #4070a0">&#39;Nt * ifft (real)&#39;</span>)
+plt<span style="color: #666666">.</span>legend(fontsize<span style="color: #666666">=</span><span style="color: #4070a0">&#39;large&#39;</span>)
+plt<span style="color: #666666">.</span>xlabel(<span style="color: #4070a0">&#39;frequency&#39;</span>, fontsize<span style="color: #666666">=</span><span style="color: #4070a0">&#39;large&#39;</span>)
+
+plt<span style="color: #666666">.</span>subplot(<span style="color: #40a070">122</span>)
+plt<span style="color: #666666">.</span>title(<span style="color: #4070a0">&#39;imag&#39;</span>)
+plt<span style="color: #666666">.</span>plot(freq, fft<span style="color: #666666">.</span>imag, <span style="color: #4070a0">&#39;-o&#39;</span>, label<span style="color: #666666">=</span><span style="color: #4070a0">&#39;fft (imag)&#39;</span>)
+plt<span style="color: #666666">.</span>plot(freq, Nt<span style="color: #666666">*</span>ifft<span style="color: #666666">.</span>imag, <span style="color: #4070a0">&#39;-o&#39;</span>, label<span style="color: #666666">=</span><span style="color: #4070a0">&#39;Nt * ifft (imag)&#39;</span>)
+plt<span style="color: #666666">.</span>legend(fontsize<span style="color: #666666">=</span><span style="color: #4070a0">&#39;large&#39;</span>)
+plt<span style="color: #666666">.</span>xlabel(<span style="color: #4070a0">&#39;frequency&#39;</span>, fontsize<span style="color: #666666">=</span><span style="color: #4070a0">&#39;large&#39;</span>)
+
+plt<span style="color: #666666">.</span>show()
+</code></pre></div>
+
+
+<p><img alt="png" src="../qft_files/qft_36_0.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #007020; font-weight: bold">from</span> <span style="color: #0e84b5; font-weight: bold">qiskit</span> <span style="color: #007020; font-weight: bold">import</span> circuit, quantum_info
+
+num_qubits <span style="color: #666666">=</span> <span style="color: #40a070">6</span>
+qft <span style="color: #666666">=</span> circuit<span style="color: #666666">.</span>library<span style="color: #666666">.</span>QFT(num_qubits, insert_barriers<span style="color: #666666">=</span><span style="color: #007020; font-weight: bold">False</span>)
+qft<span style="color: #666666">.</span>draw(<span style="color: #4070a0">&#39;mpl&#39;</span>, fold<span style="color: #666666">=</span><span style="color: #40a070">500</span>, reverse_bits <span style="color: #666666">=</span> <span style="color: #007020; font-weight: bold">True</span>)
+
+basis_state <span style="color: #666666">=</span> <span style="color: #40a070">2</span>
+state <span style="color: #666666">=</span> quantum_info<span style="color: #666666">.</span>Statevector<span style="color: #666666">.</span>from_int(basis_state, dims<span style="color: #666666">=</span><span style="color: #40a070">2</span><span style="color: #666666">**</span>num_qubits)
+quantum_fourier <span style="color: #666666">=</span> state<span style="color: #666666">.</span>evolve(qft)<span style="color: #666666">.</span>data
+
+width <span style="color: #666666">=</span> <span style="color: #40a070">0.5</span>
+
+plt<span style="color: #666666">.</span>subplot(<span style="color: #40a070">121</span>)
+plt<span style="color: #666666">.</span>bar(np<span style="color: #666666">.</span>arange(<span style="color: #40a070">2</span><span style="color: #666666">**</span>num_qubits)<span style="color: #666666">+</span>width<span style="color: #666666">/</span><span style="color: #40a070">2.</span>, quantum_fourier<span style="color: #666666">.</span>real, width, label<span style="color: #666666">=</span><span style="color: #4070a0">&#39;real&#39;</span>)
+
+plt<span style="color: #666666">.</span>subplot(<span style="color: #40a070">122</span>)
+plt<span style="color: #666666">.</span>bar(np<span style="color: #666666">.</span>arange(<span style="color: #40a070">2</span><span style="color: #666666">**</span>num_qubits)<span style="color: #666666">+</span>width<span style="color: #666666">/</span><span style="color: #40a070">2.</span>, quantum_fourier<span style="color: #666666">.</span>imag, width, label<span style="color: #666666">=</span><span style="color: #4070a0">&#39;imag&#39;</span>)
+plt<span style="color: #666666">.</span>legend(frameon<span style="color: #666666">=</span><span style="color: #007020; font-weight: bold">False</span>)
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>&lt;matplotlib.legend.Legend at 0x12bafee10&gt;
+</code></pre></div>
+
+
+<p><img alt="png" src="../qft_files/qft_37_1.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>
+</code></pre></div>
+
+
+</section>
+</div> <!-- end of search-noresults -->
+<div class="search-results">
+<div class="has-results">
+
+<!-- In the following the space was originally results matching-->
+<h5 class="search-results-title"><span class='search-results-count'></span> </h1>
+<!-- h5 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1 -->
+<ul class="search-results-list"></ul>
+
+</div> <!-- end of has-results -->
+<div class="no-results">
+
+<!-- In the following the space was originally No results matching-->
+<!-- h5 class="search-results-title">No results matching "<span class='search-query'></span>"</h1 -->
+<h5 class="search-results-title"> </h1>
+
+</div> <!-- end of no-results -->
+</div> <!-- end of search-results -->
+</div> <!-- end of book-search-results -->
+
+</div> <!-- end of page-inner -->
+</div> <!-- end of page-wrapper -->
+
+</div> <!-- end of body-inner -->
+
+</div> <!-- end of book-body -->
+<script src="../../js/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="../../search/main.js"></script>
+<script src="../../js/gitbook.min.js"></script>
+<script src="../../js/theme.min.js"></script>
+</body>
+</html>
