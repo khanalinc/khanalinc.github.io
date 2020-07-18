@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>Numpy/Scipy examples - khanalinc</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="generator" content="mkdocs-1.1.2, mkdocs-gitbook-1.0.7">
+
+<link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon">
+<meta name="HandheldFriendly" content="true"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta rel="next" href="" />
+<link href="../../css/style.min.css" rel="stylesheet"> 
+</head>
+
+<body>
+<div class="book">
+<div class="book-summary">
+<div id="book-search-input" role="search">
+<input type="text" placeholder="Type to search" />
+</div> <!-- end of book-search-input -->
+
+<nav role="navigation">
+<ul class="summary">
+<li>
+<a href="../.." target="_blank" class="custom-link">khanalinc</a>
+</li>
+<li class="divider"></li>
+<li class="chapter" data-path="">
+<a href="../..">Home</a>
+<li class="header">Linux Useful Tips</li>
+
+<li>
+<a href="../../linux/vi/" class="">vi commands</a>
+</li>
+
+<li>
+<a href="../../linux/grep_sed_awk/" class="">grep/sed/awk commands</a>
+</li>
+
+<li class="header">Python</li>
+
+<li>
+<a href="./" class="active">Numpy/Scipy examples</a>
+</li>
+
+<li>
+<a href="../python_pandas/" class="">Pandas</a>
+</li>
+
+<li class="header">Machine Learning Basics</li>
+
+<li>
+<a href="../../ml/ml_basics/" class="">Implimenting the Basics</a>
+</li>
+
+<li>
+<a href="../../ml/deepnn_imp/" class="">Implimenting Deep Neural Network</a>
+</li>
+
+<li>
+<a href="../../ml/tf/" class="">Tensorflow Basics</a>
+</li>
+
+<li class="header">Machine Learning Projects</li>
+
+<li>
+<a href="../../ml/ml_content/" class="">All Contents</a>
+</li>
+
+<li>
+<a href="../../ml/chest_xray/" class="">Chest X-ray Medical Diagnosis</a>
+</li>
+
+<li>
+<a href="../../ml/compare_classification/" class="">Classification Comarision</a>
+</li>
+
+<li>
+<a href="../../ml/file0/" class="">File0</a>
+</li>
+
+<li>
+<a href="../../ml/learn_ml/" class="">Learn ml</a>
+</li>
+
+<li>
+<a href="../../ml/projects/" class="">Projects</a>
+</li>
+
+<li class="divider"></li>
+
+
+
+<li><a href="http://www.mkdocs.org">
+Published with MkDocs
+</a></li>
+
+<li><a href="https://github.com/GitbookIO/theme-default">
+Theme by GitBook
+</a></li>
+</ul>
+
+</nav>
+
+</div> <!-- end of book-summary -->
+
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="." ></a>
+</h1>
+
+</div> <!-- end of book-header -->
+
+<div class="page-wrapper" tabindex="-1" role="main">
+<div class="page-inner">
+<div id="book-search-results">
+<div class="search-noresults">
+
+<section class="normal markdown-section">
+
+
+
+<h1 id="more-on-numerics-using-numpyscipy">More on Numerics using Numpy/Scipy</h1>
+<ul>
+<li>Derivative, Integration</li>
+<li>Root finding </li>
+<li>Random Walk</li>
+</ul>
+<h3 id="project">Project</h3>
+<ul>
+<li>
+<p>Calculating value of $\pi$</p>
+</li>
+<li>
+<p>Curve fitting [Next class]</p>
+</li>
+</ul>
+<h2 id="1-derivative">1. Derivative</h2>
+<p>$$f(x) = x^2 + 5x -4 $$
+$$\frac{df(x)}{dx} = 2x+5$$
+$$\frac{df(x)}{dx} \Big \vert_{x=1} = 7$$</p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #007020; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">numpy</span> <span style="color: #007020; font-weight: bold">as</span> <span style="color: #0e84b5; font-weight: bold">np</span>
+<span style="color: #007020; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">pylab</span> <span style="color: #007020; font-weight: bold">as</span> <span style="color: #0e84b5; font-weight: bold">plt</span>
+<span style="color: #007020; font-weight: bold">from</span> <span style="color: #0e84b5; font-weight: bold">scipy.misc</span> <span style="color: #007020; font-weight: bold">import</span> derivative
+
+<span style="color: #007020; font-weight: bold">def</span> <span style="color: #06287e">f</span>(x):
+    <span style="color: #007020; font-weight: bold">return</span> x<span style="color: #666666">**</span><span style="color: #40a070">2</span> <span style="color: #666666">+</span> <span style="color: #40a070">5</span><span style="color: #666666">*</span>x <span style="color: #666666">-</span><span style="color: #40a070">4</span>
+
+df<span style="color: #666666">=</span> derivative(f, x0<span style="color: #666666">=</span><span style="color: #40a070">1.</span>)
+<span style="color: #007020">print</span> (df)
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>7.0
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #60a0b0; font-style: italic"># SOLUTION HW1</span>
+
+
+<span style="color: #007020; font-weight: bold">from</span> <span style="color: #0e84b5; font-weight: bold">scipy.misc</span> <span style="color: #007020; font-weight: bold">import</span> derivative
+
+<span style="color: #007020; font-weight: bold">def</span> <span style="color: #06287e">f</span>(x, a):
+    <span style="color: #007020; font-weight: bold">return</span> np<span style="color: #666666">.</span>exp(<span style="color: #666666">-</span>a<span style="color: #666666">*</span>x<span style="color: #666666">**</span><span style="color: #40a070">2</span>)
+
+a<span style="color: #666666">=</span><span style="color: #40a070">1.</span>; x0<span style="color: #666666">=</span><span style="color: #40a070">1</span>
+
+df<span style="color: #666666">=</span> derivative(f, x0<span style="color: #666666">=</span>x0, dx<span style="color: #666666">=</span><span style="color: #40a070">1e-3</span>, args<span style="color: #666666">=</span>(a,))
+<span style="color: #007020">print</span> (df)
+<span style="color: #007020">print</span> (<span style="color: #666666">-</span><span style="color: #40a070">2</span><span style="color: #666666">*</span>a<span style="color: #666666">*</span>x0<span style="color: #666666">*</span>f(x0, a))
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>-0.7357586370898284
+-0.7357588823428847
+</code></pre></div>
+
+
+<h2 id="hw1">HW1</h2>
+<p>Calculate derivative  $(d/dx)$ of a function  : $f(x) = e^{-ax^2}$ at $x = 1 $ analytically. And Confirm your results with numerical implementation for any arbitrary value of $a$.</p>
+<ul>
+<li>Hint: use arguement $args=(a,)$ in the derivative call and give $a$ as second input arguement in the function.</li>
+<li>Hint: If your numerical answer doesn't match, use another arguement in the derivative call $dx=1e-3$ or some small number.</li>
+</ul>
+<hr />
+<hr />
+<h2 id="2-integration">2. Integration</h2>
+<h3 id="1-integrate-a-function">1. Integrate a Function</h3>
+<p>$$I = \int_0^1  (x^2+ 3x-1) \ dx$$
+$$I= \frac{x^3}{3}+\frac{3x^2}{2}-1x \ \ \Big \vert_0^1$$
+$$ I = \frac{1}{3}+\frac{3}{2}-1  $$
+$$ I = 0.833$$</p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #007020; font-weight: bold">from</span> <span style="color: #0e84b5; font-weight: bold">scipy.integrate</span> <span style="color: #007020; font-weight: bold">import</span> quad
+
+<span style="color: #007020; font-weight: bold">def</span> <span style="color: #06287e">func</span>(x):
+    <span style="color: #007020; font-weight: bold">return</span> x<span style="color: #666666">**</span><span style="color: #40a070">2</span> <span style="color: #666666">+</span> <span style="color: #40a070">3</span><span style="color: #666666">*</span>x <span style="color: #666666">-</span><span style="color: #40a070">1</span>
+I, err <span style="color: #666666">=</span> quad(func, <span style="color: #40a070">0</span>, <span style="color: #40a070">1</span>)
+<span style="color: #007020">print</span> (I, err)
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>0.8333333333333334 1.2723808807253818e-14
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #60a0b0; font-style: italic"># SOLUTION HW2</span>
+
+
+<span style="color: #007020; font-weight: bold">from</span> <span style="color: #0e84b5; font-weight: bold">scipy.integrate</span> <span style="color: #007020; font-weight: bold">import</span> quad
+
+<span style="color: #007020; font-weight: bold">def</span> <span style="color: #06287e">func</span>(x, a):
+    <span style="color: #007020; font-weight: bold">return</span> x<span style="color: #666666">**</span><span style="color: #40a070">2</span> <span style="color: #666666">*</span> np<span style="color: #666666">.</span>exp(<span style="color: #666666">-</span>a<span style="color: #666666">*</span>x<span style="color: #666666">**</span><span style="color: #40a070">2</span>)
+
+a<span style="color: #666666">=</span><span style="color: #40a070">6</span>;
+I, err <span style="color: #666666">=</span> quad(func, <span style="color: #40a070">0</span>, np<span style="color: #666666">.</span>inf, args<span style="color: #666666">=</span>(a,))
+
+<span style="color: #60a0b0; font-style: italic"># Analytic Answer</span>
+I_ana <span style="color: #666666">=</span> np<span style="color: #666666">.</span>sqrt(np<span style="color: #666666">.</span>pi)<span style="color: #666666">/</span>(<span style="color: #40a070">4.</span><span style="color: #666666">*</span>a<span style="color: #666666">**</span>(<span style="color: #40a070">1.5</span>))
+<span style="color: #007020">print</span> (<span style="color: #4070a0">&#39;Analytic Answer:&#39;</span>, I_ana, <span style="color: #4070a0">&#39;Numerical Answer:&#39;</span>, I)
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>Analytic Answer: 0.03015005227326115 Numerical Answer: 0.030150052273261157
+</code></pre></div>
+
+
+<h2 id="hw2">HW2</h2>
+<p>Evaluate the following integration: </p>
+<p>$$I = \int_0^{\infty}  x^2 e^{-ax^2}  \ dx$$</p>
+<p>using both numerical and analytical methods. For any arbitrary value of $a$. Make sure they match with each other.</p>
+<ul>
+<li>Hint: use arguement $args=(a,)$ in the quad call and give $a$ as second input arguement in the function.</li>
+<li>Hint: Use Feynman's <strong>Derivative inside integral technique</strong> for the analytical evaluation.</li>
+</ul>
+<hr />
+<hr />
+<h3 id="2-integrate-a-data-set">2. Integrate a data set</h3>
+<ul>
+<li>Trapezoidal Rule:  https://en.wikipedia.org/wiki/Trapezoidal_rule</li>
+<li>Simpson Rule: https://en.wikipedia.org/wiki/Simpson%27s_rule</li>
+</ul>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #60a0b0; font-style: italic"># load the dataset</span>
+data <span style="color: #666666">=</span> np<span style="color: #666666">.</span>loadtxt(<span style="color: #4070a0">&#39;data.dat&#39;</span>)<span style="color: #666666">.</span>T
+
+<span style="color: #60a0b0; font-style: italic">#print (data)</span>
+<span style="color: #60a0b0; font-style: italic">#print (data.shape)</span>
+<span style="color: #60a0b0; font-style: italic">#print (data[0])</span>
+
+x <span style="color: #666666">=</span> data[<span style="color: #40a070">0</span>]
+y <span style="color: #666666">=</span> data[<span style="color: #40a070">1</span>]
+
+plt<span style="color: #666666">.</span>plot(x, y, <span style="color: #4070a0">&#39;-o&#39;</span>)
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>[&lt;matplotlib.lines.Line2D at 0x11d3e96d0&gt;]
+</code></pre></div>
+
+
+<p><img alt="png" src="../python_numpy_scipy_files/python_numpy_scipy_7_1.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #007020; font-weight: bold">from</span> <span style="color: #0e84b5; font-weight: bold">scipy.integrate</span> <span style="color: #007020; font-weight: bold">import</span> trapz, simps, romb
+
+Int <span style="color: #666666">=</span> trapz(y, x)
+<span style="color: #007020">print</span> (Int)
+
+Int <span style="color: #666666">=</span> simps(y, x)
+<span style="color: #007020">print</span> (Int)
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>94.0112
+93.93663963963965
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #007020; font-weight: bold">def</span> <span style="color: #06287e">func</span>(x, a,b):
+    <span style="color: #007020; font-weight: bold">return</span> a<span style="color: #666666">*</span>x<span style="color: #666666">**</span><span style="color: #40a070">3</span> <span style="color: #666666">+</span> b<span style="color: #666666">*</span>np<span style="color: #666666">.</span>sin(x)
+</code></pre></div>
+
+
+<h2 id="hw3">HW3</h2>
+<p>Implement an algebraic function $y$ of some input value $x$ print the output $y$ for different values of $x$. Save the data as some file. Load the file and do numerical integration using <strong>trapz</strong> as well as <strong>simps</strong> methods. Also calculate the integration of the function you used earlier analytically and compare your results.</p>
+<hr />
+<hr />
+<h2 id="3-root-finding">3. Root Finding</h2>
+<p>The root of a function is a point where f(x) = 0. We use scipy.optimize.root()</p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #007020; font-weight: bold">from</span> <span style="color: #0e84b5; font-weight: bold">scipy</span> <span style="color: #007020; font-weight: bold">import</span> optimize
+<span style="color: #007020; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">seaborn</span> <span style="color: #007020; font-weight: bold">as</span> <span style="color: #0e84b5; font-weight: bold">sns</span>
+
+sns<span style="color: #666666">.</span>set()
+
+<span style="color: #007020; font-weight: bold">def</span> <span style="color: #06287e">f</span>(x):
+    <span style="color: #007020; font-weight: bold">return</span> <span style="color: #40a070">0.1</span><span style="color: #666666">*</span>x<span style="color: #666666">**</span><span style="color: #40a070">2</span> <span style="color: #666666">+</span><span style="color: #40a070">1.</span><span style="color: #666666">*</span>np<span style="color: #666666">.</span>sin(x) <span style="color: #666666">-</span> <span style="color: #40a070">2.</span>
+
+xx<span style="color: #666666">=</span> np<span style="color: #666666">.</span>linspace(<span style="color: #666666">-</span><span style="color: #40a070">10</span>, <span style="color: #40a070">10</span>, <span style="color: #40a070">50</span>)
+yy <span style="color: #666666">=</span> f(xx)
+
+plt<span style="color: #666666">.</span>plot(xx, yy)
+<span style="color: #60a0b0; font-style: italic">#plt.grid()</span>
+
+roots <span style="color: #666666">=</span> optimize<span style="color: #666666">.</span>root(f, x0<span style="color: #666666">=</span>[<span style="color: #666666">-</span><span style="color: #40a070">5</span>,<span style="color: #40a070">5.</span>]) <span style="color: #60a0b0; font-style: italic">## x0: initial guess</span>
+
+<span style="color: #007020">print</span> (roots<span style="color: #666666">.</span>x)
+plt<span style="color: #666666">.</span>axvline(x<span style="color: #666666">=</span>roots<span style="color: #666666">.</span>x[<span style="color: #40a070">0</span>], color<span style="color: #666666">=</span><span style="color: #4070a0">&#39;k&#39;</span>)
+plt<span style="color: #666666">.</span>axvline(x<span style="color: #666666">=</span>roots<span style="color: #666666">.</span>x[<span style="color: #40a070">1</span>], color<span style="color: #666666">=</span><span style="color: #4070a0">&#39;k&#39;</span>)
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>[-3.76415182  5.31434703]
+
+
+
+
+
+&lt;matplotlib.lines.Line2D at 0x11fb95850&gt;
+</code></pre></div>
+
+
+<p><img alt="png" src="../python_numpy_scipy_files/python_numpy_scipy_11_2.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #007020; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">matplotlib.pyplot</span> <span style="color: #007020; font-weight: bold">as</span> <span style="color: #0e84b5; font-weight: bold">plt</span>
+<span style="color: #007020; font-weight: bold">from</span> <span style="color: #0e84b5; font-weight: bold">scipy</span> <span style="color: #007020; font-weight: bold">import</span> optimize
+
+<span style="color: #007020; font-weight: bold">def</span> <span style="color: #06287e">f</span>(x):
+    <span style="color: #007020; font-weight: bold">return</span> (x<span style="color: #666666">**</span><span style="color: #40a070">3</span> <span style="color: #666666">-</span> <span style="color: #40a070">2</span><span style="color: #666666">*</span>x<span style="color: #666666">**</span><span style="color: #40a070">2</span> <span style="color: #666666">+</span><span style="color: #40a070">4</span><span style="color: #666666">*</span>x<span style="color: #666666">-</span><span style="color: #40a070">4.</span>)
+
+(a, b)<span style="color: #666666">=</span> [<span style="color: #666666">-</span><span style="color: #40a070">1.5</span>, <span style="color: #40a070">4</span>]
+
+xx <span style="color: #666666">=</span> np<span style="color: #666666">.</span>linspace(a, b, <span style="color: #40a070">20</span>)
+plt<span style="color: #666666">.</span>plot(xx, f(xx))
+
+root <span style="color: #666666">=</span> optimize<span style="color: #666666">.</span>brentq(f, a, b)
+
+plt<span style="color: #666666">.</span>plot([root], [<span style="color: #40a070">0.</span>], <span style="color: #4070a0">&#39;o&#39;</span>, color<span style="color: #666666">=</span><span style="color: #4070a0">&#39;maroon&#39;</span>, lw<span style="color: #666666">=</span><span style="color: #40a070">4.</span>)
+
+<span style="color: #007020">print</span> (root)
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>1.2955977425220846
+</code></pre></div>
+
+
+<p><img alt="png" src="../python_numpy_scipy_files/python_numpy_scipy_12_1.png" /></p>
+<h2 id="4-finding-minimum-of-a-function">4. Finding Minimum of a function</h2>
+<p>$$f(x) = x^2+10 \ sin(x)$$
+$$ \frac{df(x)}{dx} = 2x+ 10 \ cos(x) $$
+Minimum occurs at $\frac{df(x)}{dx} \big \vert_{x=x0} = 0$</p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #007020; font-weight: bold">def</span> <span style="color: #06287e">func</span>(x):
+    <span style="color: #007020; font-weight: bold">return</span> <span style="color: #40a070">0.1</span><span style="color: #666666">*</span>x<span style="color: #666666">**</span><span style="color: #40a070">2</span> <span style="color: #666666">+</span><span style="color: #40a070">1.</span><span style="color: #666666">*</span>np<span style="color: #666666">.</span>sin(x) <span style="color: #666666">+</span> <span style="color: #40a070">1.</span>
+
+xx<span style="color: #666666">=</span> np<span style="color: #666666">.</span>linspace(<span style="color: #666666">-</span><span style="color: #40a070">10</span>, <span style="color: #40a070">10</span>, <span style="color: #40a070">50</span>)
+yy <span style="color: #666666">=</span> func(xx)
+
+plt<span style="color: #666666">.</span>plot(xx, yy)
+
+<span style="color: #007020; font-weight: bold">from</span> <span style="color: #0e84b5; font-weight: bold">scipy</span> <span style="color: #007020; font-weight: bold">import</span> optimize
+
+xmin <span style="color: #666666">=</span> optimize<span style="color: #666666">.</span>minimize(func, x0<span style="color: #666666">=</span><span style="color: #40a070">0</span>)
+
+<span style="color: #007020">print</span> (xmin)
+
+plt<span style="color: #666666">.</span>axvline(x<span style="color: #666666">=</span>xmin<span style="color: #666666">.</span>x, color<span style="color: #666666">=</span><span style="color: #4070a0">&#39;k&#39;</span>)
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>      fun: 0.20541766243848236
+ hess_inv: array([[0.85898602]])
+      jac: array([-1.56462193e-07])
+  message: &#39;Optimization terminated successfully.&#39;
+     nfev: 18
+      nit: 5
+     njev: 6
+   status: 0
+  success: True
+        x: array([-1.30644014])
+
+
+
+
+
+&lt;matplotlib.lines.Line2D at 0x11fcb1160&gt;
+</code></pre></div>
+
+
+<p><img alt="png" src="../python_numpy_scipy_files/python_numpy_scipy_14_2.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #007020; font-weight: bold">from</span> <span style="color: #0e84b5; font-weight: bold">scipy.interpolate</span> <span style="color: #007020; font-weight: bold">import</span> UnivariateSpline 
+
+data<span style="color: #666666">=</span>np<span style="color: #666666">.</span>loadtxt(<span style="color: #4070a0">&#39;data.dat&#39;</span>)<span style="color: #666666">.</span>transpose()
+
+(x, y) <span style="color: #666666">=</span> data
+plt<span style="color: #666666">.</span>scatter(x, y, color<span style="color: #666666">=</span><span style="color: #4070a0">&#39;blue&#39;</span>)
+
+func <span style="color: #666666">=</span> UnivariateSpline(x, y, s<span style="color: #666666">=</span><span style="color: #40a070">0</span>)
+
+<span style="color: #007020">print</span> (func)
+
+<span style="color: #60a0b0; font-style: italic">#plt.scatter(10, func(10))</span>
+
+xx <span style="color: #666666">=</span> np<span style="color: #666666">.</span>linspace(<span style="color: #40a070">0</span>, <span style="color: #40a070">9</span>, <span style="color: #40a070">50</span>)
+yy <span style="color: #666666">=</span> func(xx)
+
+plt<span style="color: #666666">.</span>plot(xx, yy, color<span style="color: #666666">=</span><span style="color: #4070a0">&#39;red&#39;</span>)
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>&lt;scipy.interpolate.fitpack2.InterpolatedUnivariateSpline object at 0x11fd4d9d0&gt;
+
+
+
+
+
+[&lt;matplotlib.lines.Line2D at 0x11fd8c6d0&gt;]
+</code></pre></div>
+
+
+<p><img alt="png" src="../python_numpy_scipy_files/python_numpy_scipy_15_2.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>y_new <span style="color: #666666">=</span> y <span style="color: #666666">+</span> <span style="color: #40a070">10</span><span style="color: #666666">*</span>np<span style="color: #666666">.</span>random<span style="color: #666666">.</span>rand(<span style="color: #007020">len</span>(y))
+plt<span style="color: #666666">.</span>plot(x, y_new, <span style="color: #4070a0">&#39;o&#39;</span>, lw<span style="color: #666666">=</span><span style="color: #40a070">5.</span>)
+
+func <span style="color: #666666">=</span> UnivariateSpline(x, y_new, s<span style="color: #666666">=</span><span style="color: #40a070">0</span>)
+xx <span style="color: #666666">=</span> np<span style="color: #666666">.</span>linspace(<span style="color: #007020">min</span>(x), <span style="color: #007020">max</span>(x), <span style="color: #40a070">50</span>)
+yy <span style="color: #666666">=</span> func(xx)
+plt<span style="color: #666666">.</span>plot(xx, yy, color<span style="color: #666666">=</span><span style="color: #4070a0">&#39;red&#39;</span>)
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>[&lt;matplotlib.lines.Line2D at 0x11fe4cdf0&gt;]
+</code></pre></div>
+
+
+<p><img alt="png" src="../python_numpy_scipy_files/python_numpy_scipy_16_1.png" /></p>
+<h2 id="5-random-numbers">5. Random Numbers</h2>
+<h3 id="1-random-walk-in-1d">1. Random Walk in 1D</h3>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>counter <span style="color: #666666">=</span> [<span style="color: #40a070">0</span>]
+steps<span style="color: #666666">=</span><span style="color: #40a070">10000</span>
+<span style="color: #007020; font-weight: bold">for</span> i <span style="color: #007020; font-weight: bold">in</span> <span style="color: #007020">range</span>(steps):
+    r <span style="color: #666666">=</span> <span style="color: #40a070">2</span><span style="color: #666666">*</span>np<span style="color: #666666">.</span>random<span style="color: #666666">.</span>rand()<span style="color: #666666">-</span><span style="color: #40a070">1.</span>
+    next_num <span style="color: #666666">=</span> counter[<span style="color: #666666">-</span><span style="color: #40a070">1</span>]<span style="color: #666666">+</span>r
+    counter<span style="color: #666666">.</span>append(next_num)
+plt<span style="color: #666666">.</span>plot(counter, <span style="color: #4070a0">&#39;o&#39;</span>, markersize<span style="color: #666666">=</span><span style="color: #40a070">0.4</span>, color<span style="color: #666666">=</span><span style="color: #4070a0">&#39;maroon&#39;</span>)
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>[&lt;matplotlib.lines.Line2D at 0x11fee73d0&gt;]
+</code></pre></div>
+
+
+<p><img alt="png" src="../python_numpy_scipy_files/python_numpy_scipy_18_1.png" /></p>
+<h2 id="hw4">HW4</h2>
+<p>Perform the same 1D random walk using an array with zero values and populating the array at each random walk steps.</p>
+<hr />
+<hr />
+<h3 id="2-random-walk-in-2d">2. Random Walk in 2D</h3>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #60a0b0; font-style: italic"># Random Walk in 2D</span>
+
+steps <span style="color: #666666">=</span> <span style="color: #40a070">100</span>
+
+counter <span style="color: #666666">=</span> [ [<span style="color: #40a070">0</span>,<span style="color: #40a070">0</span>]  ]
+
+<span style="color: #007020; font-weight: bold">for</span> i <span style="color: #007020; font-weight: bold">in</span> <span style="color: #007020">range</span>(steps):
+    rx <span style="color: #666666">=</span> <span style="color: #40a070">2</span><span style="color: #666666">*</span>np<span style="color: #666666">.</span>random<span style="color: #666666">.</span>rand()<span style="color: #666666">-</span><span style="color: #40a070">1</span>
+    ry <span style="color: #666666">=</span> <span style="color: #40a070">2</span><span style="color: #666666">*</span>np<span style="color: #666666">.</span>random<span style="color: #666666">.</span>rand()<span style="color: #666666">-</span><span style="color: #40a070">1</span>
+
+    last_point <span style="color: #666666">=</span> counter[<span style="color: #666666">-</span><span style="color: #40a070">1</span>]
+    new_point <span style="color: #666666">=</span> np<span style="color: #666666">.</span>array(last_point) <span style="color: #666666">+</span> np<span style="color: #666666">.</span>array([rx, ry])
+    counter<span style="color: #666666">.</span>append(new_point)
+
+counter <span style="color: #666666">=</span> np<span style="color: #666666">.</span>array(counter)
+
+plt<span style="color: #666666">.</span>plot(counter[:,<span style="color: #40a070">0</span>], counter[:,<span style="color: #40a070">1</span>], <span style="color: #4070a0">&#39;-o&#39;</span>, lw<span style="color: #666666">=</span><span style="color: #40a070">0.5</span>, color<span style="color: #666666">=</span><span style="color: #4070a0">&#39;maroon&#39;</span>)
+plt<span style="color: #666666">.</span>scatter([<span style="color: #40a070">0</span>],[<span style="color: #40a070">0</span>], marker<span style="color: #666666">=</span><span style="color: #4070a0">&#39;o&#39;</span>, lw<span style="color: #666666">=</span><span style="color: #40a070">10</span>, color<span style="color: #666666">=</span><span style="color: #4070a0">&#39;blue&#39;</span>)
+plt<span style="color: #666666">.</span>scatter(counter[<span style="color: #666666">-</span><span style="color: #40a070">1</span>][<span style="color: #40a070">0</span>],counter[<span style="color: #666666">-</span><span style="color: #40a070">1</span>][<span style="color: #40a070">1</span>], marker<span style="color: #666666">=</span><span style="color: #4070a0">&#39;*&#39;</span>, lw<span style="color: #666666">=</span><span style="color: #40a070">10</span>, color<span style="color: #666666">=</span><span style="color: #4070a0">&#39;green&#39;</span>)
+plt<span style="color: #666666">.</span>show()
+</code></pre></div>
+
+
+<p><img alt="png" src="../python_numpy_scipy_files/python_numpy_scipy_20_0.png" /></p>
+<h2 id="hw5">HW5</h2>
+<ul>
+<li>
+<ol>
+<li>Perform the Similar 2D random walk with the counter being initialized as a zero Matrix (HINT: use np.zeros()) and the random number for each step in the range [-2, 2]. HINT: Change the scale of the random number which originally is in the range [0,1) to your range. </li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Compute the average values of x coordinates as well as the y coordinates of all the points visited. HINT: use np.mean()</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Calculate the distance between first point and the last point visited. # HINT: Use standard mathematical formula</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>Calculate the longest and the shortest distances of all the points (except the origin) from starting point., HINT: use np.max() and np.min()</li>
+</ol>
+</li>
+</ul>
+<h2 id="6-calculating-value-of-pi-using-random-numbers">6. Calculating value of $\pi$ using random numbers</h2>
+<ul>
+<li>Imagine a circle of radius r inscribed in a square of length 2*r.</li>
+<li>Through random number on the square. Check if it hits the circle or not. Count the points hitting the circle.</li>
+<li>For large N (number of dots) the total number of dots represent the area of the square. and the total dots inside the circle represents the are of the circle.</li>
+<li>Take ratio of area of the two. </li>
+</ul>
+<p>$$\frac{A_{circle}}{A_{Square}} = \frac{ \pi r^2} { (2r)^2} = \pi/4$$</p>
+<p>$$\pi = 4 \frac{A_{circle}}{A_{Square}}$$</p>
+<p>$$\pi = 4 \frac{N_{circle}}{N_{Square}}$$</p>
+<p><img src="circ.png" style="width: 200px;"/></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #60a0b0; font-style: italic"># np.random.rand() gives values [0, 1)</span>
+
+Maxiter <span style="color: #666666">=</span> <span style="color: #40a070">100</span>
+
+N_circle <span style="color: #666666">=</span> <span style="color: #40a070">0</span>
+N_square <span style="color: #666666">=</span> <span style="color: #40a070">0</span>
+
+plt<span style="color: #666666">.</span>figure(figsize<span style="color: #666666">=</span>(<span style="color: #40a070">6</span>,<span style="color: #40a070">6</span>))
+<span style="color: #007020; font-weight: bold">for</span> i <span style="color: #007020; font-weight: bold">in</span> <span style="color: #007020">range</span>(Maxiter):
+    rx <span style="color: #666666">=</span> <span style="color: #40a070">2</span><span style="color: #666666">*</span>np<span style="color: #666666">.</span>random<span style="color: #666666">.</span>rand()<span style="color: #666666">-</span><span style="color: #40a070">1</span>
+    ry <span style="color: #666666">=</span> <span style="color: #40a070">2</span><span style="color: #666666">*</span>np<span style="color: #666666">.</span>random<span style="color: #666666">.</span>rand()<span style="color: #666666">-</span><span style="color: #40a070">1</span>
+
+    l <span style="color: #666666">=</span>  np<span style="color: #666666">.</span>sqrt(rx<span style="color: #666666">**</span><span style="color: #40a070">2</span><span style="color: #666666">+</span>ry<span style="color: #666666">**</span><span style="color: #40a070">2</span>)
+    plt<span style="color: #666666">.</span>scatter(rx, ry, color<span style="color: #666666">=</span><span style="color: #4070a0">&#39;blue&#39;</span>, lw<span style="color: #666666">=</span><span style="color: #4070a0">&#39;.5&#39;</span>)
+
+    <span style="color: #007020; font-weight: bold">if</span> l<span style="color: #666666">&lt;=</span> <span style="color: #40a070">1.</span>:
+        N_circle <span style="color: #666666">=</span> N_circle <span style="color: #666666">+</span><span style="color: #40a070">1</span>
+        plt<span style="color: #666666">.</span>scatter(rx, ry, color<span style="color: #666666">=</span><span style="color: #4070a0">&#39;red&#39;</span>, lw<span style="color: #666666">=</span><span style="color: #4070a0">&#39;.5&#39;</span>)
+
+    N_square <span style="color: #666666">+=</span><span style="color: #40a070">1</span>
+
+plt<span style="color: #666666">.</span>xlim([<span style="color: #666666">-</span><span style="color: #40a070">1.2</span>,<span style="color: #40a070">1.2</span>])
+plt<span style="color: #666666">.</span>ylim([<span style="color: #666666">-</span><span style="color: #40a070">1.2</span>,<span style="color: #40a070">1.2</span>])
+plt<span style="color: #666666">.</span>axhline(y<span style="color: #666666">=</span><span style="color: #40a070">0.</span>, color<span style="color: #666666">=</span><span style="color: #4070a0">&#39;maroon&#39;</span>, lw<span style="color: #666666">=</span><span style="color: #40a070">2.</span>)
+plt<span style="color: #666666">.</span>axvline(x<span style="color: #666666">=</span><span style="color: #40a070">0.</span>, color<span style="color: #666666">=</span><span style="color: #4070a0">&#39;maroon&#39;</span>, lw<span style="color: #666666">=</span><span style="color: #40a070">2.</span>)
+<span style="color: #007020">print</span> (N_circle, N_square)
+
+pi <span style="color: #666666">=</span> <span style="color: #40a070">4</span><span style="color: #666666">*</span>N_circle<span style="color: #666666">/</span>N_square
+
+circle <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros((<span style="color: #40a070">50</span>, <span style="color: #40a070">2</span>), dtype<span style="color: #666666">=</span><span style="color: #007020">float</span>)
+
+theta <span style="color: #666666">=</span> np<span style="color: #666666">.</span>linspace(<span style="color: #40a070">0</span>, <span style="color: #40a070">2</span><span style="color: #666666">*</span>np<span style="color: #666666">.</span>pi, <span style="color: #40a070">50</span>)
+xt <span style="color: #666666">=</span> np<span style="color: #666666">.</span>cos(theta)
+yt <span style="color: #666666">=</span> np<span style="color: #666666">.</span>sin(theta)
+plt<span style="color: #666666">.</span>plot(xt, yt, color<span style="color: #666666">=</span><span style="color: #4070a0">&#39;maroon&#39;</span>)
+
+err <span style="color: #666666">=</span> (<span style="color: #007020">abs</span>(pi<span style="color: #666666">-</span>np<span style="color: #666666">.</span>pi)<span style="color: #666666">/</span>np<span style="color: #666666">.</span>pi)<span style="color: #666666">*</span><span style="color: #40a070">100.</span>    
+<span style="color: #007020">print</span> (<span style="color: #4070a0">&#39;calculated pi=&#39;</span>,pi, <span style="color: #4070a0">&#39;Exact pi=&#39;</span>, np<span style="color: #666666">.</span>pi, <span style="color: #4070a0">&#39;Error=&#39;</span>, err, <span style="color: #4070a0">&#39;%&#39;</span>)
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>82 100
+calculated pi= 3.28 Exact pi= 3.141592653589793 Error= 4.405642668283338 %
+</code></pre></div>
+
+
+<p><img alt="png" src="../python_numpy_scipy_files/python_numpy_scipy_23_1.png" /></p>
+<h2 id="hw6">HW6</h2>
+<p>In the above calculation of $\pi$, draw a figure with circle inscribed in a square with all of your random dots. Use different colors for the dots inside and outside the circle. Plot vertical and horizontal line passing through the origin for the axis.</p>
+<p><strong>Hints</strong>
+* You can use plt.axvline and plt.axhline for vertical and horizontal lines. and these can be used to draw the outer lines of the square as well. Just change the location of the lines.
+* Plotting a circle can be done in many ways, one way is to first generate points on the circle using $(r cos(\theta), r sin(\theta) )$ and taking $r=1$ and $\theta \in [0, 2\pi]$
+* Plotting dots can be done by doing a scatter plot at each step. Plot the inside dots inside your if (l&lt;=1) statement.
+* You can use plt.figure(figsize=(8,8)) to make the aspect ratio same for both the axis.
+* First use only </p>
+<h1 id="mandelbrot-set-optional">Mandelbrot set [Optional]</h1>
+<p>Here is <a href=https://en.wikipedia.org/wiki/Mandelbrot_set> Wikipedia page on Mandelbrot Set. </a></p>
+<p>The <strong>Mandelbrot set</strong> is the set of values of c in the complex plane for which the orbit of 0 under iteration of the quadratic map</p>
+<p>$$z_{n+1}=z_{n}^{2}+c$$</p>
+<p>remains bounded.</p>
+<p>A point $c$ belongs to the Mandelbrot set if and only if</p>
+<p>$ \vert P_{c}^{n}(0) \vert \leq 2  $ for all $n \ge  0 $</p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #007020; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">numpy</span> <span style="color: #007020; font-weight: bold">as</span> <span style="color: #0e84b5; font-weight: bold">np</span>
+<span style="color: #007020; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">pylab</span> <span style="color: #007020; font-weight: bold">as</span> <span style="color: #0e84b5; font-weight: bold">plt</span>
+<span style="color: #007020; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">seaborn</span> <span style="color: #007020; font-weight: bold">as</span> <span style="color: #0e84b5; font-weight: bold">sns</span>
+
+<span style="color: #60a0b0; font-style: italic">#sns.set(False)</span>
+
+<span style="color: #007020; font-weight: bold">def</span> <span style="color: #06287e">CheckBoundedness</span>(c, Maxiter):
+    z <span style="color: #666666">=</span> <span style="color: #40a070">0</span>j
+    <span style="color: #007020; font-weight: bold">for</span> i <span style="color: #007020; font-weight: bold">in</span> <span style="color: #007020">range</span>(Maxiter):
+        z <span style="color: #666666">=</span> z<span style="color: #666666">**</span>(<span style="color: #40a070">2</span>) <span style="color: #666666">+</span> c
+        <span style="color: #007020; font-weight: bold">if</span> <span style="color: #007020">abs</span>(z)<span style="color: #666666">&gt;</span><span style="color: #40a070">2</span>:
+            <span style="color: #007020; font-weight: bold">return</span> i
+    <span style="color: #007020; font-weight: bold">return</span> Maxiter
+
+N<span style="color: #666666">=</span><span style="color: #40a070">100</span>;
+Maxiter <span style="color: #666666">=</span> <span style="color: #40a070">80</span>;
+
+xmin, xmax <span style="color: #666666">=</span> [<span style="color: #666666">-</span><span style="color: #40a070">2</span>, <span style="color: #40a070">1</span>]
+ymin, ymax <span style="color: #666666">=</span> [<span style="color: #666666">-</span><span style="color: #40a070">2</span>, <span style="color: #40a070">2</span>]
+
+xL <span style="color: #666666">=</span> np<span style="color: #666666">.</span>linspace(xmin, xmax, N)
+yL <span style="color: #666666">=</span> np<span style="color: #666666">.</span>linspace(ymin, ymax, N)
+
+data <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros( (N, N), dtype<span style="color: #666666">=</span><span style="color: #007020">float</span>)
+
+<span style="color: #007020; font-weight: bold">for</span> i <span style="color: #007020; font-weight: bold">in</span> <span style="color: #007020">range</span>(N):
+    <span style="color: #007020; font-weight: bold">for</span> j <span style="color: #007020; font-weight: bold">in</span> <span style="color: #007020">range</span>(N):
+        c <span style="color: #666666">=</span> xL[i]<span style="color: #666666">+</span><span style="color: #40a070">1</span>j<span style="color: #666666">*</span>yL[j]
+        data[i,j] <span style="color: #666666">=</span> CheckBoundedness(c, Maxiter)
+
+plt<span style="color: #666666">.</span>figure(figsize<span style="color: #666666">=</span>(<span style="color: #40a070">6</span>,<span style="color: #40a070">6</span>));
+plt<span style="color: #666666">.</span>imshow(data[::<span style="color: #666666">-</span><span style="color: #40a070">1</span>]<span style="color: #666666">.</span>T, cmap<span style="color: #666666">=</span><span style="color: #4070a0">&#39;plasma&#39;</span>, extent<span style="color: #666666">=</span>[xmin, xmax, ymin, ymax]); <span style="color: #60a0b0; font-style: italic">#&#39;Spectral&#39; is good</span>
+<span style="color: #60a0b0; font-style: italic">#plt.xticks([]);</span>
+<span style="color: #60a0b0; font-style: italic">#plt.yticks([]);</span>
+</code></pre></div>
+
+
+<p><img alt="png" src="../python_numpy_scipy_files/python_numpy_scipy_26_0.png" /></p>
+<h1 id="simple-pendulum">Simple Pendulum</h1>
+<p>$$ \frac{d^2 \theta}{dt^2} + a \theta + b \frac{d \theta}{dt}  = 0 $$</p>
+<p>let $y = [ \theta, \omega ] $ where $\omega = \frac{d\theta}{dt}$
+Hence</p>
+<p>$$ \frac{dy}{dt} =  \frac{d}{dt}  [\theta, \omega] = \frac{d}{dt}  [\theta, \frac{d\theta}{dt}] =  [  \frac{d \theta}{dt}, \frac{d^2 \theta}{dt}] =   [ \frac{d \theta}{dt}    ,  -a \theta - b  \frac{d \theta}{dt}  ]  = [\omega, -a \theta - b \omega]   $$</p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #007020; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">numpy</span> <span style="color: #007020; font-weight: bold">as</span> <span style="color: #0e84b5; font-weight: bold">np</span>
+<span style="color: #007020; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">pylab</span> <span style="color: #007020; font-weight: bold">as</span> <span style="color: #0e84b5; font-weight: bold">plt</span>
+
+<span style="color: #007020; font-weight: bold">def</span> <span style="color: #06287e">pendulum</span>(y,t, a, b):
+    <span style="color: #60a0b0; font-style: italic"># y = [\theta, \omega]</span>
+    <span style="color: #60a0b0; font-style: italic"># we return [d \theta /dt, -a  \theta - b \omega]</span>
+    dydt<span style="color: #666666">=</span> [ y[<span style="color: #40a070">1</span>], <span style="color: #666666">-</span>a<span style="color: #666666">*</span>y[<span style="color: #40a070">0</span>] <span style="color: #666666">-</span> b<span style="color: #666666">*</span>y[<span style="color: #40a070">1</span>] ]
+    <span style="color: #60a0b0; font-style: italic">#dydt= [ y[1], -a*y[0] ]</span>
+    <span style="color: #007020; font-weight: bold">return</span> np<span style="color: #666666">.</span>array(dydt) 
+
+y0 <span style="color: #666666">=</span> [<span style="color: #40a070">5.</span>, <span style="color: #40a070">0.</span>]
+a <span style="color: #666666">=</span> <span style="color: #40a070">1.</span>
+b <span style="color: #666666">=</span> <span style="color: #40a070">0.1</span>
+
+t <span style="color: #666666">=</span> np<span style="color: #666666">.</span>linspace(<span style="color: #40a070">0</span>, <span style="color: #40a070">80</span>, <span style="color: #40a070">500</span>)
+
+<span style="color: #007020; font-weight: bold">from</span> <span style="color: #0e84b5; font-weight: bold">scipy.integrate</span> <span style="color: #007020; font-weight: bold">import</span> odeint
+sol <span style="color: #666666">=</span> odeint(pendulum, y0, t, args<span style="color: #666666">=</span>(a,b))
+
+plt<span style="color: #666666">.</span>figure(<span style="color: #40a070">1</span>)
+
+<span style="color: #60a0b0; font-style: italic">#plt.subplot(121)</span>
+plt<span style="color: #666666">.</span>plot(t, sol[:,<span style="color: #40a070">0</span>], label<span style="color: #666666">=</span><span style="color: #4070a0">&#39;$</span><span style="color: #4070a0; font-weight: bold">\\</span><span style="color: #4070a0">theta(t)$&#39;</span>);
+plt<span style="color: #666666">.</span>plot(t, sol[:,<span style="color: #40a070">1</span>], label<span style="color: #666666">=</span><span style="color: #4070a0">&#39;$\omega(t)$&#39;</span>);
+plt<span style="color: #666666">.</span>legend(frameon<span style="color: #666666">=</span><span style="color: #007020; font-weight: bold">False</span>, fontsize<span style="color: #666666">=</span><span style="color: #40a070">16</span>);
+plt<span style="color: #666666">.</span>axhline(y<span style="color: #666666">=</span><span style="color: #40a070">0</span>, color<span style="color: #666666">=</span><span style="color: #4070a0">&#39;k&#39;</span>, ls<span style="color: #666666">=</span><span style="color: #4070a0">&#39;:&#39;</span>);
+</code></pre></div>
+
+
+<p><img alt="png" src="../python_numpy_scipy_files/python_numpy_scipy_28_0.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>
+</code></pre></div>
+
+
+</section>
+</div> <!-- end of search-noresults -->
+<div class="search-results">
+<div class="has-results">
+
+<!-- In the following the space was originally results matching-->
+<h5 class="search-results-title"><span class='search-results-count'></span> </h1>
+<!-- h5 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1 -->
+<ul class="search-results-list"></ul>
+
+</div> <!-- end of has-results -->
+<div class="no-results">
+
+<!-- In the following the space was originally No results matching-->
+<!-- h5 class="search-results-title">No results matching "<span class='search-query'></span>"</h1 -->
+<h5 class="search-results-title"> </h1>
+
+</div> <!-- end of no-results -->
+</div> <!-- end of search-results -->
+</div> <!-- end of book-search-results -->
+
+</div> <!-- end of page-inner -->
+</div> <!-- end of page-wrapper -->
+
+</div> <!-- end of body-inner -->
+
+</div> <!-- end of book-body -->
+<script src="../../js/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="../../search/main.js"></script>
+<script src="../../js/gitbook.min.js"></script>
+<script src="../../js/theme.min.js"></script>
+</body>
+</html>

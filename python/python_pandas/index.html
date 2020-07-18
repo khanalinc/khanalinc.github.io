@@ -1,0 +1,2561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>Pandas - khanalinc</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="generator" content="mkdocs-1.1.2, mkdocs-gitbook-1.0.7">
+
+<link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon">
+<meta name="HandheldFriendly" content="true"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta rel="next" href="" />
+<link href="../../css/style.min.css" rel="stylesheet"> 
+</head>
+
+<body>
+<div class="book">
+<div class="book-summary">
+<div id="book-search-input" role="search">
+<input type="text" placeholder="Type to search" />
+</div> <!-- end of book-search-input -->
+
+<nav role="navigation">
+<ul class="summary">
+<li>
+<a href="../.." target="_blank" class="custom-link">khanalinc</a>
+</li>
+<li class="divider"></li>
+<li class="chapter" data-path="">
+<a href="../..">Home</a>
+<li class="header">Linux Useful Tips</li>
+
+<li>
+<a href="../../linux/vi/" class="">vi commands</a>
+</li>
+
+<li>
+<a href="../../linux/grep_sed_awk/" class="">grep/sed/awk commands</a>
+</li>
+
+<li class="header">Python</li>
+
+<li>
+<a href="../python_numpy_scipy/" class="">Numpy/Scipy examples</a>
+</li>
+
+<li>
+<a href="./" class="active">Pandas</a>
+</li>
+
+<li class="header">Machine Learning Basics</li>
+
+<li>
+<a href="../../ml/ml_basics/" class="">Implimenting the Basics</a>
+</li>
+
+<li>
+<a href="../../ml/deepnn_imp/" class="">Implimenting Deep Neural Network</a>
+</li>
+
+<li>
+<a href="../../ml/tf/" class="">Tensorflow Basics</a>
+</li>
+
+<li class="header">Machine Learning Projects</li>
+
+<li>
+<a href="../../ml/ml_content/" class="">All Contents</a>
+</li>
+
+<li>
+<a href="../../ml/chest_xray/" class="">Chest X-ray Medical Diagnosis</a>
+</li>
+
+<li>
+<a href="../../ml/compare_classification/" class="">Classification Comarision</a>
+</li>
+
+<li>
+<a href="../../ml/file0/" class="">File0</a>
+</li>
+
+<li>
+<a href="../../ml/learn_ml/" class="">Learn ml</a>
+</li>
+
+<li>
+<a href="../../ml/projects/" class="">Projects</a>
+</li>
+
+<li class="divider"></li>
+
+
+
+<li><a href="http://www.mkdocs.org">
+Published with MkDocs
+</a></li>
+
+<li><a href="https://github.com/GitbookIO/theme-default">
+Theme by GitBook
+</a></li>
+</ul>
+
+</nav>
+
+</div> <!-- end of book-summary -->
+
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="." ></a>
+</h1>
+
+</div> <!-- end of book-header -->
+
+<div class="page-wrapper" tabindex="-1" role="main">
+<div class="page-inner">
+<div id="book-search-results">
+<div class="search-noresults">
+
+<section class="normal markdown-section">
+
+
+
+<h1 id="data-visualization-with-pandas">Data Visualization with Pandas</h1>
+<ul>
+<li>Downloading online data from jupyter</li>
+<li>Handling the datetime in pandas</li>
+<li>Data visualzation using covid-19 data</li>
+<li>subplots using matplotlib</li>
+<li>curve-fitting and modeling of COVID-19 data.</li>
+</ul>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="border: 1px solid #FF0000">!</span>ls
+
+<span style="color: #60a0b0; font-style: italic">#!pwd</span>
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>class-wk4.ipynb       wk4-class_notes.ipynb
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="border: 1px solid #FF0000">!</span>wget https:<span style="color: #666666">//</span>covid<span style="color: #666666">.</span>ourworldindata<span style="color: #666666">.</span>org<span style="color: #666666">/</span>data<span style="color: #666666">/</span>ecdc<span style="color: #666666">/</span>total_cases<span style="color: #666666">.</span>csv
+<span style="border: 1px solid #FF0000">!</span>wget https:<span style="color: #666666">//</span>covid<span style="color: #666666">.</span>ourworldindata<span style="color: #666666">.</span>org<span style="color: #666666">/</span>data<span style="color: #666666">/</span>ecdc<span style="color: #666666">/</span>total_deaths<span style="color: #666666">.</span>csv
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>--2020-05-09 10:38:54--  https://covid.ourworldindata.org/data/ecdc/total_cases.csv
+Resolving covid.ourworldindata.org (covid.ourworldindata.org)... 104.248.50.87
+Connecting to covid.ourworldindata.org (covid.ourworldindata.org)|104.248.50.87|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 70071 (68K) [text/csv]
+Saving to: ‘total_cases.csv’
+
+total_cases.csv     100%[===================&gt;]  68.43K  --.-KB/s    in 0.05s
+
+2020-05-09 10:38:54 (1.43 MB/s) - ‘total_cases.csv’ saved [70071/70071]
+
+--2020-05-09 10:38:54--  https://covid.ourworldindata.org/data/ecdc/total_deaths.csv
+Resolving covid.ourworldindata.org (covid.ourworldindata.org)... 104.248.50.87
+Connecting to covid.ourworldindata.org (covid.ourworldindata.org)|104.248.50.87|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 54625 (53K) [text/csv]
+Saving to: ‘total_deaths.csv’
+
+total_deaths.csv    100%[===================&gt;]  53.34K  --.-KB/s    in 0.03s
+
+2020-05-09 10:38:54 (1.57 MB/s) - ‘total_deaths.csv’ saved [54625/54625]
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #007020; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">pandas</span> <span style="color: #007020; font-weight: bold">as</span> <span style="color: #0e84b5; font-weight: bold">pd</span>
+<span style="color: #007020; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">numpy</span> <span style="color: #007020; font-weight: bold">as</span> <span style="color: #0e84b5; font-weight: bold">np</span>
+<span style="color: #007020; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">matplotlib.pyplot</span> <span style="color: #007020; font-weight: bold">as</span> <span style="color: #0e84b5; font-weight: bold">plt</span>
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>df <span style="color: #666666">=</span> pd<span style="color: #666666">.</span>read_csv(<span style="color: #4070a0">&#39;total_deaths.csv&#39;</span>)
+df<span style="color: #666666">.</span>head(<span style="color: #40a070">3</span>)
+</code></pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>World</th>
+      <th>Afghanistan</th>
+      <th>Albania</th>
+      <th>Algeria</th>
+      <th>Andorra</th>
+      <th>Angola</th>
+      <th>Anguilla</th>
+      <th>Antigua and Barbuda</th>
+      <th>Argentina</th>
+      <th>...</th>
+      <th>United States Virgin Islands</th>
+      <th>Uruguay</th>
+      <th>Uzbekistan</th>
+      <th>Vatican</th>
+      <th>Venezuela</th>
+      <th>Vietnam</th>
+      <th>Western Sahara</th>
+      <th>Yemen</th>
+      <th>Zambia</th>
+      <th>Zimbabwe</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2019-12-31</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2020-01-01</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2020-01-02</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>3 rows × 211 columns</p>
+</div>
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>df<span style="color: #666666">.</span>tail(<span style="color: #40a070">2</span>)
+</code></pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>World</th>
+      <th>Afghanistan</th>
+      <th>Albania</th>
+      <th>Algeria</th>
+      <th>Andorra</th>
+      <th>Angola</th>
+      <th>Anguilla</th>
+      <th>Antigua and Barbuda</th>
+      <th>Argentina</th>
+      <th>...</th>
+      <th>United States Virgin Islands</th>
+      <th>Uruguay</th>
+      <th>Uzbekistan</th>
+      <th>Vatican</th>
+      <th>Venezuela</th>
+      <th>Vietnam</th>
+      <th>Western Sahara</th>
+      <th>Yemen</th>
+      <th>Zambia</th>
+      <th>Zimbabwe</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>129</th>
+      <td>2020-05-08</td>
+      <td>269249</td>
+      <td>106.0</td>
+      <td>31.0</td>
+      <td>483.0</td>
+      <td>47.0</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>282.0</td>
+      <td>...</td>
+      <td>4.0</td>
+      <td>17.0</td>
+      <td>10.0</td>
+      <td>0.0</td>
+      <td>10.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>6.0</td>
+      <td>4.0</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>130</th>
+      <td>2020-05-09</td>
+      <td>274290</td>
+      <td>109.0</td>
+      <td>31.0</td>
+      <td>488.0</td>
+      <td>47.0</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>293.0</td>
+      <td>...</td>
+      <td>4.0</td>
+      <td>18.0</td>
+      <td>10.0</td>
+      <td>0.0</td>
+      <td>10.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>7.0</td>
+      <td>4.0</td>
+      <td>4.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 211 columns</p>
+</div>
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>df<span style="color: #666666">.</span>columns
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>Index([&#39;date&#39;, &#39;World&#39;, &#39;Afghanistan&#39;, &#39;Albania&#39;, &#39;Algeria&#39;, &#39;Andorra&#39;,
+       &#39;Angola&#39;, &#39;Anguilla&#39;, &#39;Antigua and Barbuda&#39;, &#39;Argentina&#39;,
+       ...
+       &#39;United States Virgin Islands&#39;, &#39;Uruguay&#39;, &#39;Uzbekistan&#39;, &#39;Vatican&#39;,
+       &#39;Venezuela&#39;, &#39;Vietnam&#39;, &#39;Western Sahara&#39;, &#39;Yemen&#39;, &#39;Zambia&#39;,
+       &#39;Zimbabwe&#39;],
+      dtype=&#39;object&#39;, length=211)
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>df<span style="color: #666666">.</span>dtypes
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>date               object
+World               int64
+Afghanistan       float64
+Albania           float64
+Algeria           float64
+                   ...   
+Vietnam           float64
+Western Sahara    float64
+Yemen             float64
+Zambia            float64
+Zimbabwe          float64
+Length: 211, dtype: object
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>df <span style="color: #666666">=</span> pd<span style="color: #666666">.</span>read_csv(<span style="color: #4070a0">&#39;total_deaths.csv&#39;</span>, parse_dates<span style="color: #666666">=</span>[<span style="color: #4070a0">&#39;date&#39;</span>], index_col <span style="color: #666666">=</span> [<span style="color: #4070a0">&#39;date&#39;</span>] )
+df<span style="color: #666666">.</span>head(<span style="color: #40a070">3</span>)
+</code></pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>World</th>
+      <th>Afghanistan</th>
+      <th>Albania</th>
+      <th>Algeria</th>
+      <th>Andorra</th>
+      <th>Angola</th>
+      <th>Anguilla</th>
+      <th>Antigua and Barbuda</th>
+      <th>Argentina</th>
+      <th>Armenia</th>
+      <th>...</th>
+      <th>United States Virgin Islands</th>
+      <th>Uruguay</th>
+      <th>Uzbekistan</th>
+      <th>Vatican</th>
+      <th>Venezuela</th>
+      <th>Vietnam</th>
+      <th>Western Sahara</th>
+      <th>Yemen</th>
+      <th>Zambia</th>
+      <th>Zimbabwe</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2019-12-31</th>
+      <td>0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-01-01</th>
+      <td>0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-01-02</th>
+      <td>0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>3 rows × 210 columns</p>
+</div>
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>df<span style="color: #666666">.</span>index
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>DatetimeIndex([&#39;2019-12-31&#39;, &#39;2020-01-01&#39;, &#39;2020-01-02&#39;, &#39;2020-01-03&#39;,
+               &#39;2020-01-04&#39;, &#39;2020-01-05&#39;, &#39;2020-01-06&#39;, &#39;2020-01-07&#39;,
+               &#39;2020-01-08&#39;, &#39;2020-01-09&#39;,
+               ...
+               &#39;2020-04-30&#39;, &#39;2020-05-01&#39;, &#39;2020-05-02&#39;, &#39;2020-05-03&#39;,
+               &#39;2020-05-04&#39;, &#39;2020-05-05&#39;, &#39;2020-05-06&#39;, &#39;2020-05-07&#39;,
+               &#39;2020-05-08&#39;, &#39;2020-05-09&#39;],
+              dtype=&#39;datetime64[ns]&#39;, name=&#39;date&#39;, length=131, freq=None)
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #60a0b0; font-style: italic"># data from fixed date period</span>
+df[<span style="color: #4070a0">&#39;2020-01-01&#39;</span>:<span style="color: #4070a0">&#39;2020-01-11&#39;</span>]
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>df_jan
+</code></pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>World</th>
+      <th>Afghanistan</th>
+      <th>Albania</th>
+      <th>Algeria</th>
+      <th>Andorra</th>
+      <th>Angola</th>
+      <th>Anguilla</th>
+      <th>Antigua and Barbuda</th>
+      <th>Argentina</th>
+      <th>Armenia</th>
+      <th>...</th>
+      <th>United States Virgin Islands</th>
+      <th>Uruguay</th>
+      <th>Uzbekistan</th>
+      <th>Vatican</th>
+      <th>Venezuela</th>
+      <th>Vietnam</th>
+      <th>Western Sahara</th>
+      <th>Yemen</th>
+      <th>Zambia</th>
+      <th>Zimbabwe</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2020-01-01</th>
+      <td>0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-01-02</th>
+      <td>0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-01-03</th>
+      <td>0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-01-04</th>
+      <td>0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-01-05</th>
+      <td>0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-01-06</th>
+      <td>0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-01-07</th>
+      <td>0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-01-08</th>
+      <td>0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-01-09</th>
+      <td>0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-01-10</th>
+      <td>0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-01-11</th>
+      <td>1</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>11 rows × 210 columns</p>
+</div>
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>df<span style="color: #666666">.</span>index
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>DatetimeIndex([&#39;2019-12-31&#39;, &#39;2020-01-01&#39;, &#39;2020-01-02&#39;, &#39;2020-01-03&#39;,
+               &#39;2020-01-04&#39;, &#39;2020-01-05&#39;, &#39;2020-01-06&#39;, &#39;2020-01-07&#39;,
+               &#39;2020-01-08&#39;, &#39;2020-01-09&#39;,
+               ...
+               &#39;2020-04-30&#39;, &#39;2020-05-01&#39;, &#39;2020-05-02&#39;, &#39;2020-05-03&#39;,
+               &#39;2020-05-04&#39;, &#39;2020-05-05&#39;, &#39;2020-05-06&#39;, &#39;2020-05-07&#39;,
+               &#39;2020-05-08&#39;, &#39;2020-05-09&#39;],
+              dtype=&#39;datetime64[ns]&#39;, name=&#39;date&#39;, length=131, freq=None)
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>df<span style="color: #666666">.</span>index<span style="color: #666666">.</span>strftime(<span style="color: #4070a0">&#39;%m-</span><span style="color: #70a0d0; font-style: italic">%d</span><span style="color: #4070a0">&#39;</span>)
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>Index([&#39;12-31&#39;, &#39;01-01&#39;, &#39;01-02&#39;, &#39;01-03&#39;, &#39;01-04&#39;, &#39;01-05&#39;, &#39;01-06&#39;, &#39;01-07&#39;,
+       &#39;01-08&#39;, &#39;01-09&#39;,
+       ...
+       &#39;04-30&#39;, &#39;05-01&#39;, &#39;05-02&#39;, &#39;05-03&#39;, &#39;05-04&#39;, &#39;05-05&#39;, &#39;05-06&#39;, &#39;05-07&#39;,
+       &#39;05-08&#39;, &#39;05-09&#39;],
+      dtype=&#39;object&#39;, length=131)
+</code></pre></div>
+
+
+<h1 id="data-preprocessing">Data preprocessing</h1>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>dfd <span style="color: #666666">=</span> pd<span style="color: #666666">.</span>read_csv(<span style="color: #4070a0">&#39;total_deaths.csv&#39;</span>, parse_dates<span style="color: #666666">=</span>[<span style="color: #4070a0">&#39;date&#39;</span>], index_col <span style="color: #666666">=</span> [<span style="color: #4070a0">&#39;date&#39;</span>] )
+dfc <span style="color: #666666">=</span> pd<span style="color: #666666">.</span>read_csv(<span style="color: #4070a0">&#39;total_cases.csv&#39;</span>, parse_dates<span style="color: #666666">=</span>[<span style="color: #4070a0">&#39;date&#39;</span>], index_col <span style="color: #666666">=</span> [<span style="color: #4070a0">&#39;date&#39;</span>] )
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>dfd<span style="color: #666666">.</span>head()
+</code></pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>World</th>
+      <th>Afghanistan</th>
+      <th>Albania</th>
+      <th>Algeria</th>
+      <th>Andorra</th>
+      <th>Angola</th>
+      <th>Anguilla</th>
+      <th>Antigua and Barbuda</th>
+      <th>Argentina</th>
+      <th>Armenia</th>
+      <th>...</th>
+      <th>United States Virgin Islands</th>
+      <th>Uruguay</th>
+      <th>Uzbekistan</th>
+      <th>Vatican</th>
+      <th>Venezuela</th>
+      <th>Vietnam</th>
+      <th>Western Sahara</th>
+      <th>Yemen</th>
+      <th>Zambia</th>
+      <th>Zimbabwe</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2019-12-31</th>
+      <td>0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-01-01</th>
+      <td>0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-01-02</th>
+      <td>0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-01-03</th>
+      <td>0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-01-04</th>
+      <td>0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 210 columns</p>
+</div>
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>dfc<span style="color: #666666">.</span>head()
+</code></pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>World</th>
+      <th>Afghanistan</th>
+      <th>Albania</th>
+      <th>Algeria</th>
+      <th>Andorra</th>
+      <th>Angola</th>
+      <th>Anguilla</th>
+      <th>Antigua and Barbuda</th>
+      <th>Argentina</th>
+      <th>Armenia</th>
+      <th>...</th>
+      <th>United States Virgin Islands</th>
+      <th>Uruguay</th>
+      <th>Uzbekistan</th>
+      <th>Vatican</th>
+      <th>Venezuela</th>
+      <th>Vietnam</th>
+      <th>Western Sahara</th>
+      <th>Yemen</th>
+      <th>Zambia</th>
+      <th>Zimbabwe</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2019-12-31</th>
+      <td>27</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-01-01</th>
+      <td>27</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-01-02</th>
+      <td>27</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-01-03</th>
+      <td>44</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-01-04</th>
+      <td>44</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 210 columns</p>
+</div>
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #60a0b0; font-style: italic"># check for NaN in the entire dataframe</span>
+dfd<span style="color: #666666">.</span>isnull()<span style="color: #666666">.</span>values<span style="color: #666666">.</span>any()
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>True
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #60a0b0; font-style: italic"># count the NaN under each columns</span>
+dfd<span style="color: #666666">.</span>isnull()<span style="color: #666666">.</span>sum()
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>World               0
+Afghanistan        10
+Albania            69
+Algeria             5
+Andorra            74
+                 ... 
+Vietnam             4
+Western Sahara    117
+Yemen             101
+Zambia             79
+Zimbabwe           81
+Length: 210, dtype: int64
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #60a0b0; font-style: italic"># Count total NaN in the dataframe</span>
+dfd<span style="color: #666666">.</span>isnull()<span style="color: #666666">.</span>sum()<span style="color: #666666">.</span>sum()
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>11473
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #60a0b0; font-style: italic"># Replace the NaN by some numbers</span>
+dfd <span style="color: #666666">=</span> dfd<span style="color: #666666">.</span>fillna(<span style="color: #40a070">0</span>)  <span style="color: #60a0b0; font-style: italic"># dfd.fillna(  dfd.mean()  )</span>
+dfc <span style="color: #666666">=</span> dfc<span style="color: #666666">.</span>fillna(<span style="color: #40a070">0</span>)
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>dfd<span style="color: #666666">.</span>head(<span style="color: #40a070">2</span>)
+</code></pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>World</th>
+      <th>Afghanistan</th>
+      <th>Albania</th>
+      <th>Algeria</th>
+      <th>Andorra</th>
+      <th>Angola</th>
+      <th>Anguilla</th>
+      <th>Antigua and Barbuda</th>
+      <th>Argentina</th>
+      <th>Armenia</th>
+      <th>...</th>
+      <th>United States Virgin Islands</th>
+      <th>Uruguay</th>
+      <th>Uzbekistan</th>
+      <th>Vatican</th>
+      <th>Venezuela</th>
+      <th>Vietnam</th>
+      <th>Western Sahara</th>
+      <th>Yemen</th>
+      <th>Zambia</th>
+      <th>Zimbabwe</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2019-12-31</th>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2020-01-01</th>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 210 columns</p>
+</div>
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>dfc<span style="color: #666666">.</span>head()
+</code></pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>World</th>
+      <th>Afghanistan</th>
+      <th>Albania</th>
+      <th>Algeria</th>
+      <th>Andorra</th>
+      <th>Angola</th>
+      <th>Anguilla</th>
+      <th>Antigua and Barbuda</th>
+      <th>Argentina</th>
+      <th>Armenia</th>
+      <th>...</th>
+      <th>United States Virgin Islands</th>
+      <th>Uruguay</th>
+      <th>Uzbekistan</th>
+      <th>Vatican</th>
+      <th>Venezuela</th>
+      <th>Vietnam</th>
+      <th>Western Sahara</th>
+      <th>Yemen</th>
+      <th>Zambia</th>
+      <th>Zimbabwe</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2019-12-31</th>
+      <td>27</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2020-01-01</th>
+      <td>27</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2020-01-02</th>
+      <td>27</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2020-01-03</th>
+      <td>44</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2020-01-04</th>
+      <td>44</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 210 columns</p>
+</div>
+
+<h1 id="data-visualization">Data visualization</h1>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #60a0b0; font-style: italic"># taking out data of a column</span>
+<span style="color: #60a0b0; font-style: italic"># two methods</span>
+dfd<span style="color: #666666">.</span>Afghanistan
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>date
+2019-12-31      0.0
+2020-01-01      0.0
+2020-01-02      0.0
+2020-01-03      0.0
+2020-01-04      0.0
+              ...  
+2020-05-05     90.0
+2020-05-06     95.0
+2020-05-07    104.0
+2020-05-08    106.0
+2020-05-09    109.0
+Name: Afghanistan, Length: 131, dtype: float64
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #60a0b0; font-style: italic">#dfd.United States # doesn&#39;t work</span>
+<span style="color: #60a0b0; font-style: italic">#method 2</span>
+dfd[<span style="color: #4070a0">&#39;United States&#39;</span>]
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>date
+2019-12-31        0
+2020-01-01        0
+2020-01-02        0
+2020-01-03        0
+2020-01-04        0
+              ...  
+2020-05-05    68934
+2020-05-06    71078
+2020-05-07    73431
+2020-05-08    75670
+2020-05-09    77180
+Name: United States, Length: 131, dtype: int64
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>dfd<span style="color: #666666">.</span>columns
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>Index([&#39;World&#39;, &#39;Afghanistan&#39;, &#39;Albania&#39;, &#39;Algeria&#39;, &#39;Andorra&#39;, &#39;Angola&#39;,
+       &#39;Anguilla&#39;, &#39;Antigua and Barbuda&#39;, &#39;Argentina&#39;, &#39;Armenia&#39;,
+       ...
+       &#39;United States Virgin Islands&#39;, &#39;Uruguay&#39;, &#39;Uzbekistan&#39;, &#39;Vatican&#39;,
+       &#39;Venezuela&#39;, &#39;Vietnam&#39;, &#39;Western Sahara&#39;, &#39;Yemen&#39;, &#39;Zambia&#39;,
+       &#39;Zimbabwe&#39;],
+      dtype=&#39;object&#39;, length=210)
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #60a0b0; font-style: italic"># plot Chinese data</span>
+<span style="color: #666666">%</span>matplotlib inline
+
+plt<span style="color: #666666">.</span>plot(dfd<span style="color: #666666">.</span>index, dfd<span style="color: #666666">.</span>China)
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>[&lt;matplotlib.lines.Line2D at 0x11525d490&gt;]
+</code></pre></div>
+
+
+<p><img alt="png" src="../python_pandas_files/python_pandas_28_1.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>plt<span style="color: #666666">.</span>plot(dfd<span style="color: #666666">.</span>index, dfd<span style="color: #666666">.</span>India)
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>[&lt;matplotlib.lines.Line2D at 0x112e05cd0&gt;]
+</code></pre></div>
+
+
+<p><img alt="png" src="../python_pandas_files/python_pandas_29_1.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>plt<span style="color: #666666">.</span>plot(dfd<span style="color: #666666">.</span>index, dfd[<span style="color: #4070a0">&#39;United States&#39;</span>])
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>[&lt;matplotlib.lines.Line2D at 0x115393fd0&gt;]
+</code></pre></div>
+
+
+<p><img alt="png" src="../python_pandas_files/python_pandas_30_1.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #007020; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">seaborn</span> <span style="color: #007020; font-weight: bold">as</span> <span style="color: #0e84b5; font-weight: bold">sns</span>
+sns<span style="color: #666666">.</span>set_style(<span style="color: #4070a0">&#39;whitegrid&#39;</span>)
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>plt<span style="color: #666666">.</span>plot(dfd<span style="color: #666666">.</span>index, dfd[<span style="color: #4070a0">&#39;United States&#39;</span>])
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>[&lt;matplotlib.lines.Line2D at 0x11d14f110&gt;]
+</code></pre></div>
+
+
+<p><img alt="png" src="../python_pandas_files/python_pandas_32_1.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>plt<span style="color: #666666">.</span>plot(dfd<span style="color: #666666">.</span>index, dfd[<span style="color: #4070a0">&#39;United States&#39;</span>])
+plt<span style="color: #666666">.</span>xticks(rotation<span style="color: #666666">=</span><span style="color: #40a070">45</span>);
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>(array([737425., 737446., 737456., 737477., 737485., 737506., 737516.,
+        737537., 737546.]), &lt;a list of 9 Text xticklabel objects&gt;)
+</code></pre></div>
+
+
+<p><img alt="png" src="../python_pandas_files/python_pandas_33_1.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>plt<span style="color: #666666">.</span>plot(dfd<span style="color: #666666">.</span>index, dfc[<span style="color: #4070a0">&#39;Nepal&#39;</span>])
+plt<span style="color: #666666">.</span>xticks(rotation<span style="color: #666666">=</span><span style="color: #40a070">45</span>);
+</code></pre></div>
+
+
+<p><img alt="png" src="../python_pandas_files/python_pandas_34_0.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>plt<span style="color: #666666">.</span>figure(figsize<span style="color: #666666">=</span>(<span style="color: #40a070">15</span>,<span style="color: #40a070">5</span>))
+
+plt<span style="color: #666666">.</span>subplot(<span style="color: #40a070">1</span>, <span style="color: #40a070">3</span>, <span style="color: #40a070">1</span>)
+plt<span style="color: #666666">.</span>plot(dfd<span style="color: #666666">.</span>index, dfc[<span style="color: #4070a0">&#39;Nepal&#39;</span>])
+plt<span style="color: #666666">.</span>title(<span style="color: #4070a0">&#39;Nepal&#39;</span>)
+plt<span style="color: #666666">.</span>xticks(rotation<span style="color: #666666">=</span><span style="color: #40a070">45</span>);
+
+plt<span style="color: #666666">.</span>subplot(<span style="color: #40a070">1</span>, <span style="color: #40a070">3</span>, <span style="color: #40a070">2</span>)
+plt<span style="color: #666666">.</span>plot(dfd<span style="color: #666666">.</span>index, dfc[<span style="color: #4070a0">&#39;India&#39;</span>])
+plt<span style="color: #666666">.</span>title(<span style="color: #4070a0">&#39;India&#39;</span>)
+plt<span style="color: #666666">.</span>xticks(rotation<span style="color: #666666">=</span><span style="color: #40a070">45</span>);
+
+plt<span style="color: #666666">.</span>subplot(<span style="color: #40a070">1</span>, <span style="color: #40a070">3</span>, <span style="color: #40a070">3</span>)
+plt<span style="color: #666666">.</span>plot(dfd<span style="color: #666666">.</span>index, dfc[<span style="color: #4070a0">&#39;Pakistan&#39;</span>])
+plt<span style="color: #666666">.</span>title(<span style="color: #4070a0">&#39;Pakistan&#39;</span>)
+
+plt<span style="color: #666666">.</span>xticks(rotation<span style="color: #666666">=</span><span style="color: #40a070">45</span>);
+</code></pre></div>
+
+
+<p><img alt="png" src="../python_pandas_files/python_pandas_35_0.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>countries <span style="color: #666666">=</span> [<span style="color: #4070a0">&#39;Nepal&#39;</span>, <span style="color: #4070a0">&#39;India&#39;</span>, <span style="color: #4070a0">&#39;Pakistan&#39;</span>]
+
+<span style="color: #60a0b0; font-style: italic">#for i in range(3):</span>
+<span style="color: #60a0b0; font-style: italic">#    print (i, countries[i])</span>
+
+<span style="color: #60a0b0; font-style: italic">#using enumerate</span>
+
+plt<span style="color: #666666">.</span>figure(figsize<span style="color: #666666">=</span>(<span style="color: #40a070">15</span>,<span style="color: #40a070">5</span>))
+
+<span style="color: #007020; font-weight: bold">for</span> i, c <span style="color: #007020; font-weight: bold">in</span> <span style="color: #007020">enumerate</span>(countries):
+    plt<span style="color: #666666">.</span>subplot(<span style="color: #40a070">1</span>, <span style="color: #40a070">3</span>, <span style="color: #40a070">1</span><span style="color: #666666">+</span>i)
+    plt<span style="color: #666666">.</span>plot(dfd<span style="color: #666666">.</span>index, dfd[c], label<span style="color: #666666">=</span><span style="color: #4070a0">&#39;Deaths&#39;</span>)
+    plt<span style="color: #666666">.</span>plot(dfc<span style="color: #666666">.</span>index, dfc[c], label<span style="color: #666666">=</span><span style="color: #4070a0">&#39;Cases&#39;</span>)
+
+    plt<span style="color: #666666">.</span>legend(fontsize<span style="color: #666666">=</span><span style="color: #40a070">12</span>, frameon<span style="color: #666666">=</span><span style="color: #007020; font-weight: bold">False</span>)
+    plt<span style="color: #666666">.</span>title(c, fontsize<span style="color: #666666">=</span><span style="color: #40a070">16</span>, color<span style="color: #666666">=</span><span style="color: #4070a0">&#39;maroon&#39;</span>)
+    plt<span style="color: #666666">.</span>xticks(rotation<span style="color: #666666">=</span><span style="color: #40a070">45</span>);
+    <span style="color: #60a0b0; font-style: italic">#print (i, c)</span>
+</code></pre></div>
+
+
+<p><img alt="png" src="../python_pandas_files/python_pandas_36_0.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>countries <span style="color: #666666">=</span> [<span style="color: #4070a0">&#39;United States&#39;</span>, <span style="color: #4070a0">&#39;Italy&#39;</span>, <span style="color: #4070a0">&#39;France&#39;</span>, <span style="color: #4070a0">&#39;United Kingdom&#39;</span>, <span style="color: #4070a0">&#39;China&#39;</span>, <span style="color: #4070a0">&#39;Germany&#39;</span>]
+
+plt<span style="color: #666666">.</span>figure(figsize<span style="color: #666666">=</span>(<span style="color: #40a070">15</span>,<span style="color: #40a070">10</span>))
+
+<span style="color: #007020; font-weight: bold">for</span> i, c <span style="color: #007020; font-weight: bold">in</span> <span style="color: #007020">enumerate</span>(countries):
+    plt<span style="color: #666666">.</span>subplot(<span style="color: #40a070">2</span>, <span style="color: #007020">len</span>(countries)<span style="color: #666666">//</span><span style="color: #40a070">2</span>, <span style="color: #40a070">1</span><span style="color: #666666">+</span>i)
+    <span style="color: #60a0b0; font-style: italic">#plt.plot(dfd.index, dfd[c], label=&#39;Deaths&#39;)</span>
+    <span style="color: #60a0b0; font-style: italic">#plt.plot(dfc.index, dfc[c], label=&#39;Cases&#39;)</span>
+
+    plt<span style="color: #666666">.</span>plot(dfd<span style="color: #666666">.</span>index, dfd[c], <span style="color: #4070a0">&#39;o&#39;</span>, label<span style="color: #666666">=</span><span style="color: #4070a0">&#39;Deaths&#39;</span>)
+    plt<span style="color: #666666">.</span>plot(dfc<span style="color: #666666">.</span>index, dfc[c], <span style="color: #4070a0">&#39;o&#39;</span>, label<span style="color: #666666">=</span><span style="color: #4070a0">&#39;Cases&#39;</span>)
+
+    plt<span style="color: #666666">.</span>legend(fontsize<span style="color: #666666">=</span><span style="color: #40a070">12</span>, frameon<span style="color: #666666">=</span><span style="color: #007020; font-weight: bold">False</span>)
+    plt<span style="color: #666666">.</span>title(c, fontsize<span style="color: #666666">=</span><span style="color: #40a070">16</span>, color<span style="color: #666666">=</span><span style="color: #4070a0">&#39;maroon&#39;</span>)
+    plt<span style="color: #666666">.</span>xticks(rotation<span style="color: #666666">=</span><span style="color: #40a070">45</span>);
+</code></pre></div>
+
+
+<p><img alt="png" src="../python_pandas_files/python_pandas_37_0.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #60a0b0; font-style: italic">#1000 cases  in USA</span>
+N<span style="color: #666666">=</span> <span style="color: #40a070">1000</span>
+<span style="color: #007020">print</span> ( dfc[<span style="color: #4070a0">&#39;United States&#39;</span>]<span style="color: #666666">.</span>index[ dfc[<span style="color: #4070a0">&#39;United States&#39;</span>] <span style="color: #666666">&gt;=</span> N][<span style="color: #40a070">0</span>] )
+
+N<span style="color: #666666">=</span> <span style="color: #40a070">10000</span>
+<span style="color: #007020">print</span> ( dfc[<span style="color: #4070a0">&#39;United States&#39;</span>]<span style="color: #666666">.</span>index[ dfc[<span style="color: #4070a0">&#39;United States&#39;</span>] <span style="color: #666666">&gt;=</span> N][<span style="color: #40a070">0</span>] )
+
+N<span style="color: #666666">=</span> <span style="color: #40a070">100000</span>
+<span style="color: #007020">print</span> ( dfc[<span style="color: #4070a0">&#39;United States&#39;</span>]<span style="color: #666666">.</span>index[ dfc[<span style="color: #4070a0">&#39;United States&#39;</span>] <span style="color: #666666">&gt;=</span> N][<span style="color: #40a070">0</span>] )
+
+N<span style="color: #666666">=</span> <span style="color: #40a070">500000</span>
+<span style="color: #007020">print</span> ( dfc[<span style="color: #4070a0">&#39;United States&#39;</span>]<span style="color: #666666">.</span>index[ dfc[<span style="color: #4070a0">&#39;United States&#39;</span>] <span style="color: #666666">&gt;=</span> N][<span style="color: #40a070">0</span>] )
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>2020-03-11 00:00:00
+2020-03-20 00:00:00
+2020-03-28 00:00:00
+2020-04-11 00:00:00
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>milestones <span style="color: #666666">=</span> [<span style="color: #40a070">1000</span>, <span style="color: #40a070">10000</span>, <span style="color: #40a070">100000</span>, <span style="color: #40a070">500000</span>, <span style="color: #40a070">1000000</span>]
+
+<span style="color: #007020; font-weight: bold">for</span> i, n <span style="color: #007020; font-weight: bold">in</span> <span style="color: #007020">enumerate</span>(milestones):
+    <span style="color: #007020">print</span> ( dfc[<span style="color: #4070a0">&#39;United States&#39;</span>]<span style="color: #666666">.</span>index[ dfc[<span style="color: #4070a0">&#39;United States&#39;</span>] <span style="color: #666666">&gt;=</span> n][<span style="color: #40a070">0</span>] )
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>2020-03-11 00:00:00
+2020-03-20 00:00:00
+2020-03-28 00:00:00
+2020-04-11 00:00:00
+2020-04-29 00:00:00
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>milestones <span style="color: #666666">=</span> [<span style="color: #40a070">1000</span>, <span style="color: #40a070">10000</span>, <span style="color: #40a070">100000</span>, <span style="color: #40a070">500000</span>, <span style="color: #40a070">1000000</span>]
+
+<span style="color: #007020; font-weight: bold">for</span> i, n <span style="color: #007020; font-weight: bold">in</span> <span style="color: #007020">enumerate</span>(milestones):
+    indx <span style="color: #666666">=</span> dfc[<span style="color: #4070a0">&#39;United States&#39;</span>]<span style="color: #666666">.</span>index[ dfc[<span style="color: #4070a0">&#39;United States&#39;</span>] <span style="color: #666666">&gt;=</span> n][<span style="color: #40a070">0</span>]     
+    plt<span style="color: #666666">.</span>scatter( n, indx)
+    <span style="color: #60a0b0; font-style: italic">#plt.axvline(x=n)</span>
+    <span style="color: #60a0b0; font-style: italic">#plt.xticks(milestones, milestones)</span>
+</code></pre></div>
+
+
+<p><img alt="png" src="../python_pandas_files/python_pandas_40_0.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>milestones <span style="color: #666666">=</span> [<span style="color: #40a070">1000</span>, <span style="color: #40a070">10000</span>, <span style="color: #40a070">100000</span>, <span style="color: #40a070">500000</span>, <span style="color: #40a070">1000000</span>]
+
+countries <span style="color: #666666">=</span> [<span style="color: #4070a0">&#39;United States&#39;</span>, <span style="color: #4070a0">&#39;Italy&#39;</span>, <span style="color: #4070a0">&#39;France&#39;</span>]<span style="color: #60a0b0; font-style: italic">#, &#39;United Kingdom&#39;, &#39;China&#39;, &#39;Germany&#39;]</span>
+
+plt<span style="color: #666666">.</span>figure(figsize<span style="color: #666666">=</span>(<span style="color: #40a070">15</span>,<span style="color: #40a070">5</span>))
+
+<span style="color: #007020; font-weight: bold">for</span> i, c <span style="color: #007020; font-weight: bold">in</span> <span style="color: #007020">enumerate</span>(countries):
+    plt<span style="color: #666666">.</span>subplot(<span style="color: #40a070">1</span>, <span style="color: #007020">len</span>(countries), i<span style="color: #666666">+</span><span style="color: #40a070">1</span> )
+    plt<span style="color: #666666">.</span>title(c)
+
+    <span style="color: #007020; font-weight: bold">for</span> j, n <span style="color: #007020; font-weight: bold">in</span> <span style="color: #007020">enumerate</span>(milestones):
+        indx <span style="color: #666666">=</span> dfc[<span style="color: #4070a0">&#39;United States&#39;</span>]<span style="color: #666666">.</span>index[ dfc[<span style="color: #4070a0">&#39;United States&#39;</span>] <span style="color: #666666">&gt;=</span> n][<span style="color: #40a070">0</span>]
+        plt<span style="color: #666666">.</span>scatter( n, indx, color<span style="color: #666666">=</span><span style="color: #4070a0">&#39;blue&#39;</span>)
+        <span style="color: #60a0b0; font-style: italic">#plt.axvline(x=n)</span>
+        <span style="color: #60a0b0; font-style: italic">#plt.xticks(milestones, milestones)</span>
+</code></pre></div>
+
+
+<p><img alt="png" src="../python_pandas_files/python_pandas_41_0.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>milestones <span style="color: #666666">=</span> [<span style="color: #40a070">1000</span>, <span style="color: #40a070">10000</span>, <span style="color: #40a070">100000</span>, <span style="color: #40a070">500000</span>, <span style="color: #40a070">1000000</span>]
+
+countries <span style="color: #666666">=</span> [<span style="color: #4070a0">&#39;United States&#39;</span>, <span style="color: #4070a0">&#39;Italy&#39;</span>, <span style="color: #4070a0">&#39;France&#39;</span>]<span style="color: #60a0b0; font-style: italic">#, &#39;United Kingdom&#39;, &#39;China&#39;, &#39;Germany&#39;]</span>
+
+plt<span style="color: #666666">.</span>figure(figsize<span style="color: #666666">=</span>(<span style="color: #40a070">15</span>,<span style="color: #40a070">5</span>))
+
+<span style="color: #007020; font-weight: bold">for</span> i, c <span style="color: #007020; font-weight: bold">in</span> <span style="color: #007020">enumerate</span>(countries):
+    plt<span style="color: #666666">.</span>subplot(<span style="color: #40a070">1</span>, <span style="color: #007020">len</span>(countries), i<span style="color: #666666">+</span><span style="color: #40a070">1</span> )
+    plt<span style="color: #666666">.</span>title(c)
+
+    <span style="color: #007020; font-weight: bold">for</span> j, n <span style="color: #007020; font-weight: bold">in</span> <span style="color: #007020">enumerate</span>(milestones):
+        indx <span style="color: #666666">=</span> dfc[<span style="color: #4070a0">&#39;United States&#39;</span>]<span style="color: #666666">.</span>index[ dfc[<span style="color: #4070a0">&#39;United States&#39;</span>] <span style="color: #666666">&gt;=</span> n][<span style="color: #40a070">0</span>]
+        plt<span style="color: #666666">.</span>scatter( n, indx<span style="color: #666666">.</span>strftime(<span style="color: #4070a0">&#39;%m-</span><span style="color: #70a0d0; font-style: italic">%d</span><span style="color: #4070a0">&#39;</span>), color<span style="color: #666666">=</span><span style="color: #4070a0">&#39;blue&#39;</span>)
+        <span style="color: #60a0b0; font-style: italic">#plt.axvline(x=n)</span>
+        <span style="color: #60a0b0; font-style: italic">#plt.xticks(milestones, milestones)</span>
+</code></pre></div>
+
+
+<p><img alt="png" src="../python_pandas_files/python_pandas_42_0.png" /></p>
+<h1 id="curve-fitting">Curve fitting</h1>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #007020; font-weight: bold">def</span> <span style="color: #06287e">func</span>(x, a, b, c):
+    <span style="color: #007020; font-weight: bold">return</span> a<span style="color: #666666">*</span> np<span style="color: #666666">.</span>exp(<span style="color: #666666">-</span>b<span style="color: #666666">*</span>x)<span style="color: #666666">+</span>c
+
+xdata <span style="color: #666666">=</span> np<span style="color: #666666">.</span>linspace(<span style="color: #40a070">0</span>, <span style="color: #40a070">10</span>, <span style="color: #40a070">100</span>)
+y <span style="color: #666666">=</span> func(xdata, <span style="color: #40a070">2.5</span>, <span style="color: #40a070">1.3</span>, <span style="color: #40a070">0.5</span>)
+
+<span style="color: #60a0b0; font-style: italic">#plt.plot (xdata, y, &#39;o&#39;)</span>
+
+y_noise <span style="color: #666666">=</span> <span style="color: #40a070">0.5</span><span style="color: #666666">*</span> np<span style="color: #666666">.</span>random<span style="color: #666666">.</span>rand(<span style="color: #40a070">100</span>)
+
+ydata <span style="color: #666666">=</span> y <span style="color: #666666">+</span> y_noise
+
+plt<span style="color: #666666">.</span>plot (xdata, ydata, <span style="color: #4070a0">&#39;o&#39;</span>)
+
+<span style="color: #007020; font-weight: bold">from</span> <span style="color: #0e84b5; font-weight: bold">scipy.optimize</span> <span style="color: #007020; font-weight: bold">import</span> curve_fit
+
+popt, pcov <span style="color: #666666">=</span> curve_fit(func, xdata, ydata)
+
+<span style="color: #007020">print</span> (popt)
+
+plt<span style="color: #666666">.</span>plot(xdata, func(xdata, popt[<span style="color: #40a070">0</span>], popt[<span style="color: #40a070">1</span>], popt[<span style="color: #40a070">2</span>]), color<span style="color: #666666">=</span><span style="color: #4070a0">&#39;red&#39;</span>)
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>[2.4696733  1.31979388 0.75564748]
+
+
+
+
+
+[&lt;matplotlib.lines.Line2D at 0x11d580510&gt;]
+</code></pre></div>
+
+
+<p><img alt="png" src="../python_pandas_files/python_pandas_44_2.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #007020; font-weight: bold">def</span> <span style="color: #06287e">sigmoid</span>(x, L, x0, k):
+    <span style="color: #007020; font-weight: bold">return</span> L<span style="color: #666666">/</span>(<span style="color: #40a070">1</span><span style="color: #666666">+</span>np<span style="color: #666666">.</span>exp(<span style="color: #666666">-</span>k<span style="color: #666666">*</span>(x<span style="color: #666666">-</span>x0)))
+
+xx <span style="color: #666666">=</span> np<span style="color: #666666">.</span>array( <span style="color: #007020">range</span>(<span style="color: #007020">len</span>(dfc<span style="color: #666666">.</span>index)) )
+
+yy <span style="color: #666666">=</span> dfc<span style="color: #666666">.</span>Italy
+
+plt<span style="color: #666666">.</span>plot(xx, yy, <span style="color: #4070a0">&#39;o&#39;</span>, label<span style="color: #666666">=</span><span style="color: #4070a0">&#39;Cases: data&#39;</span>)
+
+mean <span style="color: #666666">=</span> np<span style="color: #666666">.</span>mean(yy)
+sig <span style="color: #666666">=</span> np<span style="color: #666666">.</span>std(yy)
+
+p0<span style="color: #666666">=</span>[<span style="color: #40a070">1</span>, mean, <span style="color: #40a070">1.</span>]
+
+popt, pcov <span style="color: #666666">=</span> curve_fit(sigmoid, xx, yy)<span style="color: #60a0b0; font-style: italic">#, p0)</span>
+<span style="color: #60a0b0; font-style: italic">#print (popt)</span>
+
+<span style="color: #60a0b0; font-style: italic">#plt.plot(xx, sigmoid(xx, popt[0], popt[1], popt[2]), color=&#39;red&#39;)</span>
+
+
+plt<span style="color: #666666">.</span>plot(xx, sigmoid(xx, <span style="color: #666666">*</span>popt), label<span style="color: #666666">=</span><span style="color: #4070a0">&#39;Fit&#39;</span>)
+plt<span style="color: #666666">.</span>legend();
+</code></pre></div>
+
+
+<p><img alt="png" src="../python_pandas_files/python_pandas_45_0.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #60a0b0; font-style: italic"># for prediction</span>
+plt<span style="color: #666666">.</span>plot(xx, yy, <span style="color: #4070a0">&#39;o&#39;</span>, label<span style="color: #666666">=</span><span style="color: #4070a0">&#39;Cases: data&#39;</span>)
+
+xnew <span style="color: #666666">=</span> np<span style="color: #666666">.</span>array( <span style="color: #007020">range</span>(<span style="color: #40a070">180</span>) )
+plt<span style="color: #666666">.</span>plot(xnew, sigmoid(xnew, <span style="color: #666666">*</span>popt), label<span style="color: #666666">=</span><span style="color: #4070a0">&#39;Fit&#39;</span>)
+plt<span style="color: #666666">.</span>legend();
+</code></pre></div>
+
+
+<p><img alt="png" src="../python_pandas_files/python_pandas_46_0.png" /></p>
+<h1 id="fitting-the-daily-casesdeaths">Fitting the daily cases/deaths</h1>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>dfd1 <span style="color: #666666">=</span> dfd<span style="color: #666666">.</span>diff()
+dfc1 <span style="color: #666666">=</span> dfc<span style="color: #666666">.</span>diff()
+
+dfd1<span style="color: #666666">.</span>head()
+</code></pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>World</th>
+      <th>Afghanistan</th>
+      <th>Albania</th>
+      <th>Algeria</th>
+      <th>Andorra</th>
+      <th>Angola</th>
+      <th>Anguilla</th>
+      <th>Antigua and Barbuda</th>
+      <th>Argentina</th>
+      <th>Armenia</th>
+      <th>...</th>
+      <th>United States Virgin Islands</th>
+      <th>Uruguay</th>
+      <th>Uzbekistan</th>
+      <th>Vatican</th>
+      <th>Venezuela</th>
+      <th>Vietnam</th>
+      <th>Western Sahara</th>
+      <th>Yemen</th>
+      <th>Zambia</th>
+      <th>Zimbabwe</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2019-12-31</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-01-01</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2020-01-02</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2020-01-03</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2020-01-04</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 210 columns</p>
+</div>
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>dfd1 <span style="color: #666666">=</span> dfd<span style="color: #666666">.</span>diff()<span style="color: #666666">.</span>fillna(<span style="color: #40a070">0</span>)
+dfc1 <span style="color: #666666">=</span> dfc<span style="color: #666666">.</span>diff()<span style="color: #666666">.</span>fillna(<span style="color: #40a070">0</span>)
+
+<span style="color: #60a0b0; font-style: italic">#dfd1.head()</span>
+dfd1<span style="color: #666666">.</span>tail()
+</code></pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>World</th>
+      <th>Afghanistan</th>
+      <th>Albania</th>
+      <th>Algeria</th>
+      <th>Andorra</th>
+      <th>Angola</th>
+      <th>Anguilla</th>
+      <th>Antigua and Barbuda</th>
+      <th>Argentina</th>
+      <th>Armenia</th>
+      <th>...</th>
+      <th>United States Virgin Islands</th>
+      <th>Uruguay</th>
+      <th>Uzbekistan</th>
+      <th>Vatican</th>
+      <th>Venezuela</th>
+      <th>Vietnam</th>
+      <th>Western Sahara</th>
+      <th>Yemen</th>
+      <th>Zambia</th>
+      <th>Zimbabwe</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2020-05-05</th>
+      <td>3999.0</td>
+      <td>5.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>14.0</td>
+      <td>4.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2020-05-06</th>
+      <td>5952.0</td>
+      <td>5.0</td>
+      <td>0.0</td>
+      <td>5.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>4.0</td>
+      <td>1.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2020-05-07</th>
+      <td>6387.0</td>
+      <td>9.0</td>
+      <td>0.0</td>
+      <td>6.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>9.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2020-05-08</th>
+      <td>5748.0</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>7.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>9.0</td>
+      <td>2.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2020-05-09</th>
+      <td>5041.0</td>
+      <td>3.0</td>
+      <td>0.0</td>
+      <td>5.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>11.0</td>
+      <td>1.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 210 columns</p>
+</div>
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>plt<span style="color: #666666">.</span>plot(dfd1<span style="color: #666666">.</span>index, dfd1[<span style="color: #4070a0">&#39;United Kingdom&#39;</span>], <span style="color: #4070a0">&#39;o&#39;</span>)
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>[&lt;matplotlib.lines.Line2D at 0x11dd61110&gt;]
+</code></pre></div>
+
+
+<p><img alt="png" src="../python_pandas_files/python_pandas_50_1.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #007020; font-weight: bold">def</span> <span style="color: #06287e">Gaussian</span>(x, x0, sigma, a):
+    <span style="color: #007020; font-weight: bold">return</span> a<span style="color: #666666">*</span>np<span style="color: #666666">.</span>exp(<span style="color: #666666">-</span>(x<span style="color: #666666">-</span>x0)<span style="color: #666666">**</span><span style="color: #40a070">2</span><span style="color: #666666">/</span>(<span style="color: #40a070">2</span><span style="color: #666666">*</span>sigma<span style="color: #666666">**</span><span style="color: #40a070">2</span>) )
+
+xx <span style="color: #666666">=</span> np<span style="color: #666666">.</span>array( <span style="color: #007020">range</span>(<span style="color: #007020">len</span>(dfc<span style="color: #666666">.</span>index)) )
+yy <span style="color: #666666">=</span> dfd1[<span style="color: #4070a0">&#39;United Kingdom&#39;</span>]
+
+plt<span style="color: #666666">.</span>scatter(xx, yy)
+
+p0 <span style="color: #666666">=</span> [ np<span style="color: #666666">.</span>median(yy), np<span style="color: #666666">.</span>std(yy), np<span style="color: #666666">.</span>max(yy) ]
+
+popt, pcov <span style="color: #666666">=</span> curve_fit(Gaussian, xx, yy, p0)
+plt<span style="color: #666666">.</span>plot(xx, Gaussian(xx, <span style="color: #666666">*</span>popt), color<span style="color: #666666">=</span><span style="color: #4070a0">&#39;red&#39;</span>)
+plt<span style="color: #666666">.</span>title(<span style="color: #4070a0">&#39;United Kingdom&#39;</span>)
+</code></pre></div>
+
+
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>Text(0.5, 1.0, &#39;United Kingdom&#39;)
+</code></pre></div>
+
+
+<p><img alt="png" src="../python_pandas_files/python_pandas_51_1.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>countries <span style="color: #666666">=</span> [<span style="color: #4070a0">&#39;United States&#39;</span>, <span style="color: #4070a0">&#39;Italy&#39;</span>, <span style="color: #4070a0">&#39;France&#39;</span>]<span style="color: #60a0b0; font-style: italic">#, &#39;United Kingdom&#39;, &#39;China&#39;, &#39;Germany&#39;]</span>
+
+plt<span style="color: #666666">.</span>figure(figsize<span style="color: #666666">=</span>(<span style="color: #40a070">15</span>,<span style="color: #40a070">5</span>))
+
+<span style="color: #007020; font-weight: bold">for</span> i, c <span style="color: #007020; font-weight: bold">in</span> <span style="color: #007020">enumerate</span>(countries):
+    plt<span style="color: #666666">.</span>subplot(<span style="color: #40a070">1</span>, <span style="color: #007020">len</span>(countries), i<span style="color: #666666">+</span><span style="color: #40a070">1</span> )
+    plt<span style="color: #666666">.</span>title(c)
+
+    xx <span style="color: #666666">=</span> np<span style="color: #666666">.</span>array( <span style="color: #007020">range</span>(<span style="color: #007020">len</span>(dfc<span style="color: #666666">.</span>index)) )
+    yy <span style="color: #666666">=</span> dfd1[c]
+
+    plt<span style="color: #666666">.</span>scatter(xx, yy)
+
+    p0 <span style="color: #666666">=</span> [ np<span style="color: #666666">.</span>median(yy), np<span style="color: #666666">.</span>std(yy), np<span style="color: #666666">.</span>max(yy) ]
+
+    popt, pcov <span style="color: #666666">=</span> curve_fit(Gaussian, xx, yy, p0)
+    plt<span style="color: #666666">.</span>plot(xx, Gaussian(xx, <span style="color: #666666">*</span>popt), color<span style="color: #666666">=</span><span style="color: #4070a0">&#39;red&#39;</span>)
+</code></pre></div>
+
+
+<p><img alt="png" src="../python_pandas_files/python_pandas_52_0.png" /></p>
+<div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code>
+</code></pre></div>
+
+
+</section>
+</div> <!-- end of search-noresults -->
+<div class="search-results">
+<div class="has-results">
+
+<!-- In the following the space was originally results matching-->
+<h5 class="search-results-title"><span class='search-results-count'></span> </h1>
+<!-- h5 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1 -->
+<ul class="search-results-list"></ul>
+
+</div> <!-- end of has-results -->
+<div class="no-results">
+
+<!-- In the following the space was originally No results matching-->
+<!-- h5 class="search-results-title">No results matching "<span class='search-query'></span>"</h1 -->
+<h5 class="search-results-title"> </h1>
+
+</div> <!-- end of no-results -->
+</div> <!-- end of search-results -->
+</div> <!-- end of book-search-results -->
+
+</div> <!-- end of page-inner -->
+</div> <!-- end of page-wrapper -->
+
+</div> <!-- end of body-inner -->
+
+</div> <!-- end of book-body -->
+<script src="../../js/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="../../search/main.js"></script>
+<script src="../../js/gitbook.min.js"></script>
+<script src="../../js/theme.min.js"></script>
+</body>
+</html>
