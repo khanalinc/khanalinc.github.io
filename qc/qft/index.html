@@ -130,9 +130,9 @@ Theme by GitBook
 <p>$$\vert x \rangle \mapsto \frac{1}{\sqrt{N}}\sum_{y=0}^{N-1}\omega_N^{xy} \vert y \rangle$$</p>
 <p>Or the unitary matrix:</p>
 <p>$$ U_{QFT} = \frac{1}{\sqrt{N}} \sum_{x=0}^{N-1} \sum_{y=0}^{N-1} \omega_N^{xy} \vert y \rangle \langle x \vert$$</p>
-<p><img src="figs/qft_note0.JPG" width=90% height=60% />
-<img src="figs/qft_note1.JPG" width=90% height=60% />
-<img src="figs/qft_note2.JPG" width=90% height=60% /></p>
+<p><img src="qft_files/qft_note0.JPG" width=90% height=60% />
+<img src="qft_files/qft_note1.JPG" width=90% height=60% />
+<img src="qft_files/qft_note2.JPG" width=90% height=60% /></p>
 <h2 id="example-1-1-qubit-qft">Example 1: 1-qubit QFT</h2>
 <p>Consider how the QFT operator as defined above acts on a single qubit state $\vert\psi\rangle = \alpha \vert 0 \rangle + \beta \vert 1 \rangle$. In this case, $x_0 = \alpha$, $x_1 = \beta$, and $N = 2$. Then,</p>
 <p>$$y_0 = \frac{1}{\sqrt{2}}\left(    \alpha \exp\left(2\pi i\frac{0\times0}{2}\right) + \beta \exp\left(2\pi i\frac{1\times0}{2}\right)      \right) = \frac{1}{\sqrt{2}}\left(\alpha + \beta\right)$$</p>
@@ -148,9 +148,9 @@ Theme by GitBook
 <p>Notice how the Hadamard gate performs the discrete Fourier transform for $N = 2$ on the amplitudes of the state. </p>
 <h2 id="5-the-circuit-that-implements-the-qft">5. The Circuit that Implements the QFT</h2>
 <p>The circuit that implements QFT makes use of two gates. The first one is a single-qubit Hadamard gate, $H$. The second is a two-qubit controlled rotation $CROT_k$.</p>
-<p><img src="figs/qft_note3.png" width=90% height=60% /></p>
+<p><img src="qft_files/qft_note3.png" width=90% height=60% /></p>
 <p>Given these two gates, a circuit that implements <strong>an n-qubit QFT</strong> is shown below.</p>
-<p><img alt="image1" src="figs/qft_circuit.png" /></p>
+<p><img alt="image1" src="qft_files/qft_circuit.png" /></p>
 <p>The circuit operates as follows. We start with an n-qubit input state $\vert x_1x_2\ldots x_n\rangle$.</p>
 <ol>
 <li> After the first Hadamard gate on qubit 1, the state is transformed from the input state to
@@ -248,7 +248,7 @@ which is exactly the QFT of the input state as derived above with the caveat tha
 </ol>
 
 <h2 id="6-example-2-1-qubit-qft">6. Example 2: 1-qubit QFT</h2>
-<p><img src="figs/qft_note4.jpeg" width=90% height=60% /></p>
+<p><img src="qft_files/qft_note4.jpeg" width=90% height=60% /></p>
 <h2 id="qiskit-implementation">Qiskit Implementation</h2>
 <div class="codehilite" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><code><span style="color: #007020; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">numpy</span> <span style="color: #007020; font-weight: bold">as</span> <span style="color: #0e84b5; font-weight: bold">np</span>
 <span style="color: #007020; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">pylab</span> <span style="color: #007020; font-weight: bold">as</span> <span style="color: #0e84b5; font-weight: bold">plt</span>
